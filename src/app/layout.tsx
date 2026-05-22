@@ -1,0 +1,52 @@
+import type { Metadata } from "next";
+import { Inter, Outfit } from "next/font/google";
+import "./globals.css";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { AppointmentProvider } from "@/context/AppointmentContext";
+import { EventPopup } from "@/components/ui/EventPopup";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Dr. Navya's Endo Care | Diabetes & Endocrine Superspeciality Center",
+  description: "Advanced Endocrinology care for diabetes, thyroid disorders, hormonal imbalance, obesity, PCOS, and metabolic disorders. Book an appointment today.",
+  keywords: "Endocrinologist, Diabetes, Thyroid, PCOS, Hormonal Imbalance, Obesity, Dr. Navya",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${inter.variable} ${outfit.variable} antialiased`}
+    >
+      <body className="min-h-screen flex flex-col font-sans text-slate-800 bg-white">
+        <SmoothScrollProvider>
+          <AppointmentProvider>
+            <Navbar />
+            <main className="flex-grow pt-20">
+              {children}
+            </main>
+            <Footer />
+            <FloatingWhatsApp />
+            <EventPopup />
+          </AppointmentProvider>
+        </SmoothScrollProvider>
+      </body>
+    </html>
+  );
+}
