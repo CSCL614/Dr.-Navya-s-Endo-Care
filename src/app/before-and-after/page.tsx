@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ArrowRight, Quote, TrendingDown, Activity, BatteryCharging } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
+import { TransformationsSection } from "@/components/home/TransformationsSection";
 
 const transformations = [
   {
@@ -54,18 +55,7 @@ export default function BeforeAndAfterPage() {
     <div className="overflow-hidden bg-slate-50 min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-gradient-medical overflow-hidden border-b border-slate-200">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
-          <ScrollReveal>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-slate-800 mb-6 leading-tight">
-              Real Lives, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Transformed</span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
-              Witness the power of expert endocrine care. These are the inspiring journeys of our patients who took control of their health.
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
+      <TransformationsSection />
 
       {/* Transformation Cases */}
       <section className="py-20 relative">

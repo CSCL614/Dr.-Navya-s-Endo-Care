@@ -7,6 +7,7 @@ import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { AppointmentProvider } from "@/context/AppointmentContext";
 import { EventPopup } from "@/components/ui/EventPopup";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { GlobalBackground } from "@/components/ui/GlobalBackground";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,11 +35,12 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${outfit.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col font-sans text-slate-800 bg-white">
+      <body className="min-h-screen flex flex-col font-sans text-slate-800 bg-transparent relative">
         <SmoothScrollProvider>
           <AppointmentProvider>
+            <GlobalBackground />
             <Navbar />
-            <main className="flex-grow pt-20">
+            <main className="flex-grow pt-20 relative z-10">
               {children}
             </main>
             <Footer />

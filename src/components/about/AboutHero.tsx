@@ -113,16 +113,16 @@ export function AboutHero() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white bg-slate-100"
+                className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50 border-[6px] border-white bg-slate-100"
               >
                 <div 
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop')` }}
+                  style={{ backgroundImage: `url('https://diabetes.co.in/media/uploads/2024/06/dr-navya-sruthi-mandapati.jpg')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
                 
                 <div className="absolute bottom-0 left-0 w-full p-8 text-white">
-                  <h3 className="text-2xl font-bold font-heading mb-1">Dr. Navya Sharma</h3>
+                  <h3 className="text-2xl font-bold font-heading mb-1">Dr. Navya Sruthi</h3>
                   <p className="text-white/80 font-medium">Chief Endocrinologist</p>
                 </div>
               </motion.div>
@@ -131,14 +131,14 @@ export function AboutHero() {
               <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-6 -right-2 lg:-right-6 glass-card p-4 rounded-2xl border border-white/50 shadow-xl backdrop-blur-md hidden sm:block z-20"
+                className="absolute -top-6 -right-2 lg:-right-6 bg-white/90 p-4 rounded-2xl border border-white/50 shadow-xl backdrop-blur-md hidden sm:block z-20"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                     <ShieldCheck className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-slate-800">15+ Years</div>
+                    <div className="text-lg font-bold text-slate-800">6+ Years</div>
                     <div className="text-xs font-semibold text-slate-500">Of Experience</div>
                   </div>
                 </div>
@@ -147,14 +147,14 @@ export function AboutHero() {
               <motion.div
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-6 -left-2 lg:-left-6 glass-card p-4 rounded-2xl border border-white/50 shadow-xl backdrop-blur-md hidden sm:block z-20"
+                className="absolute -bottom-6 -left-2 lg:-left-6 bg-white/90 p-4 rounded-2xl border border-white/50 shadow-xl backdrop-blur-md hidden sm:block z-20"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
                     <HeartPulse className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-slate-800">10k+</div>
+                    <div className="text-lg font-bold text-slate-800">5,000+</div>
                     <div className="text-xs font-semibold text-slate-500">Happy Patients</div>
                   </div>
                 </div>
