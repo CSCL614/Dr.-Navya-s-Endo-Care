@@ -2,13 +2,13 @@
 
 import { ArrowRight, Shield, Activity, Plus } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Hero3DVisual } from "./Hero3DVisual";
 
 export function HeroSection() {
   const { openModal } = useAppointment();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -19,7 +19,7 @@ export function HeroSection() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
