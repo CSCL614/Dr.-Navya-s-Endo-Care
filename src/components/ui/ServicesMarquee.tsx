@@ -1,13 +1,12 @@
 "use client";
 
 const services = [
-  "Smile Design",
-  "Single-Sitting Root Canals",
-  "Veneers",
-  "Zygomatic Implants",
-  "Microscopic Endodontics",
-  "Laser Dentistry",
-  "Full Mouth Rehabilitations"
+  "Diabetes Management",
+  "Thyroid Disorders",
+  "Hormonal Imbalance",
+  "Obesity & Weight Management",
+  "PCOS Care",
+  "Bone Health"
 ];
 
 // Duplicate the array a few times to ensure seamless infinite scrolling
