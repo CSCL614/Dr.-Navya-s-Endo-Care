@@ -3,10 +3,10 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { AppointmentProvider } from "@/context/AppointmentContext";
-import { EventPopup } from "@/components/ui/EventPopup";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { EventPopup } from "@/components/ui/EventPopup";
 import { GlobalBackground } from "@/components/ui/GlobalBackground";
 
 const inter = Inter({

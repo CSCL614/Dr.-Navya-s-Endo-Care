@@ -3,7 +3,12 @@
 import { ArrowRight, Shield, Activity, Plus } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import { motion, Variants } from "framer-motion";
-import { Hero3DVisual } from "./Hero3DVisual";
+import dynamic from "next/dynamic";
+
+const Hero3DVisual = dynamic(() => import("./Hero3DVisual").then(mod => mod.Hero3DVisual), { 
+  ssr: false,
+  loading: () => <div className="w-full h-full flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>
+});
 
 export function HeroSection() {
   const { openModal } = useAppointment();

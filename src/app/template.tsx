@@ -25,9 +25,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
       {isAnimating && (
         <motion.div
           key="transition-overlay"
-          initial={{ opacity: 1, filter: "blur(0px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
-          exit={{ opacity: 0, filter: "blur(10px)" }}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut", delay: 0.8 }} // Holds for 0.8s, fades out over 0.6s
           className="fixed inset-0 z-[9999] bg-gradient-to-br from-white via-slate-50 to-white flex flex-col items-center justify-center pointer-events-none"
         >

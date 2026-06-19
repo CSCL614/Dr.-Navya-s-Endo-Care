@@ -220,8 +220,9 @@ export function Hero3DVisual() {
       
       <Canvas 
         camera={{ position: [0, 0, 12], fov: 45 }} 
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
+        dpr={[1, 1.5]}
+        performance={{ min: 0.5 }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
         <ambientLight intensity={0.8} />
         <pointLight position={[10, 10, 10]} intensity={2} color="#0ea5e9" />

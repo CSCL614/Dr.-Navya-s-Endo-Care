@@ -50,15 +50,16 @@ export function BeforeAfterSlider({
           fill
           className={cn("object-cover", afterClassName)}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
         />
-        <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md text-slate-800 text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full shadow-sm z-10 transition-opacity duration-300">
+        <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full shadow-sm z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           {afterLabel}
         </div>
       </div>
 
       {/* Before Image (Foreground, clipped) */}
       <div 
-        className="absolute inset-0 bg-slate-300"
+        className="absolute inset-0 bg-slate-300 pointer-events-none"
         style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
       >
         <Image 
@@ -67,21 +68,24 @@ export function BeforeAfterSlider({
           fill
           className={cn("object-cover", beforeClassName)}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
         />
-        <div className="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur-md text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full shadow-sm z-10 transition-opacity duration-300">
+        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-slate-800 text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full shadow-sm z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           {beforeLabel}
         </div>
       </div>
 
       {/* Slider Handle Line */}
       <div 
-        className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] z-20 pointer-events-none transition-all duration-75"
-        style={{ left: `${sliderPosition}%` }}
+        className="absolute top-0 bottom-0 w-[3px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] z-20 pointer-events-none"
+        style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
       >
-        {/* Slider Button */}
-        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 bg-white rounded-full shadow-xl flex items-center justify-center pointer-events-none transition-transform duration-300 group-hover:scale-110">
-          <MoveLeft className="w-3 h-3 md:w-4 md:h-4 text-slate-500 mr-[-2px] md:mr-[-3px]" />
-          <MoveRight className="w-3 h-3 md:w-4 md:h-4 text-slate-500 ml-[-2px] md:ml-[-3px]" />
+        {/* Slider Button - Premium Frosted Glass */}
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-lg border border-white/60 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.3)] flex items-center justify-center pointer-events-none transition-transform duration-300 group-hover:scale-110">
+          <div className="flex items-center justify-between w-full px-2 text-white drop-shadow-md">
+            <MoveLeft className="w-4 h-4 md:w-5 md:h-5" />
+            <MoveRight className="w-4 h-4 md:w-5 md:h-5" />
+          </div>
         </div>
       </div>
 
@@ -98,7 +102,7 @@ export function BeforeAfterSlider({
       
       {/* Subtle overlay when not interacted with to indicate dragging capability */}
       <div className={cn(
-        "absolute inset-0 bg-black/5 pointer-events-none transition-opacity duration-500",
+        "absolute inset-0 bg-black/10 pointer-events-none transition-opacity duration-500",
         isHovered || sliderPosition !== 50 ? "opacity-0" : "opacity-100"
       )} />
     </div>
