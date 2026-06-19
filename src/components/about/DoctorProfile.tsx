@@ -22,8 +22,8 @@ export function DoctorProfile() {
     <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
       {/* Premium Decorative background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-sky-100/40 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-teal-50/50 rounded-full blur-[100px]" />
+        <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-sky-100/40 rounded-full blur-[100px] transform-gpu" style={{ willChange: "transform" }} />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-teal-50/50 rounded-full blur-[100px] transform-gpu" style={{ willChange: "transform" }} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

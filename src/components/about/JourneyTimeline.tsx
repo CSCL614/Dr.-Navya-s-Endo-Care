@@ -71,7 +71,8 @@ export function JourneyTimeline() {
                       <motion.div
                         animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                         transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.2 }}
-                        className="absolute inset-0 bg-primary rounded-full blur-md"
+                        className="absolute inset-0 bg-primary rounded-full blur-md transform-gpu"
+                        style={{ willChange: "transform, opacity" }}
                       />
                       <milestone.icon className="w-5 h-5 text-white relative z-10" />
                     </div>
