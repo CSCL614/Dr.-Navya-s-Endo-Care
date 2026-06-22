@@ -14,7 +14,7 @@ const marqueeItems = [...services, ...services, ...services, ...services];
 
 export function ServicesMarquee() {
   return (
-    <div className="w-full overflow-hidden bg-primary text-white py-3.5 shadow-md block relative z-30 mb-8 sm:mb-12">
+    <div className="w-full overflow-hidden bg-primary text-white py-3.5 shadow-md block relative z-30 mb-4 sm:mb-8">
       <style>{`
         @keyframes scroll-marquee {
           0% { transform: translateX(0); }

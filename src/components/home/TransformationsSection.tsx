@@ -40,7 +40,7 @@ const transformations = [
 
 export function TransformationsSection() {
   return (
-    <section className="py-20 md:py-28 bg-slate-50 relative overflow-hidden" id="transformations">
+    <section className="py-12 lg:py-16 bg-slate-50 relative overflow-hidden" id="transformations">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
       <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />

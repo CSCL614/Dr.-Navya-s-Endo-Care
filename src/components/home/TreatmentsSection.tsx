@@ -51,7 +51,7 @@ const treatments = [
 
 export function TreatmentsSection() {
   return (
-    <section className="py-20 bg-slate-50 relative overflow-hidden">
+    <section className="py-12 lg:py-16 bg-slate-50 relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-primary/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-secondary/5 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />

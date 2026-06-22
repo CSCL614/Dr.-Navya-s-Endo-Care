@@ -11,7 +11,7 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section className="py-12 bg-white relative -mt-12 z-20">
+    <section className="py-8 lg:py-10 bg-white relative -mt-12 z-20">
       <div className="container mx-auto px-4 md:px-6">
         <ScrollReveal>
           <div className="glass-card bg-white/90 shadow-xl border border-slate-100 p-8 md:p-12 rounded-3xl grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-slate-100">

@@ -28,7 +28,7 @@ const expertiseList = [
 
 export function ExpertiseSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 lg:py-16 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16">

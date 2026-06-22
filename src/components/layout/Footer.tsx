@@ -168,9 +168,14 @@ export function Footer() {
 
         {/* Bottom Copyright */}
         <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} Dr Navya's Endo Care. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center md:items-start text-sm text-slate-500">
+            <p>
+              &copy; {new Date().getFullYear()} Dr Navya's Endo Care. All rights reserved.
+            </p>
+            <p className="mt-3 text-sm md:text-base text-slate-500 font-medium tracking-wide uppercase">
+              Powered by <span className="font-black text-primary text-xl md:text-2xl tracking-widest font-heading">WIN WIN</span>
+            </p>
+          </div>
           <div className="flex items-center space-x-6 text-sm">
             <Link href="/privacy-policy" className="text-slate-500 hover:text-primary transition-colors">
               Privacy Policy

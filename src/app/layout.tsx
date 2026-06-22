@@ -19,6 +19,9 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
+import { IntroProvider } from "@/context/IntroContext";
+import { IntroOverlay } from "@/components/ui/IntroOverlay";
+
 export const metadata: Metadata = {
   title: "Dr. Navya's Endo Care | Diabetes & Endocrine Superspeciality Center",
   description: "Advanced Endocrinology care for diabetes, thyroid disorders, hormonal imbalance, obesity, PCOS, and metabolic disorders. Book an appointment today.",
@@ -36,18 +39,21 @@ export default function RootLayout({
       className={`${inter.variable} ${outfit.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col font-sans text-slate-800 bg-transparent relative">
-        <SmoothScrollProvider>
-          <AppointmentProvider>
-            <GlobalBackground />
-            <Navbar />
-            <main className="flex-grow pt-20 relative z-10">
-              {children}
-            </main>
-            <Footer />
-            <FloatingWhatsApp />
-            <EventPopup />
-          </AppointmentProvider>
-        </SmoothScrollProvider>
+        <IntroProvider>
+          <IntroOverlay />
+          <SmoothScrollProvider>
+            <AppointmentProvider>
+              <GlobalBackground />
+              <Navbar />
+              <main className="flex-grow pt-20 relative z-10">
+                {children}
+              </main>
+              <Footer />
+              <FloatingWhatsApp />
+              <EventPopup />
+            </AppointmentProvider>
+          </SmoothScrollProvider>
+        </IntroProvider>
       </body>
     </html>
   );

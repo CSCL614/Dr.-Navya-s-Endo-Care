@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, MapPin, Clock, User, Phone, CheckCircle2 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { popupConfig, upcomingEvents, HospitalEvent } from "@/data/events";
+import { useIntro } from "@/context/IntroContext";
 
 export function EventPopup() {
+  const { isIntroPlaying } = useIntro();
   const [isOpen, setIsOpen] = useState(false);
   const [dontShowAgain, setDontShowAgain] = useState(false);
   const [activeEvent, setActiveEvent] = useState<HospitalEvent | null>(null);
@@ -15,6 +17,9 @@ export function EventPopup() {
   useEffect(() => {
     // 1. Check if popup is globally enabled and event exists
     if (!popupConfig.enabled) return;
+    
+    // Wait for intro animation to finish
+    if (isIntroPlaying) return;
     
     const event = upcomingEvents.find(e => e.id === popupConfig.activeEventId);
     if (!event) return;
@@ -33,7 +38,7 @@ export function EventPopup() {
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isIntroPlaying]);
 
   // Countdown Timer Logic
   useEffect(() => {

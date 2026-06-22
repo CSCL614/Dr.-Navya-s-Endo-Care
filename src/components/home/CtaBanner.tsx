@@ -8,7 +8,7 @@ export function CtaBanner() {
   const { openModal } = useAppointment();
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-12 lg:py-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-slate-900" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/80 to-secondary-light/20 mix-blend-multiply" />
