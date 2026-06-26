@@ -97,12 +97,12 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Floating Visual System (3D) — behind text on mobile, beside on desktop */}
+          {/* Right Floating Visual System (3D) — below text on mobile, beside on desktop */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85, rotate: -3 }}
             animate={isIntroPlaying ? { opacity: 0, scale: 0.85, rotate: -3 } : { opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0 z-10 lg:relative lg:inset-auto lg:col-span-7 w-full h-full lg:h-[700px] lg:mt-0 flex items-center justify-center pointer-events-none lg:pointer-events-auto opacity-10 lg:opacity-100"
+            className="relative lg:col-span-7 w-full h-[400px] sm:h-[500px] lg:h-[700px] mt-8 lg:mt-0 flex items-center justify-center"
           >
             <Hero3DVisual />
           </motion.div>

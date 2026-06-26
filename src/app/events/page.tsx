@@ -55,6 +55,24 @@ const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
 };
 
 export default function EventsPage() {
+  const [activeUpcoming, setActiveUpcoming] = useState<HospitalEvent[]>(upcomingEvents);
+  const [activePast, setActivePast] = useState<HospitalEvent[]>(pastEvents);
+
+  useEffect(() => {
+    const now = new Date().getTime();
+    
+    const validUpcoming = upcomingEvents.filter(event => new Date(event.date).getTime() >= now);
+    const expiredUpcoming = upcomingEvents.filter(event => new Date(event.date).getTime() < now);
+    
+    setActiveUpcoming(validUpcoming);
+    
+    const combinedPast = [...expiredUpcoming, ...pastEvents].sort((a, b) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    
+    setActivePast(combinedPast);
+  }, []);
+
   const handleRegister = (event: HospitalEvent) => {
     confetti({
       particleCount: 150,
@@ -104,7 +122,7 @@ export default function EventsPage() {
           </ScrollReveal>
 
           <div className="max-w-5xl mx-auto space-y-12">
-            {upcomingEvents.map((event, index) => (
+            {activeUpcoming.map((event, index) => (
               <ScrollReveal key={event.id} delay={index * 0.1}>
                 <div className="bg-white rounded-3xl shadow-soft hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-100 flex flex-col lg:flex-row group">
                   {/* Image Side */}
@@ -182,7 +200,7 @@ export default function EventsPage() {
               </ScrollReveal>
             ))}
             
-            {upcomingEvents.length === 0 && (
+            {activeUpcoming.length === 0 && (
               <div className="text-center py-12 bg-white rounded-3xl border border-slate-100">
                 <CalendarHeart className="w-16 h-16 text-slate-300 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-slate-700">No Upcoming Events</h3>
@@ -204,7 +222,7 @@ export default function EventsPage() {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {pastEvents.map((event, index) => (
+            {activePast.map((event, index) => (
               <ScrollReveal key={event.id} delay={index * 0.1}>
                 <div className="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden group cursor-pointer hover:shadow-lg transition-all">
                   <div className="relative h-64 overflow-hidden">

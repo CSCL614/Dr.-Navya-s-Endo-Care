@@ -21,8 +21,15 @@ export function EventPopup() {
     // Wait for intro animation to finish
     if (isIntroPlaying) return;
     
-    const event = upcomingEvents.find(e => e.id === popupConfig.activeEventId);
-    if (!event) return;
+    let event = upcomingEvents.find(e => e.id === popupConfig.activeEventId);
+    const now = new Date().getTime();
+    
+    // If the configured event is expired or doesn't exist, find the next valid one
+    if (!event || new Date(event.date).getTime() < now) {
+      event = upcomingEvents.find(e => new Date(e.date).getTime() > now);
+    }
+
+    if (!event) return; // No upcoming events available
     
     setActiveEvent(event);
 
@@ -51,7 +58,13 @@ export function EventPopup() {
 
       if (distance < 0) {
         clearInterval(timer);
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        // Time is over, find the next event
+        const nextEvent = upcomingEvents.find(e => new Date(e.date).getTime() > now);
+        if (nextEvent) {
+          setActiveEvent(nextEvent); // Switch to the new event
+        } else {
+          setIsOpen(false); // Close if there are no more upcoming events
+        }
         return;
       }
 
