@@ -2,22 +2,22 @@
 
 import { AboutHero } from "@/components/about/AboutHero";
 import { DoctorProfile } from "@/components/about/DoctorProfile";
-import { EndocrinologyEdu } from "@/components/about/EndocrinologyEdu";
-import { WhyChooseUs } from "@/components/about/WhyChooseUs";
-import { MissionVision } from "@/components/about/MissionVision";
+import { WhyChoseEndocrinology } from "@/components/about/WhyChoseEndocrinology";
+import { ApproachToCare } from "@/components/about/ApproachToCare";
 import { JourneyTimeline } from "@/components/about/JourneyTimeline";
-import { TestimonialCarousel } from "@/components/about/TestimonialCarousel";
+import { PersonalSide } from "@/components/about/PersonalSide";
+import { MissionVision } from "@/components/about/MissionVision";
 
 export default function AboutPage() {
   return (
     <div className="overflow-hidden bg-white selection:bg-primary/20">
       <AboutHero />
       <DoctorProfile />
-      <EndocrinologyEdu />
-      <WhyChooseUs />
-      <MissionVision />
+      <WhyChoseEndocrinology />
+      <ApproachToCare />
       <JourneyTimeline />
-      <TestimonialCarousel />
+      <PersonalSide />
+      <MissionVision />
     </div>
   );
 }

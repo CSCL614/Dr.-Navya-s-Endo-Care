@@ -1,21 +1,19 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import Image from "next/image";
+import { doctorData } from "@/data/doctorData";
 
 const FacebookIcon = () => (
-  <svg xmlns="http://www.0000.com/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
 );
 const InstagramIcon = () => (
-  <svg xmlns="http://www.0000.com/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-);
-const TwitterIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
 );
 const LinkedinIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
 );
 const YoutubeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
 );
 
 export function Footer() {
@@ -24,45 +22,47 @@ export function Footer() {
       {/* Decorative Blob */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
           
           {/* Brand Info */}
-          <div className="space-y-6 lg:col-span-5 xl:col-span-4">
+          <div className="space-y-5 lg:col-span-5 xl:col-span-4">
             <Link href="/" className="flex items-center gap-2">
               <Image 
                 src="/logo.png" 
                 alt="Dr Navya's Endo Care Logo" 
-                width={70} 
-                height={70} 
-                className="w-16 h-16 object-contain rounded-2xl bg-white shadow-sm flex-shrink-0"
+                width={60} 
+                height={60} 
+                className="w-12 h-12 object-contain rounded-xl bg-white shadow-xs flex-shrink-0"
               />
               <div className="flex flex-col justify-center">
-                <span className="text-xl md:text-2xl font-bold font-heading text-primary-dark leading-none uppercase mb-1">
-                  DR NAVYA'S ENDO CARE
+                <span className="text-base sm:text-lg font-bold font-heading text-primary-dark leading-none uppercase mb-1">
+                  DR. NAVYA'S ENDO CARE
                 </span>
-                <span className="text-[8px] md:text-[9px] lg:text-[10px] xl:text-[11px] font-semibold tracking-wide text-secondary leading-tight uppercase whitespace-nowrap">
-                  DIABETES, THYROID AND ENDOCRINE SUPERSPECIALITY CENTER
+                <span className="text-[7.5px] sm:text-[8.5px] font-semibold tracking-wide text-secondary leading-tight uppercase whitespace-nowrap">
+                  DIABETES, THYROID & ENDOCRINE SUPERSPECIALITY CENTER
                 </span>
               </div>
             </Link>
-            <p className="text-slate-600 text-sm leading-relaxed max-w-sm">
-              Advanced Endocrinology care for diabetes, thyroid disorders, hormonal imbalance, obesity, PCOS, and metabolic disorders with compassion and expertise.
+            
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-sm">
+              Led by <strong>{doctorData.name}</strong>, DM (Endocrinology) — University Topper. Comprehensive, compassionate adult and paediatric hormone care in Vizianagaram.
             </p>
-            <div className="flex items-center space-x-4">
-              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-sm text-primary hover:bg-primary hover:text-white transition-colors">
+
+            <div className="flex items-center space-x-3 pt-1">
+              <a href="https://wa.me/918464070196" target="_blank" rel="noopener noreferrer" className="p-2 bg-emerald-50 rounded-full shadow-xs text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors" aria-label="WhatsApp: 8464070196">
+                <MessageCircle className="w-5 h-5" />
+              </a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-xs text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Facebook">
                 <FacebookIcon />
               </a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-sm text-primary hover:bg-primary hover:text-white transition-colors">
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-xs text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Instagram">
                 <InstagramIcon />
               </a>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-sm text-primary hover:bg-primary hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-xs text-primary hover:bg-primary hover:text-white transition-colors" aria-label="LinkedIn">
                 <LinkedinIcon />
               </a>
-              <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-sm text-primary hover:bg-primary hover:text-white transition-colors">
-                <TwitterIcon />
-              </a>
-              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-sm text-primary hover:bg-primary hover:text-white transition-colors">
+              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-xs text-primary hover:bg-primary hover:text-white transition-colors" aria-label="YouTube">
                 <YoutubeIcon />
               </a>
             </div>
@@ -70,63 +70,83 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg font-bold text-slate-800 mb-6 font-heading">Quick Links</h3>
-            <ul className="space-y-3 text-sm">
+            <h3 className="text-base font-bold text-slate-800 mb-4 font-heading">Quick Links</h3>
+            <ul className="space-y-2.5 text-xs sm:text-sm">
+              <li>
+                <Link href="/" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Home
+                </Link>
+              </li>
               <li>
                 <Link href="/about" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> About Us
+                  <span className="mr-1.5 text-primary/50">›</span> About Dr. Navya
                 </Link>
               </li>
               <li>
                 <Link href="/services" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> Our Services
+                  <span className="mr-1.5 text-primary/50">›</span> Specialities
                 </Link>
               </li>
               <li>
-                <Link href="/before-and-after" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> Before & After
+                <Link href="/diabetes-care" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Diabetes Care
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> Gallery
+                <Link href="/obesity-clinic" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Obesity Clinic
+                </Link>
+              </li>
+              <li>
+                <Link href="/patient-resources" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Patient Resources
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> Contact Us
+                  <span className="mr-1.5 text-primary/50">›</span> Contact Clinic
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Services Links */}
+          {/* Key Clinical Focus */}
           <div className="lg:col-span-2 xl:col-span-3">
-            <h3 className="text-lg font-bold text-slate-800 mb-6 font-heading">Specialities</h3>
-            <ul className="space-y-3 text-sm">
+            <h3 className="text-base font-bold text-slate-800 mb-4 font-heading">Specialities</h3>
+            <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <Link href="/services#diabetes" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> Diabetes Management
+                <Link href="/diabetes-care" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Diabetes Care & Screening
                 </Link>
               </li>
               <li>
-                <Link href="/services#thyroid" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> Thyroid Disorders
+                <Link href="/thyroid-care" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Thyroid Care & Nodules
                 </Link>
               </li>
               <li>
-                <Link href="/services#pcos" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> PCOS & Obesity
+                <Link href="/obesity-metabolic-health" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Obesity Clinic (Wed 4-6 PM)
                 </Link>
               </li>
               <li>
-                <Link href="/services#hormonal" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> Hormonal Imbalance
+                <Link href="/pcos-womens-health" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> PCOS & Women's Health
                 </Link>
               </li>
               <li>
-                <Link href="/services#pediatric" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-2 text-primary/50">›</span> Pediatric Endocrinology
+                <Link href="/paediatric-endocrinology" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Child Growth & Puberty
+                </Link>
+              </li>
+              <li>
+                <Link href="/bone-mineral-health" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Bone, Calcium & Vitamin D
+                </Link>
+              </li>
+              <li>
+                <Link href="/pituitary-adrenal-care" className="text-slate-600 hover:text-primary transition-colors flex items-center">
+                  <span className="mr-1.5 text-primary/50">›</span> Pituitary & Hormonal BP
                 </Link>
               </li>
             </ul>
@@ -134,31 +154,54 @@ export function Footer() {
 
           {/* Contact Details */}
           <div className="lg:col-span-3">
-            <h3 className="text-lg font-bold text-slate-800 mb-6 font-heading">Contact Info</h3>
-            <ul className="space-y-4 text-sm">
+            <h3 className="text-base font-bold text-slate-800 mb-4 font-heading">Clinic Contact</h3>
+            <ul className="space-y-3.5 text-xs sm:text-sm">
               <li className="flex items-start">
-                <MapPin className="w-5 h-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-0.5" />
                 <span className="text-slate-600 leading-relaxed">
-                  Dr. Navya’s Endo Care, Ajay Children’s Hospital, junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002
+                  Dr. Navya’s Endo Care, Ajay Children’s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002
                 </span>
               </li>
-              <li className="flex items-center">
-                <Phone className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
-                <a href="tel:+919032773508" className="text-slate-600 hover:text-primary transition-colors">
-                  +91 90327 73508
-                </a>
+              <li className="flex items-start">
+                <Phone className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-1" />
+                <div className="space-y-1.5">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-teal-700 tracking-wider block">Clinic Direct Line</span>
+                    <a href="tel:8464070196" className="text-slate-800 hover:text-primary font-bold text-base transition-colors">
+                      8464070196
+                    </a>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                    <a
+                      href="tel:8464070196"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary hover:bg-primary-dark text-white rounded-lg text-xs font-semibold shadow-xs transition-colors"
+                    >
+                      <Phone className="w-3 h-3" />
+                      Call: 8464070196
+                    </a>
+                    <a
+                      href="https://wa.me/918464070196"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors"
+                    >
+                      <MessageCircle className="w-3 h-3" />
+                      WhatsApp: 8464070196
+                    </a>
+                  </div>
+                </div>
               </li>
               <li className="flex items-center">
-                <Mail className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
+                <Mail className="w-4 h-4 text-primary mr-2.5 flex-shrink-0" />
                 <a href="mailto:info@drnavyaendocare.com" className="text-slate-600 hover:text-primary transition-colors">
                   info@drnavyaendocare.com
                 </a>
               </li>
               <li className="flex items-start">
-                <Clock className="w-5 h-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-0.5" />
                 <span className="text-slate-600 leading-relaxed">
-                  Mon - Sat: 9:00 AM - 8:00 PM<br/>
-                  Sunday: By Appointment
+                  Mon - Sat: 9:00 AM – 8:00 PM<br/>
+                  <strong className="text-teal-700">Obesity Clinic:</strong> Wed 4:00 PM – 6:00 PM
                 </span>
               </li>
             </ul>
@@ -167,21 +210,24 @@ export function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col items-center md:items-start text-sm text-slate-500">
+        <div className="pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col items-center md:items-start text-xs text-slate-500">
             <p>
-              &copy; {new Date().getFullYear()} Dr Navya's Endo Care. All rights reserved.
+              &copy; {new Date().getFullYear()} Dr. Navya’s EndoCare — All rights reserved.
             </p>
-            <p className="mt-3 text-sm md:text-base text-slate-500 font-medium tracking-wide uppercase">
-              Powered by <span className="font-black text-primary text-xl md:text-2xl tracking-widest font-heading">WIN WIN</span>
+            <p className="mt-1 text-xs text-slate-400">
+              Inaugurated 29 April 2024 • Vizianagaram, Andhra Pradesh
             </p>
           </div>
-          <div className="flex items-center space-x-6 text-sm">
-            <Link href="/privacy-policy" className="text-slate-500 hover:text-primary transition-colors">
-              Privacy Policy
+          <div className="flex items-center space-x-4 text-xs">
+            <Link href="/events" className="text-slate-500 hover:text-primary transition-colors">
+              Health Camps
             </Link>
-            <Link href="/terms-of-service" className="text-slate-500 hover:text-primary transition-colors">
-              Terms of Service
+            <Link href="/gallery" className="text-slate-500 hover:text-primary transition-colors">
+              Gallery
+            </Link>
+            <Link href="/contact" className="text-slate-500 hover:text-primary transition-colors">
+              Contact
             </Link>
           </div>
         </div>

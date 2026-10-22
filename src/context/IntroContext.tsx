@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 interface IntroContextType {
   isIntroPlaying: boolean;
@@ -12,13 +12,8 @@ interface IntroContextType {
 const IntroContext = createContext<IntroContextType | undefined>(undefined);
 
 export function IntroProvider({ children }: { children: React.ReactNode }) {
-  const [isIntroPlaying, setIsIntroPlaying] = useState(false);
+  const [isIntroPlaying, setIsIntroPlaying] = useState(true);
   const [introFinished, setIntroFinished] = useState(false);
-
-  useEffect(() => {
-    // Always play the intro on page load for now
-    setIsIntroPlaying(true);
-  }, []);
 
   const skipIntro = () => {
     setIsIntroPlaying(false);

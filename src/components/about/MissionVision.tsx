@@ -1,106 +1,85 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { Target, Lightbulb, Heart } from "lucide-react";
-import { motion } from "framer-motion";
+import { Target, Lightbulb, Heart, Shield, Award } from "lucide-react";
 
 export function MissionVision() {
   return (
-    <section className="py-16 lg:py-20 bg-slate-900 relative overflow-hidden text-white">
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay" />
-        <motion.div
-          animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] transform-gpu"
-          style={{ willChange: "transform, opacity" }}
-        />
-        <motion.div
-          animate={{ opacity: [0.2, 0.5, 0.2], scale: [1, 1.3, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear", delay: 5 }}
-          className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[100px] transform-gpu"
-          style={{ willChange: "transform, opacity" }}
-        />
-      </div>
+    <section className="py-20 lg:py-24 bg-slate-50 relative overflow-hidden" id="mission-vision">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <ScrollReveal>
+            <span className="inline-block py-1.5 px-4 bg-white border border-slate-200/80 text-primary font-semibold rounded-full text-xs sm:text-sm mb-4 shadow-sm">
+              Our Purpose
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-slate-800 mb-4 tracking-tight">
+              Mission & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-teal-500">Vision</span>
+            </h2>
+            <p className="text-lg text-slate-600 leading-relaxed font-normal">
+              Committed to setting the benchmark for ethical, evidence-based, and compassionate endocrine care in Vizianagaram.
+            </p>
+          </ScrollReveal>
+        </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        {/* Mission & Vision Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-16">
           
           {/* Mission */}
-          <div className="relative h-full">
-            <ScrollReveal direction="right" className="h-full">
-              <div className="glass-card bg-white/5 border border-white/10 p-10 md:p-14 rounded-[2.5rem] backdrop-blur-md relative overflow-hidden group hover:bg-white/10 transition-colors duration-500 h-full flex flex-col">
-                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Target className="w-32 h-32" />
-                </div>
-                
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-8 shadow-lg">
-                    <Target className="w-8 h-8 text-white" />
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-heading mb-6">Our Mission</h2>
-                  <p className="text-lg md:text-xl text-slate-300 leading-relaxed font-light flex-grow">
-                    To provide comprehensive, compassionate, and cutting-edge endocrine care that empowers patients to manage their conditions effectively and lead fulfilling lives. We strive to be a beacon of hope and healing in the healthcare community.
-                  </p>
-                </div>
+          <ScrollReveal direction="right">
+            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col group">
+              <div className="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                <Target className="w-7 h-7" />
               </div>
-            </ScrollReveal>
-          </div>
+              <h3 className="text-2xl font-bold font-heading text-slate-800 mb-4">Our Mission</h3>
+              <p className="text-slate-600 leading-relaxed text-base flex-grow">
+                To provide patient-centred, evidence-based endocrine and metabolic healthcare that prioritizes root-cause diagnosis, individualized counselling, and prevention before complications occur—empowering patients to take charge of their long-term health.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Vision */}
-          <div className="relative h-full">
-            <ScrollReveal direction="left" delay={0.2} className="h-full">
-              <div className="glass-card bg-white/5 border border-white/10 p-10 md:p-14 rounded-[2.5rem] backdrop-blur-md relative overflow-hidden group hover:bg-white/10 transition-colors duration-500 h-full flex flex-col">
-                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Lightbulb className="w-32 h-32" />
-                </div>
-                
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="w-16 h-16 bg-gradient-to-br from-secondary to-blue-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg">
-                    <Lightbulb className="w-8 h-8 text-white" />
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-heading mb-6">Our Vision</h2>
-                  <p className="text-lg md:text-xl text-slate-300 leading-relaxed font-light flex-grow">
-                    To establish a world-class center of excellence in endocrinology where innovative medical treatments seamlessly blend with personalized patient care, setting the standard for holistic metabolic health worldwide.
-                  </p>
-                </div>
+          <ScrollReveal direction="left" delay={0.1}>
+            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col group">
+              <div className="w-14 h-14 bg-sky-50 rounded-2xl flex items-center justify-center text-sky-600 mb-6 group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300">
+                <Lightbulb className="w-7 h-7" />
               </div>
-            </ScrollReveal>
-          </div>
+              <h3 className="text-2xl font-bold font-heading text-slate-800 mb-4">Our Vision</h3>
+              <p className="text-slate-600 leading-relaxed text-base flex-grow">
+                To be the region's foremost trusted superspeciality center for diabetes, thyroid, and endocrine disorders, celebrated for academic excellence, diagnostic integrity, and a culture of warmth where patients truly understand their health.
+              </p>
+            </div>
+          </ScrollReveal>
 
         </div>
 
-        {/* Core Values */}
-        <div className="mt-24 pt-16 border-t border-white/10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ScrollReveal delay={0.1} direction="up">
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-4 text-primary-light">
-                  <Heart className="w-6 h-6" />
-                </div>
-                <h4 className="text-xl font-bold font-heading mb-2">Empathy</h4>
-                <p className="text-slate-400 text-sm">Treating every patient like family with deep understanding.</p>
+        {/* Core Values Strip */}
+        <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-12 h-12 mx-auto bg-teal-50 rounded-2xl flex items-center justify-center mb-3 text-primary">
+                <Heart className="w-6 h-6" />
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.2} direction="up">
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-4 text-primary-light">
-                  <Target className="w-6 h-6" />
-                </div>
-                <h4 className="text-xl font-bold font-heading mb-2">Excellence</h4>
-                <p className="text-slate-400 text-sm">Delivering the highest standard of evidence-based care.</p>
+              <h4 className="text-lg font-bold font-heading text-slate-800 mb-1">Compassion</h4>
+              <p className="text-xs sm:text-sm text-slate-500">Listening with empathy and allocating adequate time for each consultation.</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 mx-auto bg-sky-50 rounded-2xl flex items-center justify-center mb-3 text-sky-600">
+                <Award className="w-6 h-6" />
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.3} direction="up">
-              <div className="text-center">
-                <div className="w-12 h-12 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-4 text-primary-light">
-                  <Lightbulb className="w-6 h-6" />
-                </div>
-                <h4 className="text-xl font-bold font-heading mb-2">Innovation</h4>
-                <p className="text-slate-400 text-sm">Continuously adopting the latest medical advancements.</p>
+              <h4 className="text-lg font-bold font-heading text-slate-800 mb-1">Academic Rigor</h4>
+              <p className="text-xs sm:text-sm text-slate-500">Applying the latest global scientific evidence and clinical protocols.</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-12 h-12 mx-auto bg-emerald-50 rounded-2xl flex items-center justify-center mb-3 text-emerald-600">
+                <Shield className="w-6 h-6" />
               </div>
-            </ScrollReveal>
+              <h4 className="text-lg font-bold font-heading text-slate-800 mb-1">Prevention First</h4>
+              <p className="text-xs sm:text-sm text-slate-500">Intervening early in metabolic health before irreversible complications arise.</p>
+            </div>
           </div>
         </div>
 

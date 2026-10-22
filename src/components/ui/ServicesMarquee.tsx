@@ -1,12 +1,14 @@
 "use client";
 
 const services = [
-  "Diabetes Management",
-  "Thyroid Disorders",
-  "Hormonal Imbalance",
-  "Obesity & Weight Management",
-  "PCOS Care",
-  "Bone Health"
+  "Type 1 & Type 2 Diabetes Care",
+  "Thyroid Disorders Superspeciality",
+  "Obesity & Lifestyle Clinic (Wed 4–6 PM)",
+  "PCOS & Metabolic Health",
+  "Paediatric Endocrinology & Growth",
+  "Comprehensive Diabetic Foot Screening",
+  "Biothesiometry & Vascular Assessment",
+  "Adult & Paediatric Hormonal Care"
 ];
 
 // Duplicate the array a few times to ensure seamless infinite scrolling
@@ -22,6 +24,15 @@ export function ServicesMarquee() {
         }
         .animate-marquee {
           animation: scroll-marquee 35s linear infinite;
+          will-change: transform;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-marquee {
+            animation: none;
+          }
         }
       `}</style>
       <div className="flex whitespace-nowrap items-center w-max animate-marquee">

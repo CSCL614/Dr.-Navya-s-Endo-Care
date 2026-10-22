@@ -8,9 +8,10 @@ export function FloatingWhatsApp() {
     <div className="fixed bottom-6 right-6 z-50">
       <div className="absolute inset-0 bg-green-400 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-75"></div>
       <motion.a
-        href="https://wa.me/919032773508"
+        href="https://wa.me/918464070196"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Chat with Dr. Navya’s EndoCare on WhatsApp: 8464070196"
         className="relative flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

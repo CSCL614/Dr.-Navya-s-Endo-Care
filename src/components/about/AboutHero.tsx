@@ -1,52 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, HeartPulse, Activity } from "lucide-react";
+import { ArrowRight, ShieldCheck, Award, Stethoscope, HeartPulse, Phone, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useAppointment } from "@/context/AppointmentContext";
+import { doctorData } from "@/data/doctorData";
 
 export function AboutHero() {
   const { openModal } = useAppointment();
 
   return (
-    <section className="relative pt-0 pb-12 lg:pb-16 overflow-hidden bg-white">
-      {/* Animated Background Gradients */}
+    <section className="relative pt-6 pb-14 lg:pb-20 overflow-hidden bg-white">
+      {/* Animated Subtle Background Gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            rotate: [0, 90, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl transform-gpu"
-          style={{ willChange: "transform, opacity" }}
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.2, 0.4, 0.2],
-            rotate: [0, -90, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-secondary/10 to-transparent rounded-full blur-3xl transform-gpu"
-          style={{ willChange: "transform, opacity" }}
-        />
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-sky-100/40 rounded-full blur-3xl transform-gpu" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-teal-50/60 rounded-full blur-3xl transform-gpu" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Text Content */}
-          <div className="max-w-2xl">
+          <div className="lg:col-span-7 max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center space-x-2 bg-primary/5 border border-primary/10 rounded-full px-4 py-2 mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-                <span className="text-sm font-semibold text-primary tracking-wide">PREMIUM HEALTHCARE</span>
+              <div className="inline-flex items-center space-x-2 bg-teal-50 border border-teal-200/60 rounded-full px-4 py-1.5 mb-5 shadow-xs">
+                <span className="flex h-2 w-2 rounded-full bg-primary"></span>
+                <span className="text-xs sm:text-sm font-semibold text-primary tracking-wide uppercase">
+                  {doctorData.centerName.split("—")[0]}
+                </span>
               </div>
             </motion.div>
 
@@ -54,36 +40,60 @@ export function AboutHero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-slate-800 leading-tight mb-6"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-slate-800 leading-tight mb-5"
             >
-              Compassionate Endocrinology Care With <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Advanced Medical Expertise</span>
+              {doctorData.headline}
             </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+              className="text-base sm:text-lg text-primary font-semibold mb-5 flex flex-wrap items-center gap-2"
+            >
+              <span>{doctorData.name}</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-slate-600 font-medium">{doctorData.degrees}</span>
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8"
+              className="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 font-normal"
             >
-              Dedicated to helping patients achieve healthier lives through expert diabetes, thyroid, and hormonal care with personalized treatment and compassionate support.
+              Consultant Endocrinologist providing specialized, evidence-based care for diabetes, thyroid dysfunction, metabolic health, obesity, and paediatric hormone disorders in Vizianagaram.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
+              className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5"
             >
               <button
                 onClick={openModal}
-                className="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-full font-semibold shadow-soft hover:shadow-glow transition-all flex items-center justify-center group"
+                className="px-7 py-3 bg-primary hover:bg-primary-dark text-white rounded-full font-semibold shadow-soft hover:shadow-glow transition-all flex items-center justify-center group text-sm"
               >
                 Book Consultation
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <Link href="/services" className="w-full sm:w-auto px-8 py-4 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-full font-semibold transition-all flex items-center justify-center">
-                Explore Services
-              </Link>
+              <a
+                href="tel:8464070196"
+                className="px-5 py-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-full font-semibold transition-all flex items-center justify-center text-sm gap-2 shadow-2xs"
+              >
+                <Phone className="w-3.5 h-3.5 text-primary" />
+                Call: 8464070196
+              </a>
+              <a
+                href="https://wa.me/918464070196"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-full font-semibold transition-all flex items-center justify-center text-sm gap-2"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                WhatsApp: 8464070196
+              </a>
             </motion.div>
 
             {/* Trust Badges */}
@@ -91,78 +101,66 @@ export function AboutHero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="mt-10 flex items-center gap-6 pt-8 border-t border-slate-100"
+              className="mt-10 flex flex-wrap items-center gap-4 sm:gap-6 pt-6 border-t border-slate-100"
             >
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-green-500" />
-                <span className="text-sm font-semibold text-slate-600">Certified Experts</span>
+              <div className="flex items-center gap-2 bg-slate-50 px-3.5 py-1.5 rounded-full border border-slate-100">
+                <Award className="w-4 h-4 text-amber-500" />
+                <span className="text-xs sm:text-sm font-semibold text-slate-700">DM University Topper</span>
               </div>
-              <div className="flex items-center gap-2">
-                <HeartPulse className="w-5 h-5 text-red-400" />
-                <span className="text-sm font-semibold text-slate-600">Patient First</span>
+              <div className="flex items-center gap-2 bg-slate-50 px-3.5 py-1.5 rounded-full border border-slate-100">
+                <ShieldCheck className="w-4 h-4 text-teal-600" />
+                <span className="text-xs sm:text-sm font-semibold text-slate-700">MBBS Gold Medalist</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Activity className="w-5 h-5 text-primary" />
-                <span className="text-sm font-semibold text-slate-600">Advanced Care</span>
+              <div className="flex items-center gap-2 bg-slate-50 px-3.5 py-1.5 rounded-full border border-slate-100">
+                <HeartPulse className="w-4 h-4 text-primary" />
+                <span className="text-xs sm:text-sm font-semibold text-slate-700">Adult & Paediatric</span>
               </div>
             </motion.div>
           </div>
 
-          {/* Image Content */}
-          <div className="relative flex justify-center lg:justify-center mt-12 lg:mt-0 lg:pr-12">
-            <div className="relative w-full max-w-md">
+          {/* Doctor Portrait Card */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-sm">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50 border-[6px] border-white bg-slate-100"
+                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50 border-[6px] border-white bg-slate-100"
               >
-                <div 
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url('https://diabetes.co.in/media/uploads/2024/06/dr-navya-sruthi-mandapati.jpg')` }}
+                <Image
+                  src="/images/dr-navya-sruthi-mandapati.jpg"
+                  alt="Dr. Navya Sruthi Mandapati — Founder & Chief Consultant Endocrinologist"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  className="object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
                 
-                <div className="absolute bottom-0 left-0 w-full p-8 text-white">
-                  <h3 className="text-2xl font-bold font-heading mb-1">Dr. Navya Sruthi</h3>
-                  <p className="text-white/80 font-medium">Chief Endocrinologist</p>
+                <div className="absolute bottom-0 left-0 w-full p-6 text-white pointer-events-none">
+                  <span className="text-xs font-semibold text-teal-300 uppercase tracking-wider block mb-1">Founder & Chief Consultant</span>
+                  <h3 className="text-xl font-bold font-heading mb-0.5">{doctorData.name}</h3>
+                  <p className="text-xs text-white/80 font-medium">MBBS, MD, DM (Endocrinology)</p>
                 </div>
               </motion.div>
 
-              {/* Floating Elements */}
+              {/* Floating Verified Badge */}
               <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-6 -right-2 lg:-right-6 bg-white/90 p-4 rounded-2xl border border-white/50 shadow-xl backdrop-blur-md hidden sm:block z-20"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="absolute -bottom-4 -left-4 bg-white p-3.5 rounded-2xl border border-teal-100 shadow-lg flex items-center gap-3 z-20"
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                    <ShieldCheck className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-slate-800">6+ Years</div>
-                    <div className="text-xs font-semibold text-slate-500">Of Experience</div>
-                  </div>
+                <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center text-primary">
+                  <Stethoscope className="w-5 h-5" />
                 </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-6 -left-2 lg:-left-6 bg-white/90 p-4 rounded-2xl border border-white/50 shadow-xl backdrop-blur-md hidden sm:block z-20"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                    <HeartPulse className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-slate-800">5,000+</div>
-                    <div className="text-xs font-semibold text-slate-500">Happy Patients</div>
-                  </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-800">Endocrine Care</div>
+                  <div className="text-[10px] text-teal-600 font-semibold">Vizianagaram Center</div>
                 </div>
               </motion.div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

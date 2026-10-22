@@ -36,8 +36,8 @@ export const upcomingEvents: HospitalEvent[] = [
     time: "9:00 AM – 5:00 PM",
     venue: "DR NAVYA'S ENDO CARE Hospital",
     conductedBy: "Dr Navya – Endocrinology Specialist",
-    contact: "+91 90327 73508",
-    whatsappNumber: "919032773508", // International format without +
+    contact: "+91 84640 70196",
+    whatsappNumber: "918464070196", // International format without +
     imageUrl: "https://images.unsplash.com/photo-1576091160550-2173ff9e5953?q=80&w=1200&auto=format&fit=crop", 
   },
   {
@@ -48,8 +48,8 @@ export const upcomingEvents: HospitalEvent[] = [
     time: "10:30 AM – 1:00 PM",
     venue: "Metropolis Community Hall",
     conductedBy: "Dr Navya",
-    contact: "+91 11111 11111",
-    whatsappNumber: "911111111111",
+    contact: "+91 84640 70196",
+    whatsappNumber: "918464070196",
     imageUrl: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
   }
 ];

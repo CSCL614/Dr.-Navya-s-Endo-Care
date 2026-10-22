@@ -1,12 +1,12 @@
 "use client";
 
-import { ReactLenis } from 'lenis/react';
 import { ReactNode } from 'react';
 
+/**
+ * Lightweight native scroll provider that relies on native hardware-accelerated
+ * CSS smooth scrolling (scroll-behavior: smooth) without main-thread JS interception,
+ * optimizing INP and mobile scrolling smoothness.
+ */
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
-  return (
-    <ReactLenis root options={{ lerp: 0.08, duration: 1.5, smoothWheel: true }}>
-      {children}
-    </ReactLenis>
-  );
+  return <>{children}</>;
 }

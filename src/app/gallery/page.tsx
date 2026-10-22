@@ -8,70 +8,70 @@ import { AlbumCard, Album } from "@/components/ui/AlbumCard";
 
 const galleryAlbums: Album[] = [
   {
+    id: "diabetic-foot-suite",
+    title: "Diabetic Foot Profiler Suite",
+    images: [
+      "/gallery/diabetic-foot-profiler.jpg",
+      "/gallery/diabetic-foot-care-guide.jpg"
+    ]
+  },
+  {
+    id: "brand-identity",
+    title: "Clinic Identity & Superspeciality Emblem",
+    images: [
+      "/gallery/clinic-logo.jpg"
+    ]
+  },
+  {
+    id: "diagnostics",
+    title: "Advanced Diagnostics & VPT Testing",
+    images: [
+      "/gallery/diabetic-foot-profiler.jpg",
+      "https://images.unsplash.com/photo-1638202993928-7267aad84c31?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1000&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: "awareness",
+    title: "Diabetic Foot Care & Education",
+    images: [
+      "/gallery/diabetic-foot-care-guide.jpg",
+      "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1000&auto=format&fit=crop"
+    ]
+  },
+  {
     id: "interior",
-    title: "Clinic Interior",
+    title: "Clinic Facilities",
     images: [
       "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=1000&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=1000&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=1000&auto=format&fit=crop"
     ]
   },
   {
     id: "consultation",
-    title: "Consultation",
+    title: "Consultation Cabin",
     images: [
       "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=1000&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop"
     ]
   },
   {
-    id: "diagnostics",
-    title: "Advanced Diagnostics",
-    images: [
-      "https://images.unsplash.com/photo-1638202993928-7267aad84c31?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1000&auto=format&fit=crop"
-    ]
-  },
-  {
-    id: "patient-care",
-    title: "Patient Care",
-    images: [
-      "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1576091160501-bbe57469278b?q=80&w=1000&auto=format&fit=crop"
-    ]
-  },
-  {
-    id: "awareness",
-    title: "Medical Awareness",
-    images: [
-      "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1000&auto=format&fit=crop"
-    ]
-  },
-  {
     id: "lab",
-    title: "Laboratory",
+    title: "Laboratory & 24-Hr Pharmacy",
     images: [
       "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=1000&auto=format&fit=crop"
     ]
   },
   {
-    id: "reception",
-    title: "Reception Area",
+    id: "patient-care",
+    title: "Patient Care & Day-Care",
     images: [
-      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1000&auto=format&fit=crop"
-    ]
-  },
-  {
-    id: "cabin",
-    title: "Doctor's Cabin",
-    images: [
-      "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=1000&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576091160501-bbe57469278b?q=80&w=1000&auto=format&fit=crop"
     ]
   }
 ];

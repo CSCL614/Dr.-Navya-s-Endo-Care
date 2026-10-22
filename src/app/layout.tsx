@@ -23,9 +23,39 @@ import { IntroProvider } from "@/context/IntroContext";
 import { IntroOverlay } from "@/components/ui/IntroOverlay";
 
 export const metadata: Metadata = {
-  title: "Dr. Navya's Endo Care | Diabetes & Endocrine Superspeciality Center",
-  description: "Advanced Endocrinology care for diabetes, thyroid disorders, hormonal imbalance, obesity, PCOS, and metabolic disorders. Book an appointment today.",
-  keywords: "Endocrinologist, Diabetes, Thyroid, PCOS, Hormonal Imbalance, Obesity, Dr. Navya",
+  title: "Dr. Navya’s EndoCare — Diabetes, Thyroid & Endocrine Superspeciality Center, Vizianagaram",
+  description: "Dr. Navya Sruthi Mandapati, MBBS, MD, DM (Endocrinology) — University Topper. Comprehensive adult & paediatric care for diabetes, thyroid, obesity clinic, PCOS, growth, and hormone disorders in Vizianagaram.",
+  keywords: "Endocrinologist Vizianagaram, Dr Navya Sruthi Mandapati, Diabetes Doctor Vizianagaram, Thyroid Specialist Vizianagaram, Paediatric Endocrinology Vizianagaram, Obesity Clinic Vizianagaram, PCOS Treatment, EndoCare Vizianagaram",
+};
+
+const clinicJsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["MedicalClinic", "Physician"],
+  "name": "Dr. Navya’s EndoCare — Diabetes, Thyroid & Endocrine Superspeciality Center",
+  "alternateName": "Dr. Navya's EndoCare",
+  "description": "Adult and paediatric endocrine superspeciality clinic led by Dr. Navya Sruthi Mandapati, MBBS, MD, DM (Endocrinology) — University Topper in Vizianagaram.",
+  "url": "https://drnavyaendocare.com",
+  "telephone": "+918464070196",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ajay Children’s Hospital junction, Phool Bagh Rd, Ambati Satram Area",
+    "addressLocality": "Vizianagaram",
+    "addressRegion": "Andhra Pradesh",
+    "postalCode": "535002",
+    "addressCountry": "IN"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    }
+  ],
+  "medicalSpecialty": [
+    "Endocrinology",
+    "PediatricEndocrinology"
+  ]
 };
 
 export default function RootLayout({
@@ -38,6 +68,12 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${outfit.variable} antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col font-sans text-slate-800 bg-transparent relative">
         <IntroProvider>
           <IntroOverlay />

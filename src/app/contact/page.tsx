@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { MapPin, Phone, Mail, Clock, Send, AlertCircle, CheckCircle2, PhoneCall, Building2 } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, AlertCircle, CheckCircle2, PhoneCall, Building2, MessageCircle } from "lucide-react";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -101,12 +101,34 @@ export default function ContactPage() {
                       <div className="p-3 bg-white/10 rounded-xl flex-shrink-0">
                         <Phone className="w-6 h-6 text-primary-light" />
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-white/90 mb-1">Phone Numbers</h4>
-                        <p className="text-white/70 leading-relaxed text-sm">
-                          Main: +91 90327 73508<br />
-                          Appt: +91 90327 73508
-                        </p>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-white/90 mb-1">Clinic Phone & WhatsApp</h4>
+                        <div className="space-y-1.5 mb-3">
+                          <div>
+                            <span className="text-[10px] text-teal-200 uppercase font-semibold tracking-wider block">Direct Phone & WhatsApp Line</span>
+                            <a href="tel:8464070196" className="text-white hover:text-teal-200 font-bold text-xl transition-colors inline-block tracking-wide">
+                              8464070196
+                            </a>
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <a 
+                            href="tel:8464070196"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-primary font-bold rounded-xl text-xs hover:bg-teal-50 shadow-sm transition-all"
+                          >
+                            <Phone className="w-3.5 h-3.5" />
+                            Call 8464070196
+                          </a>
+                          <a 
+                            href="https://wa.me/918464070196"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-xs shadow-sm transition-all"
+                          >
+                            <MessageCircle className="w-3.5 h-3.5" />
+                            WhatsApp: 8464070196
+                          </a>
+                        </div>
                       </div>
                     </div>
 
@@ -146,9 +168,9 @@ export default function ContactPage() {
                       <AlertCircle className="w-5 h-5 mr-2" />
                       Medical Emergency
                     </h4>
-                    <p className="text-red-500/80 text-sm">Available 24/7 for urgent care</p>
+                    <p className="text-red-500/80 text-sm">Available 24/7 for urgent care: <a href="tel:8464070196" className="font-bold underline">8464070196</a></p>
                   </div>
-                  <a href="tel:+919032773508" className="relative p-4 bg-red-100 rounded-full text-red-600 hover:bg-red-600 hover:text-white transition-colors shadow-sm group">
+                  <a href="tel:8464070196" className="relative p-4 bg-red-100 rounded-full text-red-600 hover:bg-red-600 hover:text-white transition-colors shadow-sm group">
                     <div className="absolute inset-0 bg-red-400 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-50 group-hover:hidden"></div>
                     <PhoneCall className="w-6 h-6 relative z-10" />
                   </a>

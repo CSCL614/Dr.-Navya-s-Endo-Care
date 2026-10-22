@@ -3,26 +3,29 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const stats = [
-  { value: "15+", label: "Years Experience" },
-  { value: "10,000+", label: "Happy Patients" },
-  { value: "50+", label: "Awards & Honors" },
-  { value: "100%", label: "Patient Satisfaction" },
+  { value: "University Topper", label: "DM Endocrinology", sub: "YSRUHS Merit" },
+  { value: "Multiple Gold Medals", label: "MBBS Distinction", sub: "Best Outgoing Student" },
+  { value: "Adult & Paediatric", label: "Endocrine Care", sub: "Infants to Seniors" },
+  { value: "Established 2024", label: "Vizianagaram Center", sub: "Inaugurated 29 April" },
 ];
 
 export function StatsSection() {
   return (
-    <section className="py-8 lg:py-10 bg-white relative -mt-12 z-20">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-6 lg:py-8 bg-white relative -mt-8 z-20">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <ScrollReveal>
-          <div className="glass-card bg-white/90 shadow-xl border border-slate-100 p-8 md:p-12 rounded-3xl grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-slate-100">
+          <div className="glass-card bg-white/95 shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8 rounded-3xl grid grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center px-4 first:border-l-0">
-                <h3 className="text-3xl md:text-4xl font-bold font-heading text-transparent bg-clip-text bg-gradient-to-br from-primary-dark to-primary mb-2">
+              <div key={index} className="text-center px-3 pt-3 sm:pt-0 first:border-l-0">
+                <div className="text-lg sm:text-xl lg:text-2xl font-bold font-heading text-teal-700 mb-1">
                   {stat.value}
-                </h3>
-                <p className="text-sm md:text-base font-medium text-slate-500">
+                </div>
+                <div className="text-xs sm:text-sm font-semibold text-slate-800">
                   {stat.label}
-                </p>
+                </div>
+                <div className="text-[11px] text-slate-400 mt-0.5">
+                  {stat.sub}
+                </div>
               </div>
             ))}
           </div>

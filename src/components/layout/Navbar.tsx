@@ -4,32 +4,38 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, CalendarHeart } from "lucide-react";
+import { Menu, X, Phone, CalendarHeart, ChevronDown, MessageCircle } from "lucide-react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 import { useAppointment } from "@/context/AppointmentContext";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { upcomingEvents } from "@/data/events";
-
 import Image from "next/image";
 
 function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
 }
 
-const navLinks = [
+const mainNavLinks = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Before & After", href: "/before-and-after" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Events", href: "/events" },
+  { name: "About Dr. Navya", href: "/about" },
+  { name: "Specialities", href: "/services" },
+  { name: "Diabetes Care", href: "/diabetes-care" },
+  { name: "Obesity Clinic", href: "/obesity-clinic" },
+  { name: "Patient Resources", href: "/patient-resources" },
   { name: "Contact", href: "/contact" },
+];
+
+const secondaryLinks = [
+  { name: "Events & Camps", href: "/events" },
+  { name: "Clinic Gallery", href: "/gallery" },
+  { name: "Patient Results", href: "/before-and-after" },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
   const pathname = usePathname();
   const { openModal } = useAppointment();
 
@@ -37,7 +43,7 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -45,7 +51,7 @@ export function Navbar() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
-        isScrolled ? "py-2 glass shadow-sm" : "py-3 bg-transparent"
+        isScrolled ? "py-2 glass shadow-sm" : "py-3 bg-white/90 backdrop-blur-md border-b border-slate-100"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -54,42 +60,34 @@ export function Navbar() {
           <Image 
             src="/logo.png" 
             alt="Dr Navya's Endo Care Logo" 
-            width={60} 
-            height={60} 
-            className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain rounded-xl bg-white shadow-sm flex-shrink-0"
+            width={54} 
+            height={54} 
+            className="w-10 h-10 md:w-11 md:h-11 object-contain rounded-xl bg-white shadow-xs flex-shrink-0"
           />
           <div className="flex flex-col justify-center">
-            <span className="text-sm md:text-base lg:text-xl font-bold font-heading text-primary-dark leading-none uppercase mb-0.5 md:mb-1">
-              DR NAVYA'S ENDO CARE
+            <span className="text-xs sm:text-sm md:text-base font-bold font-heading text-primary-dark leading-none uppercase mb-0.5">
+              DR. NAVYA'S ENDO CARE
             </span>
-            <span className="text-[6.5px] min-[400px]:text-[7px] md:text-[8px] lg:text-[9px] font-semibold tracking-wide text-secondary leading-tight uppercase whitespace-nowrap">
-              DIABETES, THYROID AND ENDOCRINE SUPERSPECIALITY CENTER
+            <span className="text-[6.5px] sm:text-[7.5px] md:text-[8.5px] font-semibold tracking-wide text-secondary leading-tight uppercase whitespace-nowrap">
+              DIABETES, THYROID & ENDOCRINE SUPERSPECIALITY CENTER
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8">
-          {navLinks.map((link) => {
+        <nav className="hidden xl:flex items-center space-x-5 2xl:space-x-7">
+          {mainNavLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "relative text-xs xl:text-sm font-medium transition-colors hover:text-primary whitespace-nowrap",
-                  isActive ? "text-primary font-semibold" : "text-slate-700"
+                  "relative text-xs 2xl:text-sm font-medium transition-colors hover:text-primary whitespace-nowrap py-1",
+                  isActive ? "text-primary font-bold" : "text-slate-700"
                 )}
               >
-                <div className="relative inline-flex items-center">
-                  {link.name}
-                  {link.name === "Events" && upcomingEvents.length > 0 && (
-                    <span className="absolute -top-1 -right-2.5 flex h-1.5 w-1.5">
-                      <span className="animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
-                    </span>
-                  )}
-                </div>
+                <span>{link.name}</span>
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
@@ -99,33 +97,90 @@ export function Navbar() {
               </Link>
             );
           })}
+
+          {/* More Dropdown for Gallery, Events, Before & After */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setMoreDropdownOpen(true)}
+            onMouseLeave={() => setMoreDropdownOpen(false)}
+          >
+            <button 
+              className={cn(
+                "flex items-center gap-1 text-xs 2xl:text-sm font-medium transition-colors hover:text-primary py-1",
+                secondaryLinks.some(l => pathname === l.href) ? "text-primary font-bold" : "text-slate-700"
+              )}
+            >
+              <span>More</span>
+              <ChevronDown className="w-3.5 h-3.5" />
+              {upcomingEvents.length > 0 && (
+                <span className="flex h-1.5 w-1.5 rounded-full bg-red-500 ml-0.5"></span>
+              )}
+            </button>
+
+            <AnimatePresence>
+              {moreDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 5 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full right-0 mt-1 w-44 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50"
+                >
+                  {secondaryLinks.map((sub) => (
+                    <Link
+                      key={sub.name}
+                      href={sub.href}
+                      className={cn(
+                        "block px-4 py-2 text-xs font-medium hover:bg-teal-50 hover:text-primary transition-colors",
+                        pathname === sub.href ? "text-primary font-bold bg-teal-50/50" : "text-slate-700"
+                      )}
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center space-x-3 xl:space-x-4">
+        <div className="hidden lg:flex items-center space-x-3">
           <a
-            href="tel:+919032773508"
-            className="hidden xl:flex items-center space-x-2 text-sm font-semibold text-slate-700 hover:text-red-600 transition-colors group"
+            href="tel:8464070196"
+            className="flex items-center space-x-2 text-xs xl:text-sm font-semibold text-slate-700 hover:text-primary transition-colors group"
           >
-            <div className="relative p-2 bg-red-50 rounded-full text-red-500 hover:bg-red-100 transition-colors">
-              <div className="absolute inset-0 bg-red-400 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-50"></div>
-              <Phone className="w-4 h-4 relative z-10" />
+            <div className="p-2 bg-teal-50 rounded-full text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+              <Phone className="w-3.5 h-3.5" />
             </div>
-            <span>Emergency</span>
+            <span className="hidden xl:inline font-bold">8464070196</span>
           </a>
+
+          <a
+            href="https://wa.me/918464070196"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800 transition-colors group px-2.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100"
+            title="Chat on WhatsApp: 8464070196"
+          >
+            <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="font-bold">WhatsApp</span>
+          </a>
+
           <MagneticButton 
             onClick={openModal}
-            className="bg-gradient-to-r from-primary to-accent text-white px-4 xl:px-5 py-2.5 rounded-full font-medium shadow-soft hover:shadow-glow whitespace-nowrap text-sm"
+            className="bg-primary hover:bg-primary-dark text-white px-4 xl:px-5 py-2.5 rounded-full font-semibold shadow-soft hover:shadow-glow whitespace-nowrap text-xs xl:text-sm"
           >
-            <CalendarHeart className="w-4 h-4" />
+            <CalendarHeart className="w-4 h-4 mr-1.5 inline" />
             <span>Book Appointment</span>
           </MagneticButton>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden p-2 text-slate-800 z-50 focus:outline-none"
+          className="xl:hidden p-2 text-slate-800 z-50 focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle Menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -139,48 +194,52 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 glass-card mx-4 mt-2 p-6 flex flex-col space-y-4 shadow-xl border-t-0 lg:hidden"
+            className="absolute top-full left-0 right-0 bg-white mx-3 mt-1 p-5 rounded-2xl shadow-2xl border border-slate-100 flex flex-col space-y-3 xl:hidden max-h-[85vh] overflow-y-auto"
           >
-            <nav className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
+            <nav className="flex flex-col divide-y divide-slate-100 text-sm">
+              {[...mainNavLinks, ...secondaryLinks].map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "text-lg font-medium py-3 border-b border-slate-100 last:border-0 flex items-center",
+                    "py-2.5 font-medium transition-colors flex items-center justify-between",
                     pathname === link.href ? "text-primary font-bold" : "text-slate-700"
                   )}
                 >
-                  {link.name}
-                  {link.name === "Events" && upcomingEvents.length > 0 && (
-                    <span className="ml-2 flex h-2 w-2 relative">
-                      <span className="animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                    </span>
+                  <span>{link.name}</span>
+                  {link.name === "Events & Camps" && upcomingEvents.length > 0 && (
+                    <span className="text-[10px] font-bold bg-red-100 text-red-600 px-2 py-0.5 rounded-full">New</span>
                   )}
                 </Link>
               ))}
             </nav>
-            <div className="pt-4 flex flex-col space-y-3">
+
+            <div className="pt-3 flex flex-col space-y-2 border-t border-slate-100">
               <a
-                href="tel:+919032773508"
-                className="flex items-center justify-center space-x-3 p-3 bg-slate-50 hover:bg-red-50 transition-colors rounded-xl text-slate-800 hover:text-red-600 font-medium group"
+                href="tel:8464070196"
+                className="flex items-center justify-center space-x-2 p-3 bg-teal-50 text-teal-800 rounded-xl font-bold text-sm"
               >
-                <div className="relative flex items-center justify-center">
-                  <div className="absolute inset-0 bg-red-400 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-50"></div>
-                  <Phone className="w-5 h-5 text-red-500 relative z-10" />
-                </div>
-                <span>Call Emergency</span>
+                <Phone className="w-4 h-4 text-primary" />
+                <span>Call Clinic: 8464070196</span>
+              </a>
+              <a
+                href="https://wa.me/918464070196"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center space-x-2 p-3 bg-emerald-50 text-emerald-800 rounded-xl font-bold text-sm"
+              >
+                <MessageCircle className="w-4 h-4 text-emerald-600" />
+                <span>WhatsApp: 8464070196</span>
               </a>
               <button 
                 onClick={() => {
                   setMobileMenuOpen(false);
                   openModal();
                 }}
-                className="flex items-center justify-center space-x-2 bg-primary text-white p-3 rounded-xl font-medium shadow-soft"
+                className="flex items-center justify-center space-x-2 bg-primary text-white p-3 rounded-xl font-semibold shadow-soft text-sm"
               >
-                <CalendarHeart className="w-5 h-5" />
+                <CalendarHeart className="w-4 h-4" />
                 <span>Book Appointment</span>
               </button>
             </div>

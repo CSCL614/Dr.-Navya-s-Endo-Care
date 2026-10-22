@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, MapPin, Clock, User, Phone, CheckCircle2 } from "lucide-react";
-import confetti from "canvas-confetti";
 import { popupConfig, upcomingEvents, HospitalEvent } from "@/data/events";
 import { useIntro } from "@/context/IntroContext";
 
@@ -88,14 +87,19 @@ export function EventPopup() {
     }
   };
 
-  const handleRegister = () => {
-    // Trigger confetti
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#14b8a6', '#38bdf8', '#ffffff']
-    });
+  const handleRegister = async () => {
+    // Dynamically load and trigger confetti only on interaction
+    try {
+      const confettiModule = (await import("canvas-confetti")).default;
+      confettiModule({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#14b8a6', '#38bdf8', '#ffffff']
+      });
+    } catch {
+      // Graceful fallback
+    }
 
     // Open whatsapp
     if (activeEvent?.whatsappNumber) {

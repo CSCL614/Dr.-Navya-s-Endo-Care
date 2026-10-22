@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CalendarHeart, Loader2 } from "lucide-react";
+import { X, CalendarHeart, Loader2, Phone, MessageCircle } from "lucide-react";
 
 interface AppointmentContextType {
   openModal: () => void;
@@ -100,6 +100,30 @@ export function AppointmentProvider({ children }: { children: ReactNode }) {
                   </div>
                 </div>
 
+                {/* Direct Instant Booking Assistance */}
+                <div className="flex flex-wrap items-center justify-between gap-2 p-3 bg-teal-50/80 border border-teal-100 rounded-xl mb-5 text-xs">
+                  <span className="text-teal-900 font-medium">Prefer direct booking?</span>
+                  <div className="flex items-center gap-2.5">
+                    <a
+                      href="tel:8464070196"
+                      className="inline-flex items-center gap-1 font-bold text-primary hover:text-primary-dark underline"
+                    >
+                      <Phone className="w-3 h-3" />
+                      8464070196
+                    </a>
+                    <span className="text-slate-300">•</span>
+                    <a
+                      href="https://wa.me/918464070196"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-bold text-emerald-600 hover:text-emerald-700 underline"
+                    >
+                      <MessageCircle className="w-3 h-3" />
+                      WhatsApp
+                    </a>
+                  </div>
+                </div>
+
                 {isSuccess ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -112,7 +136,10 @@ export function AppointmentProvider({ children }: { children: ReactNode }) {
                       </svg>
                     </div>
                     <h3 className="text-xl font-bold text-slate-800 mb-2">Request Sent Successfully!</h3>
-                    <p className="text-slate-500 mb-6">Our team will contact you shortly to confirm your appointment time.</p>
+                    <p className="text-slate-500 mb-4">Our team will contact you shortly to confirm your appointment time.</p>
+                    <p className="text-xs text-slate-400 mb-6">
+                      For urgent inquiries, call or WhatsApp: <a href="tel:8464070196" className="text-primary font-bold underline">8464070196</a>
+                    </p>
                     <button
                       onClick={closeModal}
                       className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-medium rounded-xl transition-colors"
@@ -175,11 +202,13 @@ export function AppointmentProvider({ children }: { children: ReactNode }) {
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-slate-600 bg-white"
                       >
                         <option value="">Select a service</option>
-                        <option value="diabetes">Diabetes Management</option>
-                        <option value="thyroid">Thyroid Treatment</option>
-                        <option value="pcos">PCOS & Obesity</option>
-                        <option value="hormonal">Hormonal Imbalance</option>
-                        <option value="other">Other Consultation</option>
+                        <option value="diabetes">Diabetes Care & Management</option>
+                        <option value="obesity-clinic">Obesity & Lifestyle Clinic (Wed 4–6 PM)</option>
+                        <option value="thyroid">Thyroid Disorders</option>
+                        <option value="pcos">PCOS & Metabolic Health</option>
+                        <option value="paediatric">Paediatric Endocrinology & Growth</option>
+                        <option value="hormonal">Hormonal & Pituitary/Adrenal</option>
+                        <option value="other">General Endocrine Consultation</option>
                       </select>
                     </div>
 

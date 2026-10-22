@@ -6,103 +6,87 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { firstName, lastName, email, phone, subject, message } = body;
 
-    // Create a Nodemailer transporter
-    const transporter = nodemailer.createTransport({
-      service: 'gmail', // Use 'gmail' or your preferred service
-      auth: {
-        user: process.env.SMTP_EMAIL,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
+    if (!firstName || !phone) {
+      return NextResponse.json(
+        { success: false, error: 'Name and phone are required' },
+        { status: 400 }
+      );
+    }
 
-    // Setup email data
-    const mailOptions = {
-      from: `"Kavya Clinic Website" <${process.env.SMTP_EMAIL}>`,
-      to: process.env.DESTINATION_EMAIL, // Receiver address
-      subject: `New Contact Form Submission: ${subject || 'General Inquiry'}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p>You have received a new message from the contact form on your website.</p>
-        <table border="1" cellpadding="10" style="border-collapse: collapse;">
-          <tr>
-            <td><strong>Name:</strong></td>
-            <td>${firstName} ${lastName}</td>
-          </tr>
-          <tr>
-            <td><strong>Email:</strong></td>
-            <td>${email}</td>
-          </tr>
-          <tr>
-            <td><strong>Phone Number:</strong></td>
-            <td>${phone}</td>
-          </tr>
-          <tr>
-            <td><strong>Subject:</strong></td>
-            <td>${subject}</td>
-          </tr>
-          <tr>
-            <td><strong>Message:</strong></td>
-            <td>${message}</td>
-          </tr>
-        </table>
-      `,
-    };
+    const tasks: Promise<unknown>[] = [];
 
-    // Send mail only if credentials are set and not the default placeholders
+    // Send mail task
     if (
       process.env.SMTP_EMAIL && 
       process.env.SMTP_PASSWORD && 
       !process.env.SMTP_EMAIL.includes('your_email') && 
       !process.env.SMTP_PASSWORD.includes('your_app_password')
     ) {
-      try {
-        const info = await transporter.sendMail(mailOptions);
-        console.log('Message sent: %s', info.messageId);
-      } catch (emailError) {
-        console.error('Error sending email (check credentials):', emailError);
-      }
-    } else {
-      console.log('Skipping email notification because SMTP credentials are not configured in .env.local');
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.SMTP_EMAIL,
+          pass: process.env.SMTP_PASSWORD,
+        },
+      });
+
+      const mailOptions = {
+        from: `"Dr. Navya's EndoCare" <${process.env.SMTP_EMAIL}>`,
+        to: process.env.DESTINATION_EMAIL || process.env.SMTP_EMAIL,
+        subject: `New Contact Form: ${subject || 'General Inquiry'} — ${firstName} ${lastName || ''}`,
+        html: `
+          <h2>New Contact Message — Dr. Navya’s EndoCare</h2>
+          <table border="1" cellpadding="10" style="border-collapse: collapse; font-family: sans-serif;">
+            <tr><td><strong>Name:</strong></td><td>${firstName} ${lastName || ''}</td></tr>
+            <tr><td><strong>Email:</strong></td><td>${email || 'Not provided'}</td></tr>
+            <tr><td><strong>Phone:</strong></td><td><a href="tel:${phone}">${phone}</a></td></tr>
+            <tr><td><strong>Subject:</strong></td><td>${subject || 'General Inquiry'}</td></tr>
+            <tr><td><strong>Message:</strong></td><td>${message || 'No message provided'}</td></tr>
+          </table>
+        `,
+      };
+
+      tasks.push(
+        transporter.sendMail(mailOptions).catch(err => {
+          console.error('Email error:', err);
+        })
+      );
     }
 
-    // Optional Google Sheets Integration for Contact form
-    if (process.env.GOOGLE_SCRIPT_URL_CONTACT) {
-      try {
-        const timestamp = new Date().toLocaleString();
-        const sheetData = {
-          type: "Contact",
-          name: `${firstName} ${lastName}`,
-          email,
-          phone,
-          subject,
-          message,
-          timestamp
-        };
+    // Google Sheets Integration
+    if (process.env.GOOGLE_SCRIPT_URL) {
+      const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+      const sheetData = {
+        name: `${firstName} ${lastName || ''}`.trim(),
+        email: email || '',
+        phone,
+        subject: subject || 'General Inquiry',
+        message: message || '',
+        timestamp
+      };
 
-        const response = await fetch(process.env.GOOGLE_SCRIPT_URL_CONTACT, {
+      tasks.push(
+        fetch(process.env.GOOGLE_SCRIPT_URL, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(sheetData),
           redirect: 'follow'
-        });
-        
-        if (!response.ok) {
-           console.error('Google Sheet Webhook returned status:', response.status);
-        } else {
-           console.log('Successfully sent to Google Sheet Webhook (Contact)');
-        }
-      } catch (sheetError) {
-        console.error('Error adding to Google Sheet:', sheetError);
-      }
+        }).catch(err => {
+          console.error('Google Sheet error:', err);
+        })
+      );
     }
 
-    return NextResponse.json({ success: true, message: 'Message sent successfully' }, { status: 200 });
+    // Execute concurrently
+    if (tasks.length > 0) {
+      await Promise.allSettled(tasks);
+    }
+
+    return NextResponse.json({ success: true, message: 'Message received successfully' }, { status: 200 });
   } catch (error) {
-    console.error('Error in contact route:', error);
+    console.error('Error in contact form submission:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to process request' },
+      { success: false, error: 'Failed to process message' },
       { status: 500 }
     );
   }

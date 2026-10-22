@@ -19,16 +19,16 @@ export function ScrollReveal({
   direction = "up"
 }: ScrollRevealProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -40px 0px" });
 
   const getVariants = () => {
     switch (direction) {
-      case "up": return { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 } };
-      case "down": return { hidden: { opacity: 0, y: -50 }, visible: { opacity: 1, y: 0 } };
-      case "left": return { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 } };
-      case "right": return { hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0 } };
-      case "none": return { hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } };
-      default: return { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 } };
+      case "up": return { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+      case "down": return { hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } };
+      case "left": return { hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0 } };
+      case "right": return { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } };
+      case "none": return { hidden: { opacity: 0, scale: 0.98 }, visible: { opacity: 1, scale: 1 } };
+      default: return { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
     }
   };
 
@@ -38,7 +38,7 @@ export function ScrollReveal({
         variants={getVariants()}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        transition={{ duration: 0.6, delay: delay, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.45, delay: delay, ease: "easeOut" }}
         className="h-full"
       >
         {children}
