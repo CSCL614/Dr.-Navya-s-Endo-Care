@@ -214,7 +214,7 @@ function SceneRig() {
 
 export function Hero3DVisual() {
   return (
-    <div className="w-full h-[500px] lg:h-[700px] relative flex items-center justify-center">
+    <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] xl:h-[620px] relative flex items-center justify-center">
       {/* Background radial glow so the 3D elements pop */}
       <div className="absolute inset-0 bg-gradient-to-tr from-sky-50 to-teal-50/30 rounded-[3rem] blur-xl opacity-70 pointer-events-none" />
       

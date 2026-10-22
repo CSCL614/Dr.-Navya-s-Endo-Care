@@ -6,6 +6,19 @@ import { motion, Variants } from "framer-motion";
 import { doctorData } from "@/data/doctorData";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const Hero3DVisual = dynamic(
+  () => import("./Hero3DVisual").then((mod) => mod.Hero3DVisual),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    ),
+  }
+);
 
 export function HeroSection() {
   const { openModal } = useAppointment();
@@ -145,46 +158,38 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Doctor Portrait & Clinic Trust Card */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm sm:max-w-md">
-              {/* Doctor Portrait Frame with Next.js priority Image */}
-              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl shadow-slate-200/50 border-[5px] border-white bg-slate-100 z-10">
+          {/* Right Column: Interactive 3D Endocrine Visual System */}
+          <div className="lg:col-span-5 relative flex items-center justify-center min-h-[460px] sm:min-h-[520px] lg:min-h-[600px]">
+            <Hero3DVisual />
+
+            {/* Floating Doctor Profile Badge with Dr. Navya's Photo & Qualifications */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="absolute -bottom-3 -left-2 sm:left-4 bg-white/95 backdrop-blur-md p-3 sm:p-3.5 rounded-2xl border border-teal-100 shadow-xl flex items-center gap-3 z-20 pointer-events-auto hover:shadow-2xl transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl overflow-hidden relative shadow-xs shrink-0 border border-teal-100 bg-slate-100">
                 <Image
                   src="/images/dr-navya-sruthi-mandapati.jpg"
-                  alt="Dr. Navya Sruthi Mandapati — MBBS, MD (General Medicine), DM (Endocrinology) — Consultant Endocrinologist"
+                  alt="Dr. Navya Sruthi Mandapati"
                   fill
-                  priority
-                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 40vw, 420px"
+                  sizes="48px"
                   className="object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-900/15 to-transparent pointer-events-none" />
-                
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 text-white pointer-events-none">
-                  <span className="text-[11px] font-semibold text-teal-300 uppercase tracking-wider block mb-0.5">
-                    Consultant Endocrinologist
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold font-heading mb-0.5">{doctorData.name}</h3>
-                  <p className="text-xs sm:text-sm text-white/90 font-medium">{doctorData.degrees}</p>
-                  <p className="text-[11px] text-teal-200 mt-0.5">Adult & Paediatric Endocrinology</p>
-                </div>
               </div>
-
-              {/* Decorative Background Rotation */}
-              <div className="absolute -inset-2 bg-gradient-to-br from-primary/15 to-teal-400/15 rounded-[2.3rem] -rotate-1.5 -z-10 blur-xs pointer-events-none" />
-
-              {/* Floating Verified Center Badge */}
-              <div className="absolute -bottom-3 -left-3 sm:-left-4 bg-white p-3.5 rounded-2xl border border-teal-100 shadow-lg flex items-center gap-3 z-20">
-                <div className="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center text-primary shrink-0">
-                  <Stethoscope className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Superspeciality Care</div>
-                  <div className="text-xs sm:text-sm font-bold text-slate-800">Dr. Navya’s EndoCare</div>
-                  <div className="text-[10px] text-teal-700 font-semibold">Vizianagaram, AP</div>
-                </div>
+              <div>
+                <span className="text-[10px] text-teal-700 font-bold uppercase tracking-wider block">
+                  Consultant Endocrinologist
+                </span>
+                <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">
+                  {doctorData.name}
+                </h4>
+                <p className="text-[10px] text-slate-500 font-medium mt-0.5">
+                  {doctorData.degrees} • University Topper
+                </p>
               </div>
-            </div>
+            </motion.div>
           </div>
 
         </div>
