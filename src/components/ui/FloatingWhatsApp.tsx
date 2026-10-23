@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function FloatingWhatsApp() {
   return (
-    <div className="fixed bottom-6 right-5 sm:right-6 z-50 pointer-events-auto">
+    <div className="fixed bottom-6 right-5 sm:right-6 z-30 pointer-events-auto">
       {/* Floating WhatsApp Button */}
       <div className="relative">
         <div className="absolute inset-0 bg-emerald-400 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-75 pointer-events-none" />

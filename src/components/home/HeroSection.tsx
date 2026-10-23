@@ -72,13 +72,13 @@ export function HeroSection() {
           >
             {/* Brand & Subtitle Pill */}
             <motion.div variants={itemVariants}>
-              <div className="inline-flex flex-wrap items-center gap-2 py-1.5 px-4 bg-white/80 border border-border rounded-full shadow-xs backdrop-blur-sm">
+              <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 py-1 px-3 sm:py-1.5 sm:px-4 bg-white/80 border border-border rounded-full shadow-xs backdrop-blur-sm">
                 <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" aria-hidden="true"></span>
-                <span className="text-xs sm:text-sm font-bold text-navy tracking-wide uppercase font-heading">
+                <span className="text-[11px] sm:text-sm font-bold text-navy tracking-wide uppercase font-heading">
                   DR. NAVYA&apos;S ENDOCARE
                 </span>
                 <span className="text-border hidden sm:inline" aria-hidden="true">•</span>
-                <span className="text-xs sm:text-sm text-text-secondary font-medium">
+                <span className="text-[11px] sm:text-sm text-text-secondary font-medium">
                   Adult & Paediatric Endocrinology | Vizianagaram
                 </span>
               </div>
@@ -87,7 +87,7 @@ export function HeroSection() {
             {/* Main Heading — editorial style with gradient */}
             <motion.h1 
               variants={itemVariants}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-extrabold font-heading text-navy leading-[1.08] tracking-tight"
+              className="text-2xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-extrabold font-heading text-navy leading-[1.12] sm:leading-[1.08] tracking-tight"
             >
               Specialist Endocrine Care.{" "}
               <span className="text-gradient-primary">
@@ -98,7 +98,7 @@ export function HeroSection() {
             {/* Supporting Text */}
             <motion.p 
               variants={itemVariants} 
-              className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-xl"
+              className="text-sm sm:text-lg text-text-secondary leading-relaxed max-w-xl"
             >
               Personalised adult and paediatric endocrine care with a focus on diabetes, thyroid disorders, obesity, metabolic health, and patient counselling.
             </motion.p>
@@ -106,7 +106,7 @@ export function HeroSection() {
             {/* Specialities Highlight — refined card */}
             <motion.div 
               variants={itemVariants}
-              className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 border border-border/80 space-y-1.5 shadow-card"
+              className="bg-white/70 backdrop-blur-sm rounded-2xl p-3.5 sm:p-4 border border-border/80 space-y-1.5 shadow-card"
             >
               <div className="text-xs sm:text-sm font-semibold text-navy tracking-wide">
                 {doctorData.heroSpecialitiesLine}
@@ -120,7 +120,7 @@ export function HeroSection() {
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
               <button
                 onClick={openModal}
-                className="btn-primary text-sm sm:text-base"
+                className="btn-primary text-sm sm:text-base py-3 sm:py-3.5"
               >
                 <CalendarHeart className="w-5 h-5 text-white/90" />
                 <span>BOOK AN APPOINTMENT</span>
@@ -128,7 +128,7 @@ export function HeroSection() {
 
               <a
                 href="#specialities"
-                className="btn-secondary text-sm sm:text-base group"
+                className="btn-secondary text-sm sm:text-base py-3 sm:py-3.5 group"
               >
                 <span>EXPLORE SPECIALITIES</span>
                 <ArrowRight className="ml-1 w-4 h-4 text-text-secondary group-hover:translate-x-1 transition-transform duration-200" />
@@ -138,29 +138,29 @@ export function HeroSection() {
             {/* Clinic Contact Helpline — streamlined */}
             <motion.div 
               variants={itemVariants} 
-              className="bg-white/90 backdrop-blur-md rounded-2xl p-4 border border-border shadow-card flex flex-wrap items-center justify-between gap-3 mt-1"
+              className="bg-white/90 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 border border-border shadow-card flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-1"
             >
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-soft-teal flex items-center justify-center text-primary shrink-0 shadow-2xs">
-                  <Phone className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-soft-teal flex items-center justify-center text-primary shrink-0 shadow-2xs">
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 </div>
                 <div>
-                  <span className="text-[10.5px] font-bold text-text-muted uppercase tracking-wider block">
+                  <span className="text-[9.5px] sm:text-[10.5px] font-bold text-text-muted uppercase tracking-wider block">
                     Direct Clinic Helpline & Appointments
                   </span>
                   <a
                     href="tel:8464070196"
-                    className="text-lg sm:text-xl font-bold font-heading text-navy hover:text-primary transition-colors block"
+                    className="text-base sm:text-xl font-bold font-heading text-navy hover:text-primary transition-colors block"
                   >
                     8464070196
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="grid grid-cols-2 sm:flex items-center gap-2 w-full sm:w-auto">
                 <a
                   href="tel:8464070196"
-                  className="px-4 py-2.5 bg-primary hover:bg-primary-dark text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center gap-1.5 active:scale-95"
+                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-primary hover:bg-primary-dark text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 active:scale-95"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   <span>Call Now</span>
@@ -169,7 +169,7 @@ export function HeroSection() {
                   href="https://wa.me/918464070196"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center gap-1.5 active:scale-95"
+                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 active:scale-95"
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
                   <span>WhatsApp</span>
@@ -178,16 +178,16 @@ export function HeroSection() {
             </motion.div>
 
             {/* Quick Credential Badges — refined */}
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2.5 pt-3 border-t border-border/60">
-              <div className="flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-border text-xs font-medium text-navy/80 hover:border-accent-warm/40 transition-colors">
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-3 border-t border-border/60">
+              <div className="flex items-center gap-1.5 bg-white/80 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-border text-[11px] sm:text-xs font-medium text-navy/80 hover:border-accent-warm/40 transition-colors">
                 <Award className="w-3.5 h-3.5 text-accent-warm" />
                 <span>DM University Topper</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-border text-xs font-medium text-navy/80 hover:border-primary/30 transition-colors">
+              <div className="flex items-center gap-1.5 bg-white/80 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-border text-[11px] sm:text-xs font-medium text-navy/80 hover:border-primary/30 transition-colors">
                 <ShieldCheck className="w-3.5 h-3.5 text-primary" />
                 <span>Multiple MBBS Gold Medals</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-border text-xs font-medium text-navy/80 hover:border-primary/30 transition-colors">
+              <div className="flex items-center gap-1.5 bg-white/80 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-border text-[11px] sm:text-xs font-medium text-navy/80 hover:border-primary/30 transition-colors">
                 <HeartPulse className="w-3.5 h-3.5 text-primary" />
                 <span>Adult & Paediatric Specialist</span>
               </div>
@@ -195,13 +195,13 @@ export function HeroSection() {
           </motion.div>
 
           {/* Right Floating Visual System (3D Medical Visual & Credentials) */}
-          <div className="lg:col-span-6 relative flex items-center justify-center w-full min-h-[420px] sm:min-h-[480px] lg:min-h-[580px]">
+          <div className="lg:col-span-6 relative flex items-center justify-center w-full min-h-[350px] sm:min-h-[440px] lg:min-h-[580px]">
             {/* 3D Visual System */}
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.0, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full h-[420px] sm:h-[480px] lg:h-[580px] flex items-center justify-center"
+              className="relative w-full h-[350px] sm:h-[440px] lg:h-[580px] flex items-center justify-center"
             >
               <Hero3DVisual />
 
@@ -210,9 +210,9 @@ export function HeroSection() {
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute bottom-2 left-2 sm:left-4 glass-card p-3 sm:p-3.5 flex items-center gap-3 z-30 max-w-[280px] sm:max-w-xs pointer-events-auto hover-lift"
+                className="absolute bottom-2 left-2 sm:left-4 glass-card p-2 sm:p-3 flex items-center gap-2.5 sm:gap-3 z-30 max-w-[250px] sm:max-w-xs pointer-events-auto hover-lift"
               >
-                <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden shrink-0 border-2 border-primary/20 shadow-xs">
+                <div className="relative w-10 h-10 sm:w-14 sm:h-14 rounded-xl overflow-hidden shrink-0 border-2 border-primary/20 shadow-xs">
                   <Image
                     src="/images/dr-navya-sruthi-mandapati.jpg"
                     alt="Dr. Navya Sruthi Mandapati — Consultant Endocrinologist"
@@ -222,14 +222,14 @@ export function HeroSection() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <div className="flex items-center gap-1 text-[10px] font-bold text-accent-warm uppercase tracking-wider">
+                  <div className="flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-accent-warm uppercase tracking-wider">
                     <Award className="w-3 h-3 text-accent-warm shrink-0" />
                     <span className="truncate">DM University Topper</span>
                   </div>
                   <h3 className="text-xs sm:text-sm font-bold text-navy truncate font-heading">
                     Dr. Navya Sruthi M.
                   </h3>
-                  <p className="text-[10.5px] text-text-secondary truncate">
+                  <p className="text-[10px] sm:text-[10.5px] text-text-secondary truncate">
                     MD, DM (Endocrinology)
                   </p>
                 </div>
@@ -240,10 +240,10 @@ export function HeroSection() {
                 initial={{ opacity: 0, scale: 0.9, y: -15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="absolute top-2 right-2 sm:right-4 glass px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full flex items-center gap-2 z-30"
+                className="absolute top-2 right-2 sm:right-4 glass px-2.5 sm:px-3.5 py-1 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 z-30"
               >
                 <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10px] sm:text-[11px] font-bold text-navy">Open Today • Vizianagaram</span>
+                <span className="text-[9.5px] sm:text-[11px] font-bold text-navy">Open Today • Vizianagaram</span>
               </motion.div>
             </motion.div>
           </div>
