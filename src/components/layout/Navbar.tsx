@@ -7,8 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Menu, X, Phone, CalendarHeart, MessageCircle, ChevronRight, 
   Award, Home, UserCheck, Stethoscope, Activity, Scale, 
-  Sparkles, HeartHandshake, Building2, TrendingUp, Calendar, 
-  Images, BookOpen, MapPin 
+  Sparkles, BookOpen, MapPin 
 } from "lucide-react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -19,32 +18,16 @@ function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
 }
 
-const desktopNavLinks = [
-  { name: "Home", href: "/" },
-  { name: "About Dr. Navya", href: "/about" },
-  { name: "Specialities", href: "/services" },
-  { name: "Diabetes Care", href: "/diabetes-care" },
-  { name: "Obesity Clinic", href: "/obesity-clinic" },
-  { name: "Thyroid Care", href: "/thyroid-care" },
-  { name: "Events & Camps", href: "/events" },
-  { name: "Patient Resources", href: "/patient-resources" },
-  { name: "Contact", href: "/contact" },
-];
-
-const mobileNavLinks = [
+// Exactly matching pages across desktop and mobile (Events & Camps removed)
+const navLinks = [
   { name: "Home", href: "/", icon: Home },
   { name: "About Dr. Navya", href: "/about", icon: UserCheck, badge: "Gold Medalist" },
-  { name: "All Specialities", href: "/services", icon: Stethoscope },
-  { name: "Diabetes Care & Reversal", href: "/diabetes-care", icon: Activity, badge: "Speciality" },
-  { name: "Dedicated Obesity Clinic", href: "/obesity-clinic", icon: Scale, badge: "Wed 4–6 PM", highlight: true },
-  { name: "Thyroid Disorders Care", href: "/thyroid-care", icon: Sparkles },
-  { name: "Paediatric Endocrinology", href: "/paediatric-endocrinology", icon: HeartHandshake },
-  { name: "Clinic Facilities & Labs", href: "/#facilities", icon: Building2, badge: "In-House" },
-  { name: "Events & Free Camps", href: "/events", icon: Calendar, badge: "Free Camps" },
-  { name: "Patient Transformations", href: "/before-and-after", icon: TrendingUp },
-  { name: "Clinic Photo Gallery", href: "/gallery", icon: Images },
-  { name: "Patient Resources & Diet", href: "/patient-resources", icon: BookOpen },
-  { name: "Contact & Clinic Location", href: "/contact", icon: MapPin },
+  { name: "Specialities", href: "/services", icon: Stethoscope },
+  { name: "Diabetes Care", href: "/diabetes-care", icon: Activity, badge: "Speciality" },
+  { name: "Obesity Clinic", href: "/obesity-clinic", icon: Scale, badge: "Wed 4–6 PM", highlight: true },
+  { name: "Thyroid Care", href: "/thyroid-care", icon: Sparkles },
+  { name: "Patient Resources", href: "/patient-resources", icon: BookOpen },
+  { name: "Contact", href: "/contact", icon: MapPin },
 ];
 
 export function Navbar() {
@@ -117,7 +100,7 @@ export function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden xl:flex items-center space-x-1 2xl:space-x-2">
-          {desktopNavLinks.map((link) => {
+          {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
@@ -251,11 +234,11 @@ export function Navbar() {
             style={{ height: "calc(100dvh - 52px)", maxHeight: "calc(100dvh - 52px)" }}
           >
             {/* Scrollable Navigation Body */}
-            <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain py-3 px-3 sm:px-5 space-y-3">
+            <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain py-2.5 px-2.5 sm:px-5 space-y-2.5">
               {/* Doctor Mini Profile Card */}
-              <div className="p-3 bg-gradient-to-r from-soft-teal/70 via-pale-blue/50 to-white rounded-2xl border border-primary/20 flex items-center justify-between gap-3 shadow-2xs">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="relative w-11 h-11 rounded-xl overflow-hidden shrink-0 border-2 border-primary/30 bg-white shadow-2xs">
+              <div className="p-2.5 sm:p-3 bg-gradient-to-r from-soft-teal/70 via-pale-blue/50 to-white rounded-2xl border border-primary/20 flex items-center justify-between gap-2 sm:gap-3 shadow-2xs">
+                <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+                  <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shrink-0 border-2 border-primary/30 bg-white shadow-2xs">
                     <Image 
                       src="/images/dr-navya-sruthi-mandapati.jpg" 
                       alt="Dr. Navya Sruthi Mandapati"
@@ -265,35 +248,35 @@ export function Navbar() {
                     />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[10px] font-bold text-accent-warm uppercase tracking-wider flex items-center gap-1">
+                    <div className="text-[9px] sm:text-[10px] font-bold text-accent-warm uppercase tracking-wider flex items-center gap-1">
                       <Award className="w-3 h-3 text-accent-warm shrink-0" />
-                      <span>DM University Topper</span>
+                      <span className="truncate">DM University Topper</span>
                     </div>
-                    <div className="text-xs font-bold text-navy font-heading truncate">
+                    <div className="text-xs sm:text-sm font-bold text-navy font-heading truncate">
                       Dr. Navya Sruthi M.
                     </div>
-                    <div className="text-[10px] text-text-secondary truncate">
+                    <div className="text-[9.5px] sm:text-[10px] text-text-secondary truncate">
                       MD, DM (Endocrinology)
                     </div>
                   </div>
                 </div>
 
                 <div className="shrink-0 text-right">
-                  <span className="inline-flex items-center gap-1 text-[9px] font-bold text-emerald-700 bg-emerald-100/90 px-2 py-0.5 rounded-full border border-emerald-300/60">
+                  <span className="inline-flex items-center gap-1 text-[8.5px] sm:text-[9px] font-bold text-emerald-700 bg-emerald-100/90 px-1.5 sm:px-2 py-0.5 rounded-full border border-emerald-300/60 whitespace-nowrap">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     Open Today
                   </span>
-                  <span className="text-[9px] text-text-muted block mt-0.5 font-medium">9 AM – 8 PM</span>
+                  <span className="text-[8.5px] sm:text-[9px] text-text-muted block mt-0.5 font-medium whitespace-nowrap">9 AM – 8 PM</span>
                 </div>
               </div>
 
-              {/* Navigation List */}
-              <div className="space-y-1">
-                <div className="text-[10px] font-bold text-text-muted uppercase tracking-wider px-2 pt-1 pb-0.5">
-                  Navigation & Specialities
+              {/* Navigation List — Exactly matching desktop pages */}
+              <div className="space-y-0.5">
+                <div className="text-[10px] font-bold text-text-muted uppercase tracking-wider px-2 pt-0.5 pb-0.5">
+                  Menu & Care Programs
                 </div>
                 <nav className="flex flex-col space-y-0.5">
-                  {mobileNavLinks.map((link, index) => {
+                  {navLinks.map((link, index) => {
                     const isActive = pathname === link.href;
                     const Icon = link.icon;
                     return (
@@ -307,7 +290,7 @@ export function Navbar() {
                           href={link.href}
                           onClick={() => setMobileMenuOpen(false)}
                           className={cn(
-                            "py-2.5 px-3 rounded-xl flex items-center justify-between text-xs sm:text-sm font-medium transition-all active:scale-[0.99]",
+                            "py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-xl flex items-center justify-between text-xs sm:text-sm font-medium transition-all active:scale-[0.99]",
                             isActive 
                               ? "bg-soft-teal/70 text-primary font-bold shadow-2xs border-l-4 border-primary" 
                               : "text-navy/85 hover:bg-soft-teal/30 active:bg-soft-teal/50"
@@ -315,22 +298,22 @@ export function Navbar() {
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
                             <div className={cn(
-                              "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors",
+                              "w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors",
                               isActive 
                                 ? "bg-primary text-white" 
                                 : link.highlight 
                                   ? "bg-amber-100 text-amber-700"
                                   : "bg-slate-100 text-navy/70"
                             )}>
-                              <Icon className="w-3.5 h-3.5" />
+                              <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                             </div>
                             <span className="truncate">{link.name}</span>
                           </div>
 
-                          <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                          <div className="flex items-center gap-1.5 shrink-0 ml-1.5">
                             {link.badge && (
                               <span className={cn(
-                                "text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider",
+                                "text-[9px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full uppercase tracking-wider hidden min-[360px]:inline-flex",
                                 link.highlight 
                                   ? "bg-amber-100 text-amber-800 border border-amber-300"
                                   : "bg-primary/10 text-primary border border-primary/20"
@@ -338,7 +321,7 @@ export function Navbar() {
                                 {link.badge}
                               </span>
                             )}
-                            <ChevronRight className="w-4 h-4 text-text-muted" />
+                            <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-text-muted" />
                           </div>
                         </Link>
                       </motion.div>
@@ -349,14 +332,14 @@ export function Navbar() {
             </div>
 
             {/* Bottom Pinned High-Conversion Action Dock */}
-            <div className="p-3 sm:p-4 bg-slate-50 border-t border-border flex flex-col gap-2 shrink-0 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] z-10">
+            <div className="p-2.5 sm:p-4 bg-slate-50 border-t border-border flex flex-col gap-2 shrink-0 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] z-10">
               {/* Primary Book Appointment Button */}
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   openModal();
                 }}
-                className="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold text-sm shadow-soft flex items-center justify-center gap-2 active:scale-[0.98] transition-all"
+                className="w-full py-2.5 sm:py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold text-xs sm:text-sm shadow-soft flex items-center justify-center gap-2 active:scale-[0.98] transition-all"
               >
                 <CalendarHeart className="w-4 h-4 text-white" />
                 <span>Book Appointment Online</span>
@@ -366,16 +349,19 @@ export function Navbar() {
               <div className="grid grid-cols-2 gap-2">
                 <a
                   href="tel:8464070196"
-                  className="py-2.5 px-3 bg-soft-teal hover:bg-soft-teal-dark text-navy rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors border border-primary/15 active:scale-98"
+                  className="py-2 sm:py-2.5 px-2.5 bg-soft-teal hover:bg-soft-teal-dark text-navy rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors border border-primary/15 active:scale-98"
                 >
                   <Phone className="w-3.5 h-3.5 text-primary shrink-0" />
-                  <span className="truncate">Call: 8464070196</span>
+                  <span className="truncate">
+                    <span className="min-[360px]:hidden">Call Us</span>
+                    <span className="hidden min-[360px]:inline">Call: 8464070196</span>
+                  </span>
                 </a>
                 <a
                   href="https://wa.me/918464070196"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2.5 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors border border-emerald-200/60 active:scale-98"
+                  className="py-2 sm:py-2.5 px-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors border border-emerald-200/60 active:scale-98"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span>WhatsApp</span>
@@ -383,7 +369,7 @@ export function Navbar() {
               </div>
 
               {/* Location Snippet */}
-              <div className="text-[10px] text-text-muted text-center pt-0.5 border-t border-border/60 truncate">
+              <div className="text-[9.5px] sm:text-[10px] text-text-muted text-center pt-0.5 border-t border-border/60 truncate">
                 📍 Raja Bazaar / Phool Bagh Rd, Ambati Satram Area, Vizianagaram
               </div>
             </div>

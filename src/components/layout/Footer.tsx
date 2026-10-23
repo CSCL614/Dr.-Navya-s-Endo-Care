@@ -99,8 +99,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#events" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
-                  <span className="mr-1.5 text-primary/60">›</span> Events & Camps
+                <Link href="/thyroid-care" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Thyroid Care
                 </Link>
               </li>
               <li>
