@@ -58,24 +58,24 @@ export default function ServicesPage() {
     : doctorData.specialities.filter(s => s.category === selectedCategory);
 
   return (
-    <div className="overflow-hidden bg-slate-50 min-h-screen pb-24">
+    <div className="overflow-hidden bg-background min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-white border-b border-slate-200 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-50 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
+      <section className="relative pt-16 lg:pt-20 pb-20 bg-gradient-hero border-b border-border overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-soft-teal/40 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
           <ScrollReveal>
-            <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-teal-50 border border-teal-200 text-primary font-semibold rounded-full text-xs sm:text-sm mb-6">
+            <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-white border border-border text-primary font-semibold rounded-full text-xs sm:text-sm mb-6 shadow-2xs">
               <Sparkles className="w-4 h-4 text-primary" />
               Adult & Paediatric Superspeciality Care
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-slate-800 mb-6 leading-tight">
-              Clinical Interests & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-teal-500">Specialities</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-navy mb-6 leading-tight">
+              Clinical Interests & <span className="text-primary">Specialities</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto">
               Comprehensive, patient-centred care for complex hormonal, metabolic, and glandular disorders guided by Dr. Navya Sruthi Mandapati, DM (Endocrinology).
             </p>
           </ScrollReveal>
@@ -92,8 +92,8 @@ export default function ServicesPage() {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                   selectedCategory === cat.id
-                    ? "bg-primary text-white shadow-soft"
-                    : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                    ? "bg-primary text-white shadow-card"
+                    : "bg-white text-navy hover:bg-soft-teal border border-border"
                 }`}
               >
                 {cat.label}
@@ -113,28 +113,28 @@ export default function ServicesPage() {
                 <ScrollReveal key={item.id} delay={(index % 3) * 0.08}>
                   <div 
                     id={item.id}
-                    className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:border-teal-200 transition-all duration-300 h-full flex flex-col group scroll-mt-28"
+                    className="bg-white rounded-3xl p-8 border border-border shadow-card hover:shadow-card-hover hover:border-primary/40 transition-all duration-300 h-full flex flex-col group scroll-mt-28"
                   >
-                    <div className="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                    <div className="w-14 h-14 bg-soft-teal/70 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-2xs">
                       <Icon className="w-7 h-7" />
                     </div>
 
-                    <h3 className="text-2xl font-bold font-heading text-slate-800 mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-bold font-heading text-navy mb-3 group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                    <p className="text-text-secondary text-sm leading-relaxed mb-6">
                       {item.fullDesc}
                     </p>
 
                     {/* Key Highlights */}
                     <div className="space-y-2 mb-8 flex-grow">
-                      <span className="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">
+                      <span className="text-xs font-bold text-navy uppercase tracking-wider block mb-1.5">
                         Clinical Focus:
                       </span>
                       {item.keyPoints.map((pt, pIdx) => (
-                        <div key={pIdx} className="flex items-start gap-2 text-xs text-slate-600">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-teal-500 shrink-0 mt-0.5" />
+                        <div key={pIdx} className="flex items-start gap-2 text-xs text-text-secondary">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                           <span>{pt}</span>
                         </div>
                       ))}
@@ -145,14 +145,14 @@ export default function ServicesPage() {
                       {detailLinkMap[item.id] && (
                         <Link 
                           href={detailLinkMap[item.id]}
-                          className="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:text-primary hover:border-primary text-center font-semibold transition-colors text-xs"
+                          className="flex-1 py-2.5 rounded-xl border border-border text-navy hover:text-primary hover:border-primary/40 text-center font-semibold transition-colors text-xs"
                         >
                           Learn More
                         </Link>
                       )}
                       <button 
                         onClick={openModal}
-                        className="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-colors text-xs shadow-xs text-center"
+                        className="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-colors text-xs shadow-2xs text-center"
                       >
                         Book Visit
                       </button>
@@ -174,42 +174,45 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="container mx-auto px-4 md:px-6 pt-16 max-w-5xl">
         <ScrollReveal>
-          <div className="bg-gradient-to-r from-primary to-teal-600 rounded-[2.5rem] p-8 md:p-14 text-center text-white relative overflow-hidden shadow-xl shadow-teal-500/15">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
-              Need Expert Endocrine Guidance?
-            </h2>
-            <p className="text-base sm:text-lg text-teal-50 max-w-2xl mx-auto mb-8 font-light">
-              Don't leave hormonal or metabolic symptoms unresolved. Dr. Navya Sruthi Mandapati provides thorough, individualized evaluations tailored to your health goals.
-            </p>
-            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
-              <button 
-                onClick={openModal}
-                className="px-8 py-4 bg-white text-primary-dark font-bold rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 text-base"
-              >
-                Schedule An Appointment
-              </button>
-              <a
-                href="tel:8464070196"
-                className="px-8 py-4 bg-teal-700/60 hover:bg-teal-700 text-white font-semibold rounded-full border border-teal-300/40 transition-all text-base inline-flex items-center gap-2"
-              >
-                <Phone className="w-4 h-4 text-teal-200" />
-                Call: 8464070196
-              </a>
-              <a
-                href="https://wa.me/918464070196"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full shadow-md transition-all hover:scale-105 text-base inline-flex items-center gap-2"
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp: 8464070196
-              </a>
-              <Link
-                href="/contact"
-                className="px-8 py-4 bg-teal-800/60 hover:bg-teal-800 text-teal-100 font-semibold rounded-full border border-teal-400/30 transition-all text-base"
-              >
-                Contact Clinic
-              </Link>
+          <div className="bg-gradient-navy rounded-[2.5rem] p-8 md:p-14 text-center text-white relative overflow-hidden shadow-xl border border-white/10">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-white">
+                Need Expert Endocrine Guidance?
+              </h2>
+              <p className="text-base sm:text-lg text-white/85 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
+                Don't leave hormonal or metabolic symptoms unresolved. Dr. Navya Sruthi Mandapati provides thorough, individualized evaluations tailored to your health goals.
+              </p>
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+                <button 
+                  onClick={openModal}
+                  className="px-8 py-4 bg-white text-navy font-bold rounded-full shadow-md hover:bg-soft-teal transition-all text-base"
+                >
+                  Schedule An Appointment
+                </button>
+                <a
+                  href="tel:8464070196"
+                  className="px-8 py-4 bg-primary/80 hover:bg-primary text-white font-semibold rounded-full border border-white/20 transition-all text-base inline-flex items-center gap-2"
+                >
+                  <Phone className="w-4 h-4 text-white" />
+                  Call: 8464070196
+                </a>
+                <a
+                  href="https://wa.me/918464070196"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full shadow-md transition-all text-base inline-flex items-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp: 8464070196
+                </a>
+                <Link
+                  href="/contact"
+                  className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/20 transition-all text-base"
+                >
+                  Contact Clinic
+                </Link>
+              </div>
             </div>
           </div>
         </ScrollReveal>

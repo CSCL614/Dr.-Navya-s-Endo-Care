@@ -52,18 +52,22 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="overflow-hidden bg-slate-50 min-h-screen pb-24">
+    <div className="overflow-hidden bg-background min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-white overflow-hidden border-b border-slate-200">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-primary/10 to-secondary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+      <section className="relative pt-16 lg:pt-20 pb-20 bg-gradient-hero overflow-hidden border-b border-border">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-soft-teal/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-3xl">
           <ScrollReveal>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-slate-800 mb-6">
-              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Touch</span>
+            <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-white border border-border text-primary font-semibold rounded-full text-xs sm:text-sm mb-6 shadow-2xs">
+              <Phone className="w-4 h-4 text-primary" />
+              Direct Communication
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-navy mb-6">
+              Get in <span className="text-primary">Touch</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto">
               We're here to support your health journey. Reach out to schedule an appointment or ask any questions about our specialized endocrine services.
             </p>
           </ScrollReveal>
@@ -78,15 +82,15 @@ export default function ContactPage() {
             {/* Contact Info Side */}
             <div className="lg:col-span-5 space-y-8">
               <ScrollReveal direction="right">
-                <div className="bg-primary-dark rounded-[2rem] p-10 text-white shadow-2xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+                <div className="bg-gradient-navy rounded-[2rem] p-10 text-white shadow-xl relative overflow-hidden border border-white/10">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
                   
-                  <h3 className="text-2xl font-bold font-heading mb-8 relative z-10">Contact Information</h3>
+                  <h3 className="text-2xl font-bold font-heading mb-8 relative z-10 text-white">Contact Information</h3>
                   
                   <div className="space-y-8 relative z-10">
                     <div className="flex items-start gap-4">
                       <div className="p-3 bg-white/10 rounded-xl flex-shrink-0">
-                        <MapPin className="w-6 h-6 text-primary-light" />
+                        <MapPin className="w-6 h-6 text-accent-warm" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-white/90 mb-1">Clinic Address</h4>
@@ -181,54 +185,54 @@ export default function ContactPage() {
             {/* Form Side */}
             <div className="lg:col-span-7">
               <ScrollReveal direction="left">
-                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl border border-slate-100 h-full relative overflow-hidden">
+                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-card border border-border h-full relative overflow-hidden">
                   
                   {formState.status === "success" ? (
                     <div className="absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-500">
-                      <div className="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mb-6">
+                      <div className="w-20 h-20 bg-soft-teal text-primary rounded-full flex items-center justify-center mb-6 shadow-2xs">
                         <CheckCircle2 className="w-10 h-10" />
                       </div>
-                      <h3 className="text-2xl font-bold font-heading text-slate-800 mb-4">Message Sent!</h3>
-                      <p className="text-slate-600 mb-8 max-w-sm">
+                      <h3 className="text-2xl font-bold font-heading text-navy mb-4">Message Sent!</h3>
+                      <p className="text-text-secondary mb-8 max-w-sm">
                         {formState.message}
                       </p>
                       <button 
                         onClick={() => setFormState({ status: "idle", message: "" })}
-                        className="px-8 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-full transition-colors"
+                        className="px-8 py-3 bg-background-alt hover:bg-soft-teal text-navy font-semibold rounded-full transition-colors"
                       >
                         Send Another Message
                       </button>
                     </div>
                   ) : null}
 
-                  <h3 className="text-2xl font-bold font-heading text-slate-800 mb-2">Send us a Message</h3>
-                  <p className="text-slate-500 mb-8">Fill out the form below and we will get back to you as soon as possible.</p>
+                  <h3 className="text-2xl font-bold font-heading text-navy mb-2">Send us a Message</h3>
+                  <p className="text-text-secondary mb-8">Fill out the form below and we will get back to you as soon as possible.</p>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="relative group">
-                        <input type="text" id="fname" required className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-slate-50 focus:bg-white placeholder-transparent" placeholder="First Name" />
-                        <label htmlFor="fname" className="absolute left-4 top-2 text-xs font-semibold text-slate-400 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">First Name</label>
+                        <input type="text" id="fname" required className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-background-alt focus:bg-white text-navy placeholder-transparent" placeholder="First Name" />
+                        <label htmlFor="fname" className="absolute left-4 top-2 text-xs font-semibold text-text-muted peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">First Name</label>
                       </div>
                       <div className="relative group">
-                        <input type="text" id="lname" required className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-slate-50 focus:bg-white placeholder-transparent" placeholder="Last Name" />
-                        <label htmlFor="lname" className="absolute left-4 top-2 text-xs font-semibold text-slate-400 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">Last Name</label>
+                        <input type="text" id="lname" required className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-background-alt focus:bg-white text-navy placeholder-transparent" placeholder="Last Name" />
+                        <label htmlFor="lname" className="absolute left-4 top-2 text-xs font-semibold text-text-muted peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">Last Name</label>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="relative group">
-                        <input type="email" id="email" required className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-slate-50 focus:bg-white placeholder-transparent" placeholder="Email Address" />
-                        <label htmlFor="email" className="absolute left-4 top-2 text-xs font-semibold text-slate-400 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">Email Address</label>
+                        <input type="email" id="email" required className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-background-alt focus:bg-white text-navy placeholder-transparent" placeholder="Email Address" />
+                        <label htmlFor="email" className="absolute left-4 top-2 text-xs font-semibold text-text-muted peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">Email Address</label>
                       </div>
                       <div className="relative group">
-                        <input type="tel" id="phone" required className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-slate-50 focus:bg-white placeholder-transparent" placeholder="Phone Number" />
-                        <label htmlFor="phone" className="absolute left-4 top-2 text-xs font-semibold text-slate-400 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">Phone Number</label>
+                        <input type="tel" id="phone" required className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-background-alt focus:bg-white text-navy placeholder-transparent" placeholder="Phone Number" />
+                        <label htmlFor="phone" className="absolute left-4 top-2 text-xs font-semibold text-text-muted peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">Phone Number</label>
                       </div>
                     </div>
 
                     <div className="relative group">
-                      <select id="subject" required defaultValue="" className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-slate-50 focus:bg-white appearance-none text-slate-700">
+                      <select id="subject" required defaultValue="" className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-background-alt focus:bg-white appearance-none text-navy">
                         <option value="" disabled></option>
                         <option value="appointment">Book an Appointment</option>
                         <option value="inquiry">General Inquiry</option>
@@ -238,14 +242,14 @@ export default function ContactPage() {
                     </div>
 
                     <div className="relative group">
-                      <textarea id="message" required rows={4} className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-slate-50 focus:bg-white placeholder-transparent resize-none" placeholder="Your Message"></textarea>
-                      <label htmlFor="message" className="absolute left-4 top-2 text-xs font-semibold text-slate-400 peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">Your Message</label>
+                      <textarea id="message" required rows={4} className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-background-alt focus:bg-white text-navy placeholder-transparent resize-none" placeholder="Your Message"></textarea>
+                      <label htmlFor="message" className="absolute left-4 top-2 text-xs font-semibold text-text-muted peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:font-normal peer-focus:top-2 peer-focus:text-xs peer-focus:font-semibold peer-focus:text-primary transition-all pointer-events-none">Your Message</label>
                     </div>
 
                     <button 
                       type="submit" 
                       disabled={formState.status === "submitting"}
-                      className="w-full py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl shadow-soft hover:shadow-glow transition-all flex items-center justify-center disabled:opacity-70 group"
+                      className="w-full py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl shadow-card hover:shadow-card-hover transition-all flex items-center justify-center disabled:opacity-70 group"
                     >
                       {formState.status === "submitting" ? (
                         <span className="flex items-center">

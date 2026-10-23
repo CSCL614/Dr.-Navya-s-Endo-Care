@@ -19,6 +19,25 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/events',
+        destination: '/#events',
+        permanent: true,
+      },
+      {
+        source: '/gallery',
+        destination: '/#gallery',
+        permanent: true,
+      },
+      {
+        source: '/before-and-after',
+        destination: '/#patient-results',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

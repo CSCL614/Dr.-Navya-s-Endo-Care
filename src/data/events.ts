@@ -21,7 +21,7 @@ export interface PopupConfig {
 // Global Popup Configuration
 // Change `enabled` to false to easily disable the popup from the backend.
 export const popupConfig: PopupConfig = {
-  enabled: true,
+  enabled: false,
   activeEventId: "camp-01",
   autoHideDays: 7, 
 };

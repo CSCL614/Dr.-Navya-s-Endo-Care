@@ -30,14 +30,14 @@ export function DoctorProfile() {
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-16 lg:mb-20">
           <ScrollReveal>
-            <div className="inline-flex items-center space-x-2 bg-teal-50/80 border border-teal-200/60 rounded-full px-5 py-2 mb-6 shadow-sm">
+            <div className="inline-flex items-center space-x-2 bg-white border border-border rounded-full px-5 py-2 mb-6 shadow-2xs">
               <Shield className="w-4 h-4 text-primary" />
               <span className="text-xs sm:text-sm font-semibold text-primary tracking-wider uppercase">Know Your Doctor</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-slate-800 mb-6 tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-navy mb-6 tracking-tight">
               {doctorData.headline}
             </h2>
-            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-text-secondary leading-relaxed max-w-3xl mx-auto">
               Dedicated to helping adults and children achieve lasting vitality through scientific, evidence-based endocrinology and deeply personalized, compassionate guidance.
             </p>
           </ScrollReveal>
@@ -50,7 +50,7 @@ export function DoctorProfile() {
             <ScrollReveal direction="right">
               <div className="relative z-10 sticky top-28">
                 {/* Image Frame */}
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/60 border-[6px] border-white bg-slate-50 z-20">
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-card border-4 border-white bg-white z-20">
                   <Image
                     src="/images/dr-navya-sruthi-mandapati.jpg"
                     alt="Dr. Navya Sruthi Mandapati — Consultant Endocrinologist"
@@ -58,49 +58,48 @@ export function DoctorProfile() {
                     sizes="(max-width: 768px) 100vw, 420px"
                     className="object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent pointer-events-none" />
                   
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
-                    <span className="text-xs font-semibold tracking-wider uppercase text-teal-300 block mb-1">Consultant Endocrinologist</span>
+                    <span className="text-xs font-semibold tracking-wider uppercase text-accent-warm block mb-1">Consultant Endocrinologist</span>
                     <h3 className="text-2xl font-bold font-heading text-white">{doctorData.name}</h3>
                     <p className="text-sm text-white/90">{doctorData.degrees}</p>
                   </div>
                 </div>
                 
                 {/* Background Accent Gradients */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-teal-400/20 rounded-3xl -rotate-2 z-10 blur-sm" />
-                <div className="absolute -inset-4 bg-gradient-to-tr from-sky-400/15 to-primary/10 rounded-3xl rotate-2 z-0" />
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary/10 to-soft-teal/30 rounded-3xl -rotate-2 z-10 blur-sm pointer-events-none" />
 
                 {/* Floating University Topper Badge */}
                 <motion.div 
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="mt-6 bg-white/95 backdrop-blur-xl border border-teal-100 p-5 rounded-2xl shadow-xl shadow-slate-200/50 flex items-center gap-4"
+                  className="mt-6 bg-white border border-border p-5 rounded-2xl shadow-card flex items-center gap-4"
                 >
-                  <div className="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center text-primary font-bold text-2xl shrink-0">
+                  <div className="w-14 h-14 bg-soft-teal rounded-2xl flex items-center justify-center text-primary font-bold text-2xl shrink-0 shadow-2xs">
                     <Award className="w-7 h-7 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">DM Endocrinology</p>
-                    <p className="text-lg font-bold text-slate-800 leading-tight">University Topper</p>
-                    <p className="text-xs text-teal-600 font-medium">Multiple MBBS Gold Medals</p>
+                    <p className="text-xs text-text-muted font-semibold uppercase tracking-wider">DM Endocrinology</p>
+                    <p className="text-lg font-bold text-navy leading-tight">University Topper</p>
+                    <p className="text-xs text-primary font-medium">Multiple MBBS Gold Medals</p>
                   </div>
                 </motion.div>
 
                 {/* Consultation Details Card */}
-                <div className="mt-4 bg-slate-50/90 rounded-2xl p-5 border border-slate-100">
-                  <div className="flex items-center gap-3 text-slate-700 font-medium text-sm mb-3">
+                <div className="mt-4 bg-background-alt rounded-2xl p-5 border border-border">
+                  <div className="flex items-center gap-3 text-text-primary font-medium text-sm mb-3">
                     <FileText className="w-4 h-4 text-primary shrink-0" />
                     <span>Thorough review of past medical records & labs</span>
                   </div>
-                  <div className="flex items-center gap-3 text-slate-700 font-medium text-sm mb-4">
-                    <CheckCircle2 className="w-4 h-4 text-teal-500 shrink-0" />
+                  <div className="flex items-center gap-3 text-text-primary font-medium text-sm mb-4">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
                     <span>Personalized nutrition, activity & sleep guidance</span>
                   </div>
                   <button
                     onClick={openModal}
-                    className="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-semibold shadow-soft text-sm transition-all flex items-center justify-center gap-2 group"
+                    className="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-semibold shadow-card hover:shadow-card-hover text-sm transition-all flex items-center justify-center gap-2 group"
                   >
                     <span>Book Consultation with Dr. Navya</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -116,22 +115,22 @@ export function DoctorProfile() {
             
             {/* Primary Bio Card */}
             <ScrollReveal direction="left">
-              <div className="bg-white rounded-3xl p-8 lg:p-10 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-teal-400 to-sky-400" />
+              <div className="bg-white rounded-3xl p-8 lg:p-10 border border-border shadow-card relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary via-primary-light to-accent-warm" />
                 
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 className="text-3xl lg:text-4xl font-bold font-heading text-slate-800">
+                  <h3 className="text-3xl lg:text-4xl font-bold font-heading text-navy">
                     {doctorData.name}
                   </h3>
                 </div>
 
-                <div className="inline-block bg-teal-50 text-primary-dark px-3.5 py-1 rounded-full text-sm font-semibold mb-6">
+                <div className="inline-block bg-soft-teal text-primary-dark px-3.5 py-1 rounded-full text-sm font-semibold mb-6">
                   {doctorData.role}
                 </div>
                 
-                <div className="prose prose-lg text-slate-600 max-w-none leading-relaxed space-y-4">
+                <div className="prose prose-lg text-text-secondary max-w-none leading-relaxed space-y-4">
                   <p>
-                    Dr. Navya Sruthi Mandapati is an accomplished Endocrinologist specializing in adult and paediatric hormonal and metabolic disorders. Having secured top university honors throughout her medical training—including graduating as the <strong>University Topper in DM Endocrinology</strong> and earning <strong>multiple Gold Medals along with the Best Outgoing Student award</strong> in MBBS—she combines academic rigor with empathetic, human-centered clinical care.
+                    Dr. Navya Sruthi Mandapati is an accomplished Endocrinologist specializing in adult and paediatric hormonal and metabolic disorders. Having secured top university honors throughout her medical training—including graduating as the <strong className="text-navy font-bold">University Topper in DM Endocrinology</strong> and earning <strong className="text-navy font-bold">multiple Gold Medals along with the Best Outgoing Student award</strong> in MBBS—she combines academic rigor with empathetic, human-centered clinical care.
                   </p>
                   <p>
                     Dr. Navya's core philosophy is anchored in patient-centred care. Rather than hurried visits that merely end with a prescription, she dedicates substantial consultation time to thoroughly reviewing each patient's previous medical files, explaining physiological mechanisms, and answering questions in clear, accessible language.

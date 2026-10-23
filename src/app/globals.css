@@ -1,33 +1,66 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #14b8a6; /* Teal 500 */
-  --color-primary-light: #5eead4; /* Teal 300 */
-  --color-primary-dark: #0f766e; /* Teal 700 */
-  --color-secondary: #38bdf8; /* Sky 400 */
-  --color-secondary-light: #7dd3fc; /* Sky 300 */
-  --color-accent: #0ea5e9; /* Sky 500 */
-  --color-background: #ffffff; /* White */
-  --color-background-alt: #f0fbff; /* Very Light Cyan */
-  --color-foreground: #1e293b; /* Slate 800 */
-  --color-muted: #64748b; /* Slate 500 */
-  --color-border: #e2e8f0; /* Slate 200 */
+  /* ── Refined Healthcare Palette ── */
+  --color-navy: #173B57;
+  --color-navy-light: #1E4D6E;
+  --color-navy-dark: #0F2B40;
 
-  --font-sans: var(--font-inter), sans-serif;
-  --font-heading: var(--font-outfit), sans-serif;
+  --color-primary: #167C80;
+  --color-primary-light: #1A9599;
+  --color-primary-dark: #126466;
+
+  --color-accent-warm: #D8B779;
+  --color-accent-warm-light: #E5CFA0;
+
+  --color-soft-teal: #DDF2EF;
+  --color-soft-teal-dark: #C0E5E0;
+
+  --color-pale-blue: #EEF5F9;
+
+  --color-background: #FCFDFB;
+  --color-background-alt: #EFF5F5;
+  --color-card: #FFFFFF;
+
+  --color-text-primary: #344654;
+  --color-text-secondary: #687987;
+  --color-text-muted: #8899A6;
+
+  --color-border: #E3EBF0;
+  --color-border-light: #EFF3F6;
+
+  /* Legacy aliases for existing tailwind usage */
+  --color-secondary: #167C80;
+  --color-secondary-light: #1A9599;
+
+  --color-foreground: #344654;
+  --color-muted: #687987;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-outfit), system-ui, sans-serif;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1e293b;
+  --background: #FCFDFB;
+  --foreground: #344654;
+  --section-padding-y: clamp(4rem, 8vw, 7rem);
+  --content-max: 80rem;
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+  --transition-base: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-slow: 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* ── Base Styles ── */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
 }
 
 /* Override container to be full width fluid */
@@ -35,45 +68,311 @@ body {
   max-width: 100% !important;
 }
 
+/* ── Typography System ── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  color: var(--color-navy);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
-/* Glassmorphism Utilities */
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* ── Glassmorphism Utilities ── */
 @utility glass {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 4px 24px 0 rgba(23, 59, 87, 0.06);
 }
 
 @utility glass-card {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 10px 40px 0 rgba(20, 184, 166, 0.05);
-  border-radius: 1rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  box-shadow:
+    0 1px 2px rgba(23, 59, 87, 0.04),
+    0 8px 32px rgba(22, 124, 128, 0.04);
+  border-radius: var(--radius-card);
 }
 
+/* ── Gradient Utilities ── */
 @utility bg-gradient-medical {
-  background-image: linear-gradient(to bottom right, #ffffff, #f0fbff, #e0f2fe);
+  background-image: linear-gradient(to bottom right, #FCFDFB, #EFF5F5, #DDF2EF);
 }
 
+@utility bg-gradient-navy {
+  background-image: linear-gradient(135deg, #173B57 0%, #1E4D6E 60%, #0F2B40 100%);
+}
+
+@utility bg-gradient-hero {
+  background-image: linear-gradient(160deg, #FCFDFB 0%, #EEF5F9 35%, #DDF2EF 100%);
+}
+
+@utility bg-gradient-section-alt {
+  background-image: linear-gradient(180deg, #EEF5F9 0%, #FCFDFB 100%);
+}
+
+@utility bg-gradient-teal-subtle {
+  background-image: linear-gradient(135deg, #DDF2EF 0%, #EEF5F9 100%);
+}
+
+/* ── Shadow System ── */
 @utility shadow-soft {
-  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+  box-shadow:
+    0 2px 4px rgba(23, 59, 87, 0.04),
+    0 8px 30px -8px rgba(23, 59, 87, 0.1);
 }
 
 @utility shadow-glow {
-  box-shadow: 0 0 25px rgba(20, 184, 166, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(22, 124, 128, 0.15),
+    0 0 24px rgba(22, 124, 128, 0.18),
+    0 8px 32px rgba(22, 124, 128, 0.12);
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
+@utility shadow-card {
+  box-shadow:
+    0 1px 2px rgba(23, 59, 87, 0.04),
+    0 2px 8px rgba(23, 59, 87, 0.04),
+    0 8px 24px rgba(23, 59, 87, 0.03);
+}
+
+@utility shadow-card-hover {
+  box-shadow:
+    0 4px 12px rgba(23, 59, 87, 0.06),
+    0 16px 48px rgba(22, 124, 128, 0.1);
+}
+
+@utility shadow-elevated {
+  box-shadow:
+    0 2px 4px rgba(23, 59, 87, 0.05),
+    0 12px 40px rgba(23, 59, 87, 0.08),
+    0 24px 64px rgba(22, 124, 128, 0.06);
+}
+
+/* ── Interactive Hover Utilities ── */
+@utility hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 4px 12px rgba(23, 59, 87, 0.06),
+      0 16px 48px rgba(22, 124, 128, 0.1);
+  }
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+@utility hover-scale {
+  transition: transform var(--transition-base);
+  &:hover {
+    transform: scale(1.02);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ── Button Utilities ── */
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-base);
+  box-shadow:
+    0 2px 4px rgba(22, 124, 128, 0.2),
+    0 8px 24px rgba(22, 124, 128, 0.15);
+  &:hover {
+    background: var(--color-primary-dark);
+    box-shadow:
+      0 4px 8px rgba(22, 124, 128, 0.25),
+      0 12px 32px rgba(22, 124, 128, 0.2);
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+@utility btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: white;
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-base);
+  box-shadow: 0 1px 3px rgba(23, 59, 87, 0.04);
+  &:hover {
+    background: var(--color-soft-teal);
+    border-color: rgba(22, 124, 128, 0.2);
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ── Section Divider ── */
+@utility section-divider {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent-warm));
+    border-radius: 999px;
+    opacity: 0.5;
+  }
+}
+
+/* ── Tag / Pill ── */
+@utility section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  background: var(--color-soft-teal);
+  border: 1px solid rgba(22, 124, 128, 0.12);
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Scrollbar ── */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
-/* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Custom scrollbar for the whole page ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-pale-blue);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+  &:hover {
+    background: var(--color-primary);
+  }
+}
+
+/* ── Focus Styles ── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: var(--color-soft-teal);
+  color: var(--color-navy);
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Animated Gradient Border ── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-border {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-accent-warm),
+    var(--color-primary)
+  );
+  background-size: 200% 100%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ── Floating decorative shapes ── */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1.5deg); }
+}
+
+.float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.float-slower {
+  animation: float-slower 8s ease-in-out infinite;
+}
+
+/* ── Text gradient utility ── */
+@utility text-gradient-primary {
+  background-image: linear-gradient(135deg, #167C80 0%, #1A9599 50%, #167C80 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-gradient-warm {
+  background-image: linear-gradient(135deg, #D8B779 0%, #E5CFA0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

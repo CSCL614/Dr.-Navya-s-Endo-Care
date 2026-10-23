@@ -4,6 +4,9 @@ import { DiscoverEndoCareSection } from "@/components/home/DiscoverEndoCareSecti
 import { StatsSection } from "@/components/home/StatsSection";
 import { SpecialitiesHomeSection } from "@/components/home/SpecialitiesHomeSection";
 import { ClinicFacilitiesSection } from "@/components/home/ClinicFacilitiesSection";
+import { HomeGallerySection } from "@/components/home/HomeGallerySection";
+import { TransformationsSection } from "@/components/home/TransformationsSection";
+import { EventsAndCampsSection } from "@/components/home/EventsAndCampsSection";
 import { ObesityClinicBanner } from "@/components/home/ObesityClinicBanner";
 import { CouldItBeHormonalSection } from "@/components/home/CouldItBeHormonalSection";
 import { RootCauseMetabolicSection } from "@/components/home/RootCauseMetabolicSection";
@@ -17,7 +20,7 @@ import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 export default function Home() {
   return (
     <div className="overflow-hidden bg-white">
-      {/* Section 1 — Hero */}
+      {/* Section 1 — Hero with 3D Interactive Medical Animation */}
       <HeroSection />
 
       {/* Services Marquee Banner */}
@@ -32,34 +35,43 @@ export default function Home() {
       {/* Section 3 — Specialities and Services */}
       <SpecialitiesHomeSection />
 
-      {/* Compact Clinic Facilities Preview */}
-      <ClinicFacilitiesSection isCompact={true} />
+      {/* Section 4 — Integrated Clinic Facilities & Labs */}
+      <ClinicFacilitiesSection />
 
-      {/* Section 4 — Dedicated Obesity Clinic (Wed 4-6 PM) */}
+      {/* Section 5 — Clinic Photo Gallery (Diabetic Foot Suite & Facilities) */}
+      <HomeGallerySection />
+
+      {/* Section 6 — Real Patient Results & Recovery (Before & After) */}
+      <TransformationsSection />
+
+      {/* Section 7 — Events & Free Health Camps */}
+      <EventsAndCampsSection />
+
+      {/* Section 8 — Dedicated Obesity Clinic (Wed 4-6 PM) */}
       <ObesityClinicBanner />
 
-      {/* Section 5 — Could It Be Hormonal? */}
+      {/* Section 9 — Could It Be Hormonal? */}
       <CouldItBeHormonalSection />
 
-      {/* Section 6 — Root-Cause and Metabolic Health */}
+      {/* Section 10 — Root-Cause and Metabolic Health */}
       <RootCauseMetabolicSection />
 
-      {/* Section 7 — Practical Lifestyle Guidance */}
+      {/* Section 11 — Practical Lifestyle Guidance */}
       <PracticalLifestyleSection />
 
-      {/* Section 8 — Meet Dr. Navya */}
+      {/* Section 12 — Meet Dr. Navya */}
       <DoctorIntroSection />
 
-      {/* Section 9 — Why Choose Dr. Navya’s EndoCare? */}
+      {/* Section 13 — Why Choose Dr. Navya’s EndoCare? */}
       <WhyChooseHomeSection />
 
-      {/* Section 10 — Patient Education */}
+      {/* Section 14 — Patient Education */}
       <PatientEducationHomeSection />
 
-      {/* Section 11 — Patient Stories & Feedback */}
+      {/* Section 15 — Patient Stories & Feedback */}
       <TestimonialsSection />
 
-      {/* Section 12 — Final CTA */}
+      {/* Section 16 — Final CTA */}
       <FinalCtaSection />
     </div>
   );

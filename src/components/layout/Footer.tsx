@@ -18,16 +18,17 @@ const YoutubeIcon = () => (
 
 export function Footer() {
   return (
-    <footer className="bg-slate-50 border-t border-slate-200 pt-16 pb-8 relative overflow-hidden">
-      {/* Decorative Blob */}
+    <footer className="bg-navy text-white pt-16 pb-8 relative overflow-hidden">
+      {/* Decorative Element */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-64 h-64 bg-accent-warm/5 rounded-full blur-3xl pointer-events-none" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
           
           {/* Brand Info */}
           <div className="space-y-5 lg:col-span-5 xl:col-span-4">
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 group">
               <Image 
                 src="/logo.png" 
                 alt="Dr Navya's Endo Care Logo" 
@@ -36,33 +37,33 @@ export function Footer() {
                 className="w-12 h-12 object-contain rounded-xl bg-white shadow-xs flex-shrink-0"
               />
               <div className="flex flex-col justify-center">
-                <span className="text-base sm:text-lg font-bold font-heading text-primary-dark leading-none uppercase mb-1">
-                  DR. NAVYA'S ENDO CARE
+                <span className="text-base sm:text-lg font-bold font-heading text-white leading-none uppercase mb-1 group-hover:text-soft-teal transition-colors duration-200">
+                  DR. NAVYA&apos;S ENDO CARE
                 </span>
-                <span className="text-[7.5px] sm:text-[8.5px] font-semibold tracking-wide text-secondary leading-tight uppercase whitespace-nowrap">
+                <span className="text-[7.5px] sm:text-[8.5px] font-semibold tracking-wide text-white/50 leading-tight uppercase whitespace-nowrap">
                   DIABETES, THYROID & ENDOCRINE SUPERSPECIALITY CENTER
                 </span>
               </div>
             </Link>
             
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Led by <strong>{doctorData.name}</strong>, DM (Endocrinology) — University Topper. Comprehensive, compassionate adult and paediatric hormone care in Vizianagaram.
+            <p className="text-white/60 text-xs sm:text-sm leading-relaxed max-w-sm">
+              Led by <strong className="text-white/80">{doctorData.name}</strong>, DM (Endocrinology) — University Topper. Comprehensive, compassionate adult and paediatric hormone care in Vizianagaram.
             </p>
 
             <div className="flex items-center space-x-3 pt-1">
-              <a href="https://wa.me/918464070196" target="_blank" rel="noopener noreferrer" className="p-2 bg-emerald-50 rounded-full shadow-xs text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors" aria-label="WhatsApp: 8464070196">
+              <a href="https://wa.me/918464070196" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/8 rounded-full text-emerald-400 hover:bg-emerald-600 hover:text-white transition-colors duration-200" aria-label="WhatsApp: 8464070196">
                 <MessageCircle className="w-5 h-5" />
               </a>
-              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-xs text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Facebook">
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/8 rounded-full text-white/60 hover:bg-primary hover:text-white transition-colors duration-200" aria-label="Facebook">
                 <FacebookIcon />
               </a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-xs text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/8 rounded-full text-white/60 hover:bg-primary hover:text-white transition-colors duration-200" aria-label="Instagram">
                 <InstagramIcon />
               </a>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-xs text-primary hover:bg-primary hover:text-white transition-colors" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/8 rounded-full text-white/60 hover:bg-primary hover:text-white transition-colors duration-200" aria-label="LinkedIn">
                 <LinkedinIcon />
               </a>
-              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white rounded-full shadow-xs text-primary hover:bg-primary hover:text-white transition-colors" aria-label="YouTube">
+              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/8 rounded-full text-white/60 hover:bg-primary hover:text-white transition-colors duration-200" aria-label="YouTube">
                 <YoutubeIcon />
               </a>
             </div>
@@ -70,41 +71,46 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="lg:col-span-2">
-            <h3 className="text-base font-bold text-slate-800 mb-4 font-heading">Quick Links</h3>
+            <h3 className="text-base font-bold text-white mb-4 font-heading">Quick Links</h3>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <Link href="/" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Home
+                <Link href="/" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> About Dr. Navya
+                <Link href="/about" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> About Dr. Navya
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Specialities
+                <Link href="/services" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Specialities
                 </Link>
               </li>
               <li>
-                <Link href="/diabetes-care" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Diabetes Care
+                <Link href="/diabetes-care" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Diabetes Care
                 </Link>
               </li>
               <li>
-                <Link href="/obesity-clinic" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Obesity Clinic
+                <Link href="/obesity-clinic" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Obesity Clinic
                 </Link>
               </li>
               <li>
-                <Link href="/patient-resources" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Patient Resources
+                <Link href="/#events" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Events & Camps
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Contact Clinic
+                <Link href="/patient-resources" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Patient Resources
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Contact Clinic
                 </Link>
               </li>
             </ul>
@@ -112,41 +118,41 @@ export function Footer() {
 
           {/* Key Clinical Focus */}
           <div className="lg:col-span-2 xl:col-span-3">
-            <h3 className="text-base font-bold text-slate-800 mb-4 font-heading">Specialities</h3>
+            <h3 className="text-base font-bold text-white mb-4 font-heading">Specialities</h3>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
-                <Link href="/diabetes-care" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Diabetes Care & Screening
+                <Link href="/diabetes-care" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Diabetes Care & Screening
                 </Link>
               </li>
               <li>
-                <Link href="/thyroid-care" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Thyroid Care & Nodules
+                <Link href="/thyroid-care" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Thyroid Care & Nodules
                 </Link>
               </li>
               <li>
-                <Link href="/obesity-metabolic-health" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Obesity Clinic (Wed 4-6 PM)
+                <Link href="/obesity-metabolic-health" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Obesity Clinic (Wed 4-6 PM)
                 </Link>
               </li>
               <li>
-                <Link href="/pcos-womens-health" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> PCOS & Women's Health
+                <Link href="/pcos-womens-health" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> PCOS & Women&apos;s Health
                 </Link>
               </li>
               <li>
-                <Link href="/paediatric-endocrinology" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Child Growth & Puberty
+                <Link href="/paediatric-endocrinology" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Child Growth & Puberty
                 </Link>
               </li>
               <li>
-                <Link href="/bone-mineral-health" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Bone, Calcium & Vitamin D
+                <Link href="/bone-mineral-health" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Bone, Calcium & Vitamin D
                 </Link>
               </li>
               <li>
-                <Link href="/pituitary-adrenal-care" className="text-slate-600 hover:text-primary transition-colors flex items-center">
-                  <span className="mr-1.5 text-primary/50">›</span> Pituitary & Hormonal BP
+                <Link href="/pituitary-adrenal-care" className="text-white/55 hover:text-soft-teal transition-colors duration-200 flex items-center">
+                  <span className="mr-1.5 text-primary/60">›</span> Pituitary & Hormonal BP
                 </Link>
               </li>
             </ul>
@@ -154,27 +160,27 @@ export function Footer() {
 
           {/* Contact Details */}
           <div className="lg:col-span-3">
-            <h3 className="text-base font-bold text-slate-800 mb-4 font-heading">Clinic Contact</h3>
+            <h3 className="text-base font-bold text-white mb-4 font-heading">Clinic Contact</h3>
             <ul className="space-y-3.5 text-xs sm:text-sm">
               <li className="flex items-start">
                 <MapPin className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-600 leading-relaxed">
-                  Dr. Navya’s Endo Care, Ajay Children’s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002
+                <span className="text-white/55 leading-relaxed">
+                  Dr. Navya&apos;s Endo Care, Ajay Children&apos;s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002
                 </span>
               </li>
               <li className="flex items-start">
                 <Phone className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-1" />
                 <div className="space-y-1.5">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-teal-700 tracking-wider block">Clinic Direct Line</span>
-                    <a href="tel:8464070196" className="text-slate-800 hover:text-primary font-bold text-base transition-colors">
+                    <span className="text-[10px] uppercase font-bold text-primary tracking-wider block">Clinic Direct Line</span>
+                    <a href="tel:8464070196" className="text-white hover:text-soft-teal font-bold text-base transition-colors duration-200">
                       8464070196
                     </a>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 pt-0.5">
                     <a
                       href="tel:8464070196"
-                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary hover:bg-primary-dark text-white rounded-lg text-xs font-semibold shadow-xs transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary hover:bg-primary-dark text-white rounded-lg text-xs font-semibold shadow-xs transition-colors duration-200"
                     >
                       <Phone className="w-3 h-3" />
                       Call: 8464070196
@@ -183,7 +189,7 @@ export function Footer() {
                       href="https://wa.me/918464070196"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors duration-200"
                     >
                       <MessageCircle className="w-3 h-3" />
                       WhatsApp: 8464070196
@@ -193,15 +199,15 @@ export function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="w-4 h-4 text-primary mr-2.5 flex-shrink-0" />
-                <a href="mailto:info@drnavyaendocare.com" className="text-slate-600 hover:text-primary transition-colors">
+                <a href="mailto:info@drnavyaendocare.com" className="text-white/55 hover:text-soft-teal transition-colors duration-200">
                   info@drnavyaendocare.com
                 </a>
               </li>
               <li className="flex items-start">
                 <Clock className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-600 leading-relaxed">
+                <span className="text-white/55 leading-relaxed">
                   Mon - Sat: 9:00 AM – 8:00 PM<br/>
-                  <strong className="text-teal-700">Obesity Clinic:</strong> Wed 4:00 PM – 6:00 PM
+                  <strong className="text-accent-warm">Obesity Clinic:</strong> Wed 4:00 PM – 6:00 PM
                 </span>
               </li>
             </ul>
@@ -210,23 +216,23 @@ export function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex flex-col items-center md:items-start text-xs text-slate-500">
+        <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col items-center md:items-start text-xs text-white/40">
             <p>
-              &copy; {new Date().getFullYear()} Dr. Navya’s EndoCare — All rights reserved.
+              &copy; {new Date().getFullYear()} Dr. Navya&apos;s EndoCare — All rights reserved.
             </p>
-            <p className="mt-1 text-xs text-slate-400">
+            <p className="mt-1 text-xs text-white/30">
               Inaugurated 29 April 2024 • Vizianagaram, Andhra Pradesh
             </p>
           </div>
           <div className="flex items-center space-x-4 text-xs">
-            <Link href="/events" className="text-slate-500 hover:text-primary transition-colors">
-              Health Camps
+            <Link href="/#events" className="text-white/40 hover:text-soft-teal transition-colors duration-200">
+              Events & Camps
             </Link>
-            <Link href="/gallery" className="text-slate-500 hover:text-primary transition-colors">
-              Gallery
+            <Link href="/patient-resources" className="text-white/40 hover:text-soft-teal transition-colors duration-200">
+              Patient Resources
             </Link>
-            <Link href="/contact" className="text-slate-500 hover:text-primary transition-colors">
+            <Link href="/contact" className="text-white/40 hover:text-soft-teal transition-colors duration-200">
               Contact
             </Link>
           </div>

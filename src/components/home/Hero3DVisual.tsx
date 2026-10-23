@@ -5,6 +5,7 @@ import { Float, Html } from "@react-three/drei";
 import { useRef, useMemo } from "react";
 import * as THREE from "three";
 import { Dna, Droplet, Syringe, LineChart, Stethoscope } from "lucide-react";
+import { useInView } from "framer-motion";
 
 // Central Glowing Orb
 function CentralOrb() {
@@ -21,7 +22,7 @@ function CentralOrb() {
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
       <mesh ref={meshRef}>
-        <sphereGeometry args={[1.5, 64, 64]} />
+        <sphereGeometry args={[1.5, 32, 32]} />
         <meshStandardMaterial 
           color="#ffffff"
           emissive="#0ea5e9"
@@ -213,12 +214,16 @@ function SceneRig() {
 }
 
 export function Hero3DVisual() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { margin: "150px 0px 150px 0px" });
+
   return (
-    <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] xl:h-[620px] relative flex items-center justify-center">
+    <div ref={containerRef} className="w-full h-[450px] sm:h-[520px] lg:h-[580px] xl:h-[620px] relative flex items-center justify-center transform-gpu">
       {/* Background radial glow so the 3D elements pop */}
       <div className="absolute inset-0 bg-gradient-to-tr from-sky-50 to-teal-50/30 rounded-[3rem] blur-xl opacity-70 pointer-events-none" />
       
       <Canvas 
+        frameloop={isInView ? "always" : "never"}
         camera={{ position: [0, 0, 12], fov: 45 }} 
         dpr={[1, 1]}
         performance={{ min: 0.5 }}

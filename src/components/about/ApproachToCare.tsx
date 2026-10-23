@@ -14,19 +14,19 @@ export function ApproachToCare() {
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-white relative overflow-hidden" id="approach-to-care">
+    <section className="py-20 lg:py-24 bg-background relative overflow-hidden" id="approach-to-care">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
           <ScrollReveal>
-            <span className="inline-block py-1.5 px-4 bg-teal-50 text-primary font-semibold rounded-full text-xs sm:text-sm mb-4 border border-teal-100">
+            <span className="inline-block py-1.5 px-4 bg-white text-primary font-semibold rounded-full text-xs sm:text-sm mb-4 border border-border shadow-2xs">
               Clinical Philosophy in Practice
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-slate-800 mb-6 tracking-tight">
-              Her Approach to <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-teal-500">Care</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-navy mb-6 tracking-tight">
+              Her Approach to <span className="text-primary">Care</span>
             </h2>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-text-secondary leading-relaxed">
               Every consultation is shaped by four foundational steps designed to ensure accuracy, understanding, and long-term compliance.
             </p>
           </ScrollReveal>
@@ -36,31 +36,30 @@ export function ApproachToCare() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {doctorData.approachToCare.map((item, index) => {
             const Icon = icons[index % icons.length];
-            const colors = stepColors[index % stepColors.length];
 
             return (
               <ScrollReveal key={item.step} delay={index * 0.1} direction="up">
-                <div className="bg-white rounded-3xl p-7 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full flex flex-col relative group">
+                <div className="bg-white rounded-3xl p-7 border border-border shadow-card hover:shadow-card-hover hover:border-primary/40 hover:-translate-y-2 transition-all duration-300 h-full flex flex-col relative group">
                   
                   {/* Step Number Badge */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className={`w-14 h-14 rounded-2xl ${colors.bg} ${colors.text} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="w-14 h-14 rounded-2xl bg-soft-teal/70 text-primary flex items-center justify-center group-hover:scale-105 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-2xs">
                       <Icon className="w-7 h-7" />
                     </div>
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${colors.badge} tracking-wider`}>
+                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-soft-teal text-primary-dark border border-primary/20 tracking-wider">
                       STEP {item.step}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold font-heading text-slate-800 mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold font-heading text-navy mb-3 group-hover:text-primary transition-colors">
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-600 leading-relaxed text-sm mb-6 flex-grow">
+                  <p className="text-text-secondary leading-relaxed text-sm mb-6 flex-grow">
                     {item.description}
                   </p>
 
-                  <div className="pt-4 border-t border-slate-100 text-xs font-medium text-slate-500">
+                  <div className="pt-4 border-t border-border-light text-xs font-medium text-text-muted">
                     <span className="text-primary font-semibold block mb-1">Key Focus:</span>
                     {item.highlight}
                   </div>

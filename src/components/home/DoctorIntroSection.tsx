@@ -1,7 +1,7 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { Award, GraduationCap, Quote, ArrowRight, ShieldCheck, HeartPulse, CheckCircle2 } from "lucide-react";
+import { Award, Quote, ArrowRight, ShieldCheck, CheckCircle2, Phone, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAppointment } from "@/context/AppointmentContext";
@@ -11,16 +11,23 @@ export function DoctorIntroSection() {
   const { openModal } = useAppointment();
 
   return (
-    <section className="py-16 lg:py-24 bg-white relative overflow-hidden" id="doctor-intro">
+    <section className="py-20 lg:py-28 bg-gradient-section-alt relative overflow-hidden" id="doctor-intro">
+      {/* Decorative elements */}
+      <div className="absolute top-[10%] right-[5%] w-24 h-24 rounded-full border border-primary/6 float-slower hidden lg:block" aria-hidden="true" />
+      <div className="absolute bottom-[15%] left-[3%] w-16 h-16 rounded-full border border-accent-warm/8 float-slow hidden lg:block" aria-hidden="true" />
+      
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
           {/* Doctor Portrait & Credentials Card */}
           <div className="lg:col-span-5">
             <ScrollReveal direction="right">
               <div className="relative">
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border-[6px] border-white bg-slate-100 z-10">
+                {/* Background accent shape */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-soft-teal/50 to-pale-blue/30 rounded-[2rem] -rotate-2 hidden lg:block" aria-hidden="true" />
+                
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elevated border-[5px] border-white bg-background-alt z-10">
                   <Image
                     src="/images/dr-navya-sruthi-mandapati.jpg"
                     alt="Dr. Navya Sruthi Mandapati — Consultant Endocrinologist"
@@ -28,23 +35,23 @@ export function DoctorIntroSection() {
                     sizes="(max-width: 768px) 100vw, 400px"
                     className="object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/10 to-transparent pointer-events-none" />
                   
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-teal-300 block mb-1">Chief Endocrinologist</span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-soft-teal block mb-1">Chief Endocrinologist</span>
                     <h3 className="text-2xl font-bold font-heading mb-0.5">{doctorData.name}</h3>
                     <p className="text-xs sm:text-sm text-white/90">{doctorData.degrees}</p>
                   </div>
                 </div>
 
-                {/* Floating Award Pill */}
-                <div className="absolute -bottom-5 -right-3 sm:-right-5 bg-white p-4 rounded-2xl border border-teal-100 shadow-xl flex items-center gap-3 z-20">
-                  <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-primary shrink-0">
+                {/* Floating Award Pill — premium glass */}
+                <div className="absolute -bottom-5 -right-3 sm:-right-5 glass-card p-4 flex items-center gap-3 z-20 hover-lift">
+                  <div className="w-12 h-12 bg-gradient-to-br from-accent-warm to-accent-warm-light rounded-xl flex items-center justify-center text-white shrink-0 shadow-sm">
                     <Award className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider">DM Endocrinology</div>
-                    <div className="text-sm sm:text-base font-bold text-slate-800">University Topper</div>
+                    <div className="text-xs text-text-muted font-semibold uppercase tracking-wider">DM Endocrinology</div>
+                    <div className="text-sm sm:text-base font-bold text-navy">University Topper</div>
                   </div>
                 </div>
               </div>
@@ -54,63 +61,74 @@ export function DoctorIntroSection() {
           {/* Text & Philosophy Content */}
           <div className="lg:col-span-7 space-y-6">
             <ScrollReveal direction="left">
-              <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-teal-50 border border-teal-200/80 rounded-full text-xs sm:text-sm font-semibold text-primary uppercase tracking-wide mb-2">
+              <div className="section-tag mb-2">
                 <ShieldCheck className="w-4 h-4 text-primary" />
                 Know Your Doctor
               </div>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-slate-800 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold font-heading text-navy leading-tight">
                 {doctorData.headline}
               </h2>
 
-              <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+              <p className="text-text-secondary text-base sm:text-lg leading-relaxed">
                 Consultant Endocrinologist caring for adults and children. Dr. Navya believes that effective treatment should empower patients with a thorough understanding of their health rather than simply handing over a prescription.
               </p>
 
-              {/* Highlighted Quote Box */}
-              <div className="bg-slate-50 border-l-4 border-primary p-5 sm:p-6 rounded-2xl">
-                <Quote className="w-8 h-8 text-primary/30 mb-2" />
-                <p className="text-base sm:text-lg font-bold font-heading text-slate-800 leading-snug mb-2">
-                  “{doctorData.featuredQuote1}”
-                </p>
-                <p className="text-xs sm:text-sm text-slate-500">
-                  “{doctorData.featuredQuote2}”
-                </p>
+              {/* Premium Quote Box — editorial style */}
+              <div className="relative bg-white rounded-2xl p-6 sm:p-7 border border-border shadow-card overflow-hidden">
+                {/* Accent bar */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary-light to-accent-warm rounded-full" />
+                <div className="pl-4">
+                  <Quote className="w-8 h-8 text-primary/15 mb-2" />
+                  <p className="text-base sm:text-lg font-bold font-heading text-navy leading-snug mb-2">
+                    &ldquo;{doctorData.featuredQuote1}&rdquo;
+                  </p>
+                  <p className="text-xs sm:text-sm text-text-secondary italic">
+                    &ldquo;{doctorData.featuredQuote2}&rdquo;
+                  </p>
+                </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-3 pt-2">
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-navy/80 bg-white/60 px-3 py-2 rounded-xl border border-border-light">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
                   <span>Review of previous records & diagnostic trends</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-navy/80 bg-white/60 px-3 py-2 rounded-xl border border-border-light">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
                   <span>Personalized nutrition & sleep habits</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-navy/80 bg-white/60 px-3 py-2 rounded-xl border border-border-light">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
                   <span>Adult & Paediatric hormone expertise</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700">
-                  <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm text-navy/80 bg-white/60 px-3 py-2 rounded-xl border border-border-light">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
                   <span>Telugu, English & basic Hindi consultations</span>
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-wrap items-center gap-4">
+              <div className="pt-4 flex flex-wrap items-center gap-3">
                 <Link
                   href="/about"
-                  className="px-7 py-3.5 bg-primary hover:bg-primary-dark text-white rounded-full font-bold shadow-soft text-sm transition-all flex items-center gap-2 group"
+                  className="btn-primary text-sm group"
                 >
                   <span>KNOW MORE ABOUT DR. NAVYA</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
                 </Link>
                 <button
                   onClick={openModal}
-                  className="px-6 py-3.5 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-full font-semibold border border-slate-200 text-sm transition-all"
+                  className="btn-secondary text-sm"
                 >
                   Book Appointment
                 </button>
+                <a
+                  href="tel:8464070196"
+                  className="inline-flex items-center gap-1.5 px-5 py-3.5 bg-soft-teal hover:bg-soft-teal-dark text-primary rounded-full font-bold text-sm transition-all duration-200 border border-primary/15"
+                >
+                  <Phone className="w-4 h-4 text-primary" />
+                  <span>Call: 8464070196</span>
+                </a>
               </div>
             </ScrollReveal>
           </div>
