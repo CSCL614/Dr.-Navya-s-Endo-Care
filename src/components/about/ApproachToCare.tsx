@@ -1,17 +1,13 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { Headphones, Search, MessageSquareText, Compass } from "lucide-react";
+import { Headphones, Search, MessageSquareText, Compass, LucideIcon } from "lucide-react";
 import { doctorData } from "@/data/doctorData";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 export function ApproachToCare() {
-  const icons = [Headphones, Search, MessageSquareText, Compass];
-  const stepColors = [
-    { bg: "bg-sky-50", text: "text-sky-600", border: "border-sky-100", badge: "bg-sky-100 text-sky-700" },
-    { bg: "bg-teal-50", text: "text-teal-600", border: "border-teal-100", badge: "bg-teal-100 text-teal-700" },
-    { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-100", badge: "bg-indigo-100 text-indigo-700" },
-    { bg: "bg-emerald-50", text: "text-emerald-600", border: "border-emerald-100", badge: "bg-emerald-100 text-emerald-700" }
-  ];
+  const icons: LucideIcon[] = [Headphones, Search, MessageSquareText, Compass];
+  const stepVariants: IconBadgeVariant[] = ["teal", "sky", "indigo", "emerald"];
 
   return (
     <section className="py-20 lg:py-24 bg-background relative overflow-hidden" id="approach-to-care">
@@ -36,31 +32,31 @@ export function ApproachToCare() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {doctorData.approachToCare.map((item, index) => {
             const Icon = icons[index % icons.length];
+            const variant = stepVariants[index % stepVariants.length];
 
             return (
               <ScrollReveal key={item.step} delay={index * 0.1} direction="up">
-                <div className="bg-white rounded-3xl p-7 border border-border shadow-card hover:shadow-card-hover hover:border-primary/40 hover:-translate-y-2 transition-all duration-300 h-full flex flex-col relative group">
+                <div className="bg-white rounded-3xl p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
                   
-                  {/* Step Number Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-soft-teal/70 text-primary flex items-center justify-center group-hover:scale-105 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-2xs">
-                      <Icon className="w-7 h-7" />
-                    </div>
-                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-soft-teal text-primary-dark border border-primary/20 tracking-wider">
-                      STEP {item.step}
-                    </span>
+                  {/* Step Number Badge & Centered Icon */}
+                  <span className="text-[11px] font-bold px-3 py-0.5 rounded-full bg-soft-teal text-primary-dark border border-primary/20 tracking-wider mb-3">
+                    STEP {item.step}
+                  </span>
+                  
+                  <div className="mb-4">
+                    <CenterIconBadge icon={Icon} variant={variant} size="md" />
                   </div>
 
-                  <h3 className="text-xl font-bold font-heading text-navy mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold font-heading text-navy mb-2.5 group-hover:text-primary transition-colors leading-snug">
                     {item.title}
                   </h3>
 
-                  <p className="text-text-secondary leading-relaxed text-sm mb-6 flex-grow">
+                  <p className="text-text-secondary leading-relaxed text-xs sm:text-sm mb-6 flex-grow">
                     {item.description}
                   </p>
 
-                  <div className="pt-4 border-t border-border-light text-xs font-medium text-text-muted">
-                    <span className="text-primary font-semibold block mb-1">Key Focus:</span>
+                  <div className="pt-4 border-t border-[#E3EBF0] text-xs font-medium text-text-muted w-full text-left">
+                    <span className="text-primary font-semibold block mb-0.5">Key Focus:</span>
                     {item.highlight}
                   </div>
                 </div>

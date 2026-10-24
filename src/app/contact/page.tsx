@@ -55,7 +55,7 @@ export default function ContactPage() {
     <div className="overflow-hidden bg-background min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-gradient-hero overflow-hidden border-b border-border">
+      <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-gradient-hero overflow-hidden border-b border-border">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-soft-teal/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-3xl">
@@ -87,14 +87,14 @@ export default function ContactPage() {
                   
                   <h3 className="text-2xl font-bold font-heading mb-8 relative z-10 text-white">Contact Information</h3>
                   
-                  <div className="space-y-8 relative z-10">
+                  <div className="space-y-7 relative z-10">
                     <div className="flex items-start gap-4">
-                      <div className="p-3 bg-white/10 rounded-xl flex-shrink-0">
-                        <MapPin className="w-6 h-6 text-accent-warm" />
+                      <div className="w-12 h-12 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs">
+                        <MapPin className="w-6 h-6 text-amber-300" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-white/90 mb-1">Clinic Address</h4>
-                        <p className="text-white/70 leading-relaxed text-sm">
+                        <h4 className="font-bold text-white mb-1">Clinic Address</h4>
+                        <p className="text-white/80 leading-relaxed text-xs sm:text-sm">
                           Dr. Navya’s Endo Care, Ajay Children’s Hospital, junction, Phool Bagh Rd,<br />
                           Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002
                         </p>
@@ -102,47 +102,45 @@ export default function ContactPage() {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="p-3 bg-white/10 rounded-xl flex-shrink-0">
-                        <Phone className="w-6 h-6 text-primary-light" />
+                      <div className="w-12 h-12 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs">
+                        <Phone className="w-6 h-6 text-teal-300" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-white/90 mb-1">Clinic Phone & WhatsApp</h4>
-                        <div className="space-y-1.5 mb-3">
-                          <div>
-                            <span className="text-[10px] text-teal-200 uppercase font-semibold tracking-wider block">Direct Phone & WhatsApp Line</span>
-                            <a href="tel:8464070196" className="text-white hover:text-teal-200 font-bold text-xl transition-colors inline-block tracking-wide">
-                              8464070196
-                            </a>
-                          </div>
+                        <h4 className="font-bold text-white mb-1">Clinic Phone & WhatsApp</h4>
+                        <div className="space-y-1 mb-3">
+                          <span className="text-[10px] text-teal-200 uppercase font-semibold tracking-wider block">Direct Line & WhatsApp</span>
+                          <a href="tel:8464070196" className="text-white hover:text-teal-200 font-extrabold text-xl transition-colors inline-block tracking-wide">
+                            8464070196
+                          </a>
                         </div>
                         <div className="flex flex-wrap items-center gap-2">
                           <a 
                             href="tel:8464070196"
-                            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-primary font-bold rounded-xl text-xs hover:bg-teal-50 shadow-sm transition-all"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-navy font-bold rounded-xl text-xs hover:bg-teal-50 shadow-xs transition-all active:scale-95"
                           >
-                            <Phone className="w-3.5 h-3.5" />
+                            <Phone className="w-3.5 h-3.5 text-primary" />
                             Call 8464070196
                           </a>
                           <a 
                             href="https://wa.me/918464070196"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-xs shadow-sm transition-all"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-xs shadow-xs transition-all active:scale-95"
                           >
                             <MessageCircle className="w-3.5 h-3.5" />
-                            WhatsApp: 8464070196
+                            WhatsApp
                           </a>
                         </div>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="p-3 bg-white/10 rounded-xl flex-shrink-0">
-                        <Mail className="w-6 h-6 text-primary-light" />
+                      <div className="w-12 h-12 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs">
+                        <Mail className="w-6 h-6 text-sky-300" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-white/90 mb-1">Email Address</h4>
-                        <p className="text-white/70 leading-relaxed text-sm">
+                        <h4 className="font-bold text-white mb-1">Email Address</h4>
+                        <p className="text-white/80 leading-relaxed text-xs sm:text-sm">
                           info@drnavyaendocare.com<br />
                           appointments@drnavyaendocare.com
                         </p>
@@ -150,14 +148,14 @@ export default function ContactPage() {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="p-3 bg-white/10 rounded-xl flex-shrink-0">
-                        <Clock className="w-6 h-6 text-primary-light" />
+                      <div className="w-12 h-12 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs">
+                        <Clock className="w-6 h-6 text-emerald-300" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-white/90 mb-1">Consultation Timings</h4>
-                        <p className="text-white/70 leading-relaxed text-sm">
-                          Mon - Sat: 9:00 AM - 8:00 PM<br />
-                          Sunday: By Appointment Only
+                        <h4 className="font-bold text-white mb-1">Consultation Timings</h4>
+                        <p className="text-white/80 leading-relaxed text-xs sm:text-sm">
+                          Mon – Sat: 9:00 AM – 8:00 PM<br />
+                          Sunday: By Prior Appointment Only
                         </p>
                       </div>
                     </div>
@@ -166,17 +164,23 @@ export default function ContactPage() {
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.2}>
-                <div className="bg-red-50 border border-red-100 rounded-[2rem] p-8 flex items-center justify-between shadow-sm">
-                  <div>
-                    <h4 className="text-red-600 font-bold font-heading mb-1 flex items-center">
-                      <AlertCircle className="w-5 h-5 mr-2" />
-                      Medical Emergency
-                    </h4>
-                    <p className="text-red-500/80 text-sm">Available 24/7 for urgent care: <a href="tel:8464070196" className="font-bold underline">8464070196</a></p>
+                <div className="bg-red-50/80 border border-red-200 rounded-3xl p-6 sm:p-7 flex items-center justify-between gap-4 shadow-[0_2px_10px_rgba(239,68,68,0.06)]">
+                  <div className="flex items-center gap-4 min-w-0">
+                    <div className="w-12 h-12 bg-red-100 border border-red-300 rounded-2xl flex items-center justify-center text-red-600 shrink-0">
+                      <AlertCircle className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-red-700 font-bold font-heading text-base mb-0.5">
+                        Medical Emergency Support
+                      </h4>
+                      <p className="text-red-600/90 text-xs sm:text-sm">
+                        Urgent endocrine guidance: <a href="tel:8464070196" className="font-bold underline text-red-800">8464070196</a>
+                      </p>
+                    </div>
                   </div>
-                  <a href="tel:8464070196" className="relative p-4 bg-red-100 rounded-full text-red-600 hover:bg-red-600 hover:text-white transition-colors shadow-sm group">
-                    <div className="absolute inset-0 bg-red-400 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-50 group-hover:hidden"></div>
-                    <PhoneCall className="w-6 h-6 relative z-10" />
+                  <a href="tel:8464070196" className="relative p-3.5 bg-red-100 rounded-2xl text-red-600 hover:bg-red-600 hover:text-white transition-colors shadow-xs group shrink-0 active:scale-95">
+                    <div className="absolute inset-0 bg-red-400 rounded-2xl animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-40 group-hover:hidden" />
+                    <PhoneCall className="w-5 h-5 relative z-10" />
                   </a>
                 </div>
               </ScrollReveal>

@@ -4,10 +4,11 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { 
   Sparkles, CheckCircle2, ArrowRight, ShieldCheck, 
-  Baby, AlertCircle, CalendarHeart, ChevronDown, Phone, HeartPulse, LineChart, Clock, MessageCircle
+  Baby, AlertCircle, CalendarHeart, ChevronDown, Phone, HeartPulse, LineChart, Clock, MessageCircle, ActivitySquare, Activity, Scale, LucideIcon
 } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import Link from "next/link";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 export default function PaediatricEndocrinologyPage() {
   const { openModal } = useAppointment();
@@ -94,7 +95,7 @@ export default function PaediatricEndocrinologyPage() {
     <div className="overflow-hidden bg-slate-50 min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-white border-b border-slate-200 overflow-hidden">
+      <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-white border-b border-slate-200 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-50/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
@@ -179,24 +180,31 @@ export default function PaediatricEndocrinologyPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {services.map((item, index) => (
-              <ScrollReveal key={index} delay={(index % 4) * 0.06} direction="up">
-                <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col group">
-                  <div className="w-11 h-11 bg-teal-50 rounded-2xl flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                    <Baby className="w-5 h-5" />
+            {services.map((item, index) => {
+              const paedTestIcons: LucideIcon[] = [LineChart, Sparkles, Clock, CalendarHeart, Activity, ActivitySquare, ShieldCheck, Scale];
+              const paedTestVariants: IconBadgeVariant[] = ["teal", "indigo", "amber", "rose", "teal", "sky", "emerald", "amber"];
+              const PaedIcon = paedTestIcons[index % paedTestIcons.length];
+              const paedVariant = paedTestVariants[index % paedTestVariants.length];
+
+              return (
+                <ScrollReveal key={index} delay={(index % 4) * 0.06} direction="up">
+                  <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+                    <div className="mb-3.5">
+                      <CenterIconBadge icon={PaedIcon} variant={paedVariant} size="sm" />
+                    </div>
+                    <h3 className="text-base font-bold font-heading text-slate-800 mb-2 leading-snug group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-600 text-xs leading-relaxed mb-4 flex-grow">
+                      {item.description}
+                    </p>
+                    <div className="pt-3 border-t border-[#E3EBF0] text-[11px] font-medium text-teal-700 w-full text-left">
+                      <strong className="text-slate-700">Focus: </strong>{item.highlight}
+                    </div>
                   </div>
-                  <h3 className="text-base font-bold font-heading text-slate-800 mb-2 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 text-xs leading-relaxed mb-4 flex-grow">
-                    {item.description}
-                  </p>
-                  <div className="pt-3 border-t border-slate-100 text-[11px] font-medium text-teal-700">
-                    <strong className="text-slate-700">Focus: </strong>{item.highlight}
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              );
+            })}
           </div>
 
           {/* Warning Signs Checklist */}

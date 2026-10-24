@@ -40,7 +40,7 @@ export function Footer() {
                 <span className="text-base sm:text-lg font-bold font-heading text-white leading-none uppercase mb-1 group-hover:text-soft-teal transition-colors duration-200">
                   DR. NAVYA&apos;S ENDO CARE
                 </span>
-                <span className="text-[7.5px] sm:text-[8.5px] font-semibold tracking-wide text-white/50 leading-tight uppercase whitespace-nowrap">
+                <span className="text-[8px] sm:text-[8.5px] font-semibold tracking-wide text-white/60 leading-tight uppercase block max-w-xs">
                   DIABETES, THYROID & ENDOCRINE SUPERSPECIALITY CENTER
                 </span>
               </div>

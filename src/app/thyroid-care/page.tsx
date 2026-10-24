@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { 
-  ActivitySquare, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, 
-  Baby, Search, AlertCircle, CalendarHeart, ChevronDown, Phone, HeartPulse, MessageCircle
+  ActivitySquare, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, ShieldAlert,
+  Baby, Search, AlertCircle, CalendarHeart, ChevronDown, Phone, HeartPulse, MessageCircle, Activity, LucideIcon
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppointment } from "@/context/AppointmentContext";
 import Link from "next/link";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 export default function ThyroidCarePage() {
   const { openModal } = useAppointment();
@@ -87,7 +88,7 @@ export default function ThyroidCarePage() {
     <div className="overflow-hidden bg-white min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-24 pb-20 bg-pale-blue/30 border-b border-border/80 overflow-hidden">
+      <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-pale-blue/30 border-b border-border/80 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-pale-blue/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
@@ -177,25 +178,32 @@ export default function ThyroidCarePage() {
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-20">
-            {conditions.map((item, index) => (
-              <ScrollReveal key={index} delay={index * 0.08} direction="up">
-                <div className="glass-card rounded-3xl p-7 border border-border/80 shadow-card hover:shadow-card-hover hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col group">
-                  <div className="w-12 h-12 bg-pale-blue rounded-2xl flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300 group-hover:scale-105 shadow-2xs">
-                    <ActivitySquare className="w-6 h-6" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 mb-20">
+            {conditions.map((item, index) => {
+              const conditionIcons: LucideIcon[] = [ActivitySquare, ShieldAlert, Activity, Baby, Search, Sparkles];
+              const conditionVariants: IconBadgeVariant[] = ["sky", "teal", "amber", "rose", "indigo", "mint"];
+              const CondIcon = conditionIcons[index % conditionIcons.length];
+              const condVariant = conditionVariants[index % conditionVariants.length];
+
+              return (
+                <ScrollReveal key={index} delay={index * 0.08} direction="up">
+                  <div className="bg-white rounded-3xl p-7 sm:p-8 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+                    <div className="mb-4">
+                      <CenterIconBadge icon={CondIcon} variant={condVariant} size="md" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold font-heading text-navy mb-2.5 group-hover:text-primary transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-5 flex-grow">
+                      {item.description}
+                    </p>
+                    <div className="pt-3.5 border-t border-[#E3EBF0] text-xs font-medium text-primary w-full text-left">
+                      <strong className="text-navy">Approach: </strong>{item.focus}
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold font-heading text-navy mb-2.5 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-4 flex-grow">
-                    {item.description}
-                  </p>
-                  <div className="pt-3 border-t border-border/70 text-xs font-medium text-primary">
-                    <strong className="text-navy">Approach: </strong>{item.focus}
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              );
+            })}
           </div>
 
           {/* Symptoms Checklist */}

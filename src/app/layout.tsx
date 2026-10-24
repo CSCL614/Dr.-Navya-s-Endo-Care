@@ -19,9 +19,6 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
-import { IntroProvider } from "@/context/IntroContext";
-import { IntroOverlay } from "@/components/ui/IntroOverlay";
-
 export const metadata: Metadata = {
   title: "Dr. Navya’s EndoCare — Diabetes, Thyroid & Endocrine Superspeciality Center, Vizianagaram",
   description: "Dr. Navya Sruthi Mandapati, MBBS, MD, DM (Endocrinology) — University Topper. Comprehensive adult & paediatric care for diabetes, thyroid, obesity clinic, PCOS, growth, and hormone disorders in Vizianagaram.",
@@ -58,6 +55,12 @@ const clinicJsonLd = {
   ]
 };
 
+import { IntroProvider } from "@/context/IntroContext";
+import { IntroOverlay } from "@/components/ui/IntroOverlay";
+import { IntroPageReveal } from "@/components/ui/IntroPageReveal";
+import { MobileActionDock } from "@/components/layout/MobileActionDock";
+import { LogoPageTransitionProvider } from "@/components/providers/LogoPageTransition";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,6 +70,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${outfit.variable} antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <script
@@ -74,21 +78,29 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col font-sans text-slate-800 bg-transparent relative">
+      <body
+        className="min-h-screen flex flex-col font-sans text-slate-800 bg-transparent relative antialiased"
+        suppressHydrationWarning
+      >
         <IntroProvider>
           <IntroOverlay />
-          <SmoothScrollProvider>
-            <AppointmentProvider>
-              <GlobalBackground />
-              <Navbar />
-              <main className="flex-grow pt-20 relative z-10">
-                {children}
-              </main>
-              <Footer />
-              <FloatingWhatsApp />
-              <EventPopup />
-            </AppointmentProvider>
-          </SmoothScrollProvider>
+          <IntroPageReveal>
+            <SmoothScrollProvider>
+              <AppointmentProvider>
+                <GlobalBackground />
+                <LogoPageTransitionProvider>
+                  <Navbar />
+                  <main className="flex-grow pt-[70px] sm:pt-[76px] relative z-10 flex flex-col">
+                    {children}
+                  </main>
+                  <Footer />
+                  <FloatingWhatsApp />
+                  <MobileActionDock />
+                  <EventPopup />
+                </LogoPageTransitionProvider>
+              </AppointmentProvider>
+            </SmoothScrollProvider>
+          </IntroPageReveal>
         </IntroProvider>
       </body>
     </html>

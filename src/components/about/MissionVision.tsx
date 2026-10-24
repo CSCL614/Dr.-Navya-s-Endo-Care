@@ -2,6 +2,7 @@
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Target, Lightbulb, Heart, Shield, Award } from "lucide-react";
+import { CenterIconBadge } from "@/components/ui/CreativeCard";
 
 export function MissionVision() {
   return (
@@ -28,12 +29,12 @@ export function MissionVision() {
           
           {/* Mission */}
           <ScrollReveal direction="right">
-            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-border shadow-card hover:shadow-card-hover hover:border-primary/40 transition-all duration-300 h-full flex flex-col group">
-              <div className="w-14 h-14 bg-soft-teal/70 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-2xs">
-                <Target className="w-7 h-7" />
+            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+              <div className="mb-5">
+                <CenterIconBadge icon={Target} variant="teal" size="lg" />
               </div>
-              <h3 className="text-2xl font-bold font-heading text-navy mb-4">Our Mission</h3>
-              <p className="text-text-secondary leading-relaxed text-base flex-grow">
+              <h3 className="text-2xl font-bold font-heading text-navy mb-3 group-hover:text-primary transition-colors">Our Mission</h3>
+              <p className="text-text-secondary leading-relaxed text-sm sm:text-base flex-grow">
                 To provide patient-centred, evidence-based endocrine and metabolic healthcare that prioritizes root-cause diagnosis, individualized counselling, and prevention before complications occur—empowering patients to take charge of their long-term health.
               </p>
             </div>
@@ -41,12 +42,12 @@ export function MissionVision() {
 
           {/* Vision */}
           <ScrollReveal direction="left" delay={0.1}>
-            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-border shadow-card hover:shadow-card-hover hover:border-primary/40 transition-all duration-300 h-full flex flex-col group">
-              <div className="w-14 h-14 bg-soft-teal/70 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-2xs">
-                <Lightbulb className="w-7 h-7" />
+            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+              <div className="mb-5">
+                <CenterIconBadge icon={Lightbulb} variant="amber" size="lg" />
               </div>
-              <h3 className="text-2xl font-bold font-heading text-navy mb-4">Our Vision</h3>
-              <p className="text-text-secondary leading-relaxed text-base flex-grow">
+              <h3 className="text-2xl font-bold font-heading text-navy mb-3 group-hover:text-amber-800 transition-colors">Our Vision</h3>
+              <p className="text-text-secondary leading-relaxed text-sm sm:text-base flex-grow">
                 To be the region's foremost trusted superspeciality center for diabetes, thyroid, and endocrine disorders, celebrated for academic excellence, diagnostic integrity, and a culture of warmth where patients truly understand their health.
               </p>
             </div>
@@ -55,29 +56,29 @@ export function MissionVision() {
         </div>
 
         {/* Core Values Strip */}
-        <div className="bg-white rounded-3xl p-8 border border-border shadow-card">
+        <div className="bg-white rounded-3xl p-8 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)]">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 mx-auto bg-soft-teal/70 rounded-2xl flex items-center justify-center mb-3 text-primary shadow-2xs">
-                <Heart className="w-6 h-6" />
+            <div className="text-center flex flex-col items-center group">
+              <div className="mb-3">
+                <CenterIconBadge icon={Heart} variant="rose" size="md" />
               </div>
-              <h4 className="text-lg font-bold font-heading text-navy mb-1">Compassion</h4>
+              <h4 className="text-lg font-bold font-heading text-navy mb-1 group-hover:text-rose-700 transition-colors">Compassion</h4>
               <p className="text-xs sm:text-sm text-text-secondary">Listening with empathy and allocating adequate time for each consultation.</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-12 h-12 mx-auto bg-amber-50 border border-amber-200/60 rounded-2xl flex items-center justify-center mb-3 text-amber-600 shadow-2xs">
-                <Award className="w-6 h-6" />
+            <div className="text-center flex flex-col items-center group">
+              <div className="mb-3">
+                <CenterIconBadge icon={Award} variant="amber" size="md" />
               </div>
-              <h4 className="text-lg font-bold font-heading text-navy mb-1">Academic Rigor</h4>
+              <h4 className="text-lg font-bold font-heading text-navy mb-1 group-hover:text-amber-700 transition-colors">Academic Rigor</h4>
               <p className="text-xs sm:text-sm text-text-secondary">Applying the latest global scientific evidence and clinical protocols.</p>
             </div>
 
-            <div className="text-center">
-              <div className="w-12 h-12 mx-auto bg-emerald-50 border border-emerald-200/60 rounded-2xl flex items-center justify-center mb-3 text-emerald-600 shadow-2xs">
-                <Shield className="w-6 h-6" />
+            <div className="text-center flex flex-col items-center group">
+              <div className="mb-3">
+                <CenterIconBadge icon={Shield} variant="emerald" size="md" />
               </div>
-              <h4 className="text-lg font-bold font-heading text-navy mb-1">Prevention First</h4>
+              <h4 className="text-lg font-bold font-heading text-navy mb-1 group-hover:text-emerald-700 transition-colors">Prevention First</h4>
               <p className="text-xs sm:text-sm text-text-secondary">Intervening early in metabolic health before irreversible complications arise.</p>
             </div>
           </div>

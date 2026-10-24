@@ -80,12 +80,13 @@ export function AppointmentProvider({ children }: { children: ReactNode }) {
             >
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors z-10"
+                aria-label="Close booking modal"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors z-10 touch-target"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="p-8">
+              <div className="p-5 sm:p-8 max-h-[85vh] overflow-y-auto">
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="p-3 bg-primary/10 rounded-xl text-primary">
                     <CalendarHeart className="w-6 h-6" />

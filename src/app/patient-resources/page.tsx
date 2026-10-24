@@ -1,8 +1,9 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { FileText, ClipboardList, ShieldAlert, Sparkles, Syringe, HeartPulse, HelpCircle, ArrowRight, Phone, MessageCircle } from "lucide-react";
+import { FileText, ClipboardList, ShieldAlert, Sparkles, Syringe, HeartPulse, HelpCircle, ArrowRight, Phone, MessageCircle, Pill, LucideIcon } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 export default function PatientResourcesPage() {
   const { openModal } = useAppointment();
@@ -63,7 +64,7 @@ export default function PatientResourcesPage() {
     <div className="overflow-hidden bg-slate-50 min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-white border-b border-slate-200 overflow-hidden">
+      <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-white border-b border-slate-200 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-teal-50 border border-teal-200 text-primary font-semibold rounded-full text-xs sm:text-sm mb-6">
@@ -98,47 +99,64 @@ export default function PatientResourcesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-            {preparationSteps.map((step, idx) => (
-              <ScrollReveal key={idx} delay={idx * 0.1} direction="up">
-                <div className="bg-white rounded-3xl p-7 border border-slate-100 shadow-sm hover:shadow-md transition-all h-full flex flex-col">
-                  <span className="text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full w-fit mb-4">
-                    CHECKLIST {idx + 1}
-                  </span>
-                  <h3 className="text-lg font-bold font-heading text-slate-800 mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed flex-grow">
-                    {step.desc}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
+            {preparationSteps.map((step, idx) => {
+              const prepIcons: LucideIcon[] = [FileText, ClipboardList, Pill, HelpCircle];
+              const prepVariants: IconBadgeVariant[] = ["teal", "sky", "emerald", "amber"];
+              const PrepIcon = prepIcons[idx % prepIcons.length];
+              const prepVariant = prepVariants[idx % prepVariants.length];
+
+              return (
+                <ScrollReveal key={idx} delay={idx * 0.1} direction="up">
+                  <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+                    <span className="text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 px-3 py-0.5 rounded-full mb-3 uppercase tracking-wider">
+                      CHECKLIST {idx + 1}
+                    </span>
+                    <div className="mb-3.5">
+                      <CenterIconBadge icon={PrepIcon} variant={prepVariant} size="sm" />
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold font-heading text-slate-800 mb-2 leading-snug group-hover:text-primary transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed flex-grow">
+                      {step.desc}
+                    </p>
+                    <div className="w-8 h-0.5 bg-primary/20 group-hover:w-14 group-hover:bg-primary transition-all duration-300 rounded-full mt-4" />
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
 
           {/* Education Guides */}
           <div className="space-y-8">
-            {guidelines.map((guide, index) => (
-              <ScrollReveal key={index} delay={index * 0.1} direction="up">
-                <div className="bg-white rounded-3xl p-8 lg:p-10 border border-slate-100 shadow-sm">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-teal-50 text-primary flex items-center justify-center shrink-0">
-                      <guide.icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-2xl font-bold font-heading text-slate-800">
-                      {guide.title}
-                    </h3>
-                  </div>
+            {guidelines.map((guide, index) => {
+              const guideVariants: IconBadgeVariant[] = ["teal", "rose", "sky"];
+              const gVariant = guideVariants[index % guideVariants.length];
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {guide.points.map((pt, pIdx) => (
-                      <div key={pIdx} className="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                        • {pt}
+              return (
+                <ScrollReveal key={index} delay={index * 0.1} direction="up">
+                  <div className="bg-white rounded-3xl p-7 sm:p-9 lg:p-10 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/30 transition-all duration-300 group">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-6 text-center sm:text-left">
+                      <CenterIconBadge icon={guide.icon} variant={gVariant} size="md" />
+                      <div>
+                        <h3 className="text-xl sm:text-2xl font-bold font-heading text-slate-800 group-hover:text-primary transition-colors">
+                          {guide.title}
+                        </h3>
+                        <p className="text-xs text-text-muted mt-0.5">Clinical Best Practice Protocol</p>
                       </div>
-                    ))}
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      {guide.points.map((pt, pIdx) => (
+                        <div key={pIdx} className="bg-slate-50/80 p-4 rounded-2xl border border-slate-100/90 text-xs sm:text-sm text-slate-700 leading-relaxed hover:bg-white hover:border-teal-200 transition-colors">
+                          • {pt}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              );
+            })}
           </div>
 
         </div>

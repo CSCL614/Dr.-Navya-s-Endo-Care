@@ -12,6 +12,8 @@ import { doctorData } from "@/data/doctorData";
 import { PreventionSection } from "@/components/home/PreventionSection";
 import { ClinicFacilitiesSection } from "@/components/home/ClinicFacilitiesSection";
 
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
+
 export default function ServicesPage() {
   const { openModal } = useAppointment();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -28,6 +30,20 @@ export default function ServicesPage() {
     "pituitary-adrenal": Brain,
     "reproductive-endocrinology": Droplets,
     "calcium-bone": Bone,
+  };
+
+  const categoryVariants: Record<string, IconBadgeVariant> = {
+    "type-1-diabetes": "teal",
+    "type-2-diabetes": "teal",
+    "obesity-metabolic": "amber",
+    "thyroid-disorders": "sky",
+    "lifestyle-metabolic": "emerald",
+    "pcos": "rose",
+    "paediatric-endocrinology": "mint",
+    "growth-puberty": "indigo",
+    "pituitary-adrenal": "navy",
+    "reproductive-endocrinology": "rose",
+    "calcium-bone": "amber",
   };
 
   const detailLinkMap: Record<string, string> = {
@@ -61,7 +77,7 @@ export default function ServicesPage() {
     <div className="overflow-hidden bg-background min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-gradient-hero border-b border-border overflow-hidden">
+      <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-gradient-hero border-b border-border overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-soft-teal/40 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
@@ -106,30 +122,36 @@ export default function ServicesPage() {
       {/* 11 Clinical Specialities Cards Grid */}
       <section className="py-16 relative">
         <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredSpecialities.map((item, index) => {
               const Icon = categoryIcons[item.id] || Stethoscope;
+              const variant = categoryVariants[item.id] || "teal";
               return (
                 <ScrollReveal key={item.id} delay={(index % 3) * 0.08}>
                   <div 
                     id={item.id}
-                    className="bg-white rounded-3xl p-8 border border-border shadow-card hover:shadow-card-hover hover:border-primary/40 transition-all duration-300 h-full flex flex-col group scroll-mt-28"
+                    className="bg-white rounded-3xl p-7 sm:p-8 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col group scroll-mt-28"
                   >
-                    <div className="w-14 h-14 bg-soft-teal/70 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-2xs">
-                      <Icon className="w-7 h-7" />
+                    {/* Centered Icon Badge */}
+                    <div className="flex justify-center mb-5">
+                      <CenterIconBadge 
+                        icon={Icon} 
+                        variant={variant} 
+                        size="md" 
+                      />
                     </div>
 
-                    <h3 className="text-2xl font-bold font-heading text-navy mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold font-heading text-navy mb-2.5 text-center group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>
 
-                    <p className="text-text-secondary text-sm leading-relaxed mb-6">
+                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-6 text-center">
                       {item.fullDesc}
                     </p>
 
                     {/* Key Highlights */}
-                    <div className="space-y-2 mb-8 flex-grow">
-                      <span className="text-xs font-bold text-navy uppercase tracking-wider block mb-1.5">
+                    <div className="space-y-2 mb-8 flex-grow pt-4 border-t border-[#E3EBF0]">
+                      <span className="text-[11px] font-bold text-navy uppercase tracking-wider block mb-1.5">
                         Clinical Focus:
                       </span>
                       {item.keyPoints.map((pt, pIdx) => (
@@ -152,7 +174,7 @@ export default function ServicesPage() {
                       )}
                       <button 
                         onClick={openModal}
-                        className="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-colors text-xs shadow-2xs text-center"
+                        className="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-colors text-xs shadow-2xs text-center active:scale-95"
                       >
                         Book Visit
                       </button>

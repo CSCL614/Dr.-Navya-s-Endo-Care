@@ -1,20 +1,15 @@
 "use client";
-import dynamic from "next/dynamic";
-import { ArrowRight, ShieldCheck, Award, HeartPulse, CalendarHeart, Phone, MessageCircle, Sparkles } from "lucide-react";
+
+import { 
+  Award, CalendarHeart, Phone, ArrowDown, MapPin, Clock, ArrowRight, MessageCircle,
+  Activity, ActivitySquare, Scale, Baby, Footprints, FlaskConical, Pill, ShieldCheck
+} from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import { motion, Variants } from "framer-motion";
 import { doctorData } from "@/data/doctorData";
-import Link from "next/link";
 import Image from "next/image";
-
-const Hero3DVisual = dynamic(() => import("./Hero3DVisual").then(mod => mod.Hero3DVisual), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] xl:h-[620px] flex items-center justify-center">
-      <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-    </div>
-  )
-});
+import Link from "next/link";
+import { Hero3DVisual } from "./Hero3DVisual";
 
 export function HeroSection() {
   const { openModal } = useAppointment();
@@ -31,228 +26,173 @@ export function HeroSection() {
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 14 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
+      transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } 
     }
   };
 
   return (
-    <section className="relative pt-4 pb-14 lg:pt-8 lg:pb-20 overflow-hidden bg-gradient-hero">
-      {/* Refined Background Elements */}
+    <section className="relative pt-3 sm:pt-6 pb-10 sm:pb-16 lg:pt-8 lg:pb-20 overflow-hidden bg-gradient-to-b from-pale-blue/30 via-white to-white border-b border-border/30">
+      {/* Subtle ambient lighting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        {/* Large organic soft glow shapes */}
-        <div className="absolute top-[-15%] right-[-8%] w-[600px] h-[600px] bg-gradient-to-bl from-soft-teal/50 via-pale-blue/30 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-primary/5 via-pale-blue/20 to-transparent rounded-full blur-3xl" />
-        
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#E3EBF008_1px,transparent_1px),linear-gradient(to_bottom,#E3EBF008_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_20%,transparent_100%)]" />
-
-        {/* Floating decorative elements */}
-        <div className="absolute top-[18%] right-[12%] w-3 h-3 bg-primary/15 rounded-full float-slow" />
-        <div className="absolute top-[55%] right-[22%] w-4 h-4 bg-accent-warm/20 rounded-full float-slower" />
-        <div className="absolute bottom-[25%] left-[8%] w-2.5 h-2.5 bg-primary/12 rounded-full float-slow" />
-        
-        {/* Decorative ring */}
-        <div className="absolute top-[30%] right-[6%] w-20 h-20 rounded-full border border-primary/8 float-slower hidden lg:block" />
-        <div className="absolute bottom-[40%] left-[5%] w-14 h-14 rounded-full border border-accent-warm/10 float-slow hidden lg:block" />
+        <div className="absolute top-[-10%] right-[-5%] w-[450px] sm:w-[550px] h-[450px] sm:h-[550px] bg-gradient-to-bl from-soft-teal/35 via-pale-blue/25 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[350px] sm:w-[450px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-soft-teal/20 via-pale-blue/20 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-          {/* Left Column: Hero Text */}
+          {/* Left Column: Clear Text & Visible Action Buttons */}
           <motion.div
-            className="lg:col-span-6 space-y-5 relative z-20 xl:pr-2"
+            className="lg:col-span-7 space-y-4 sm:space-y-5 relative z-20"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/* Brand & Subtitle Pill */}
+            {/* Clinic Location & Trust Pill */}
             <motion.div variants={itemVariants}>
-              <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 py-1 px-3 sm:py-1.5 sm:px-4 bg-white/80 border border-border rounded-full shadow-xs backdrop-blur-sm">
-                <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" aria-hidden="true"></span>
-                <span className="text-[11px] sm:text-sm font-bold text-navy tracking-wide uppercase font-heading">
-                  DR. NAVYA&apos;S ENDOCARE
-                </span>
-                <span className="text-border hidden sm:inline" aria-hidden="true">•</span>
-                <span className="text-[11px] sm:text-sm text-text-secondary font-medium">
-                  Adult & Paediatric Endocrinology | Vizianagaram
-                </span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[#E3EBF0] rounded-full shadow-2xs text-xs font-semibold text-primary">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Dr. Navya’s EndoCare • Vizianagaram</span>
               </div>
             </motion.div>
 
-            {/* Main Heading — editorial style with gradient */}
+            {/* Main Heading — Requested: Expert Care for Diabetes, Thyroid & Hormonal Health */}
             <motion.h1 
               variants={itemVariants}
-              className="text-2xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-extrabold font-heading text-navy leading-[1.12] sm:leading-[1.08] tracking-tight"
+              className="text-[2rem] leading-[1.18] min-[360px]:text-[2.25rem] min-[390px]:text-[2.45rem] sm:text-4xl lg:text-[2.9rem] xl:text-[3.25rem] font-extrabold font-heading text-navy tracking-tight"
             >
-              Specialist Endocrine Care.{" "}
-              <span className="text-gradient-primary">
-                For Every Stage of Life.
+              Expert Care for Diabetes, Thyroid &{" "}
+              <span className="text-[#167C80] font-extrabold block min-[430px]:inline">
+                Hormonal Health
               </span>
             </motion.h1>
 
-            {/* Supporting Text */}
+            {/* Supporting Text — Requested */}
             <motion.p 
               variants={itemVariants} 
-              className="text-sm sm:text-lg text-text-secondary leading-relaxed max-w-xl"
+              className="text-sm sm:text-base lg:text-lg text-[#344654] leading-relaxed max-w-xl font-normal"
             >
-              Personalised adult and paediatric endocrine care with a focus on diabetes, thyroid disorders, obesity, metabolic health, and patient counselling.
+              Personalised adult and paediatric endocrinology care with a focus on diagnosis, treatment, and long-term health.
             </motion.p>
 
-            {/* Specialities Highlight — refined card */}
-            <motion.div 
-              variants={itemVariants}
-              className="bg-white/70 backdrop-blur-sm rounded-2xl p-3.5 sm:p-4 border border-border/80 space-y-1.5 shadow-card"
-            >
-              <div className="text-xs sm:text-sm font-semibold text-navy tracking-wide">
-                {doctorData.heroSpecialitiesLine}
-              </div>
-              <div className="text-xs sm:text-sm font-bold text-primary font-sans tracking-wide">
-                {doctorData.heroTeluguLine}
-              </div>
-            </motion.div>
-
-            {/* CTA Buttons — refined with btn utilities */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+            {/* Action Buttons & Direct Clinic Helpline Stack (As requested in reference image) */}
+            <motion.div variants={itemVariants} className="pt-1 space-y-3 max-w-md">
+              
+              {/* Button 1: BOOK AN APPOINTMENT */}
               <button
                 onClick={openModal}
-                className="btn-primary text-sm sm:text-base py-3 sm:py-3.5"
+                className="w-full bg-[#167C80] hover:bg-[#126466] text-white text-xs sm:text-sm py-3.5 px-7 font-bold rounded-full shadow-[0_4px_18px_rgba(22,124,128,0.25)] hover:shadow-[0_6px_24px_rgba(22,124,128,0.35)] touch-target flex items-center justify-center gap-2.5 uppercase tracking-wider transition-all duration-200 active:scale-[0.98]"
               >
-                <CalendarHeart className="w-5 h-5 text-white/90" />
+                <CalendarHeart className="w-4 h-4 text-white" />
                 <span>BOOK AN APPOINTMENT</span>
               </button>
 
+              {/* Button 2: EXPLORE SPECIALITIES */}
               <a
-                href="#specialities"
-                className="btn-secondary text-sm sm:text-base py-3 sm:py-3.5 group"
+                href="#specialties"
+                className="w-full bg-white hover:bg-slate-50 text-navy hover:text-primary border border-[#E3EBF0] hover:border-primary/40 text-xs sm:text-sm py-3.5 px-7 font-bold rounded-full shadow-2xs touch-target flex items-center justify-center gap-2 uppercase tracking-wider transition-all duration-200 active:scale-[0.98]"
               >
                 <span>EXPLORE SPECIALITIES</span>
-                <ArrowRight className="ml-1 w-4 h-4 text-text-secondary group-hover:translate-x-1 transition-transform duration-200" />
+                <ArrowRight className="w-4 h-4 text-primary" />
               </a>
-            </motion.div>
 
-            {/* Clinic Contact Helpline — streamlined */}
-            <motion.div 
-              variants={itemVariants} 
-              className="bg-white/90 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 border border-border shadow-card flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-1"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-soft-teal flex items-center justify-center text-primary shrink-0 shadow-2xs">
-                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+              {/* Helpline & Quick Contact Card with Glowing Pulse Effect */}
+              <div className="bg-white rounded-3xl p-4 sm:p-5 border border-[#E3EBF0] shadow-[0_4px_24px_rgba(22,124,128,0.08)] card-glow-pulse relative overflow-hidden group">
+                {/* Soft breathing ambient accent */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-soft-teal/40 rounded-full blur-2xl pointer-events-none" />
+
+                {/* Top Row: Icon + Label + Phone Number */}
+                <div className="flex items-center gap-3.5 mb-3.5 relative z-10">
+                  <div className="relative shrink-0">
+                    <span className="absolute -inset-1 rounded-2xl bg-teal-400/30 blur-sm animate-pulse" />
+                    <div className="relative w-11 h-11 rounded-2xl bg-[#EAF6F6] text-[#167C80] flex items-center justify-center border border-primary/20 shadow-2xs">
+                      <Phone className="w-5 h-5 text-primary" />
+                    </div>
+                  </div>
+
+                  <div className="min-w-0">
+                    <span className="text-[8.5px] min-[360px]:text-[10px] sm:text-[10.5px] font-bold text-[#687987] tracking-wider uppercase block leading-tight">
+                      DIRECT CLINIC HELPLINE & APPOINTMENTS
+                    </span>
+                    <a 
+                      href="tel:8464070196" 
+                      className="text-xl sm:text-2xl font-black font-heading text-navy hover:text-primary transition-colors tracking-tight block leading-tight mt-0.5"
+                    >
+                      8464070196
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[9.5px] sm:text-[10.5px] font-bold text-text-muted uppercase tracking-wider block">
-                    Direct Clinic Helpline & Appointments
-                  </span>
+
+                {/* Bottom Row: Call Now & WhatsApp Action Buttons */}
+                <div className="grid grid-cols-2 gap-2.5 relative z-10">
                   <a
                     href="tel:8464070196"
-                    className="text-base sm:text-xl font-bold font-heading text-navy hover:text-primary transition-colors block"
+                    className="bg-[#167C80] hover:bg-[#126466] text-white font-bold rounded-full py-2.5 px-3 flex items-center justify-center gap-2 text-xs sm:text-sm shadow-xs transition-all duration-200 active:scale-95 touch-target"
                   >
-                    8464070196
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>Call Now</span>
+                  </a>
+                  <a
+                    href="https://wa.me/918464070196?text=Hello%20Dr.%20Navya%27s%20EndoCare,%20I%20would%20like%20to%20book%20an%20appointment"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-[#059669] hover:bg-[#047857] text-white font-bold rounded-full py-2.5 px-3 flex items-center justify-center gap-2 text-xs sm:text-sm shadow-xs transition-all duration-200 active:scale-95 touch-target"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>WhatsApp</span>
                   </a>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 sm:flex items-center gap-2 w-full sm:w-auto">
-                <a
-                  href="tel:8464070196"
-                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-primary hover:bg-primary-dark text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 active:scale-95"
-                >
-                  <Phone className="w-3.5 h-3.5" />
-                  <span>Call Now</span>
-                </a>
-                <a
-                  href="https://wa.me/918464070196"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 active:scale-95"
-                >
-                  <MessageCircle className="w-3.5 h-3.5" />
-                  <span>WhatsApp</span>
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Quick Credential Badges — refined */}
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-3 border-t border-border/60">
-              <div className="flex items-center gap-1.5 bg-white/80 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-border text-[11px] sm:text-xs font-medium text-navy/80 hover:border-accent-warm/40 transition-colors">
-                <Award className="w-3.5 h-3.5 text-accent-warm" />
-                <span>DM University Topper</span>
-              </div>
-              <div className="flex items-center gap-1.5 bg-white/80 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-border text-[11px] sm:text-xs font-medium text-navy/80 hover:border-primary/30 transition-colors">
-                <ShieldCheck className="w-3.5 h-3.5 text-primary" />
-                <span>Multiple MBBS Gold Medals</span>
-              </div>
-              <div className="flex items-center gap-1.5 bg-white/80 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-border text-[11px] sm:text-xs font-medium text-navy/80 hover:border-primary/30 transition-colors">
-                <HeartPulse className="w-3.5 h-3.5 text-primary" />
-                <span>Adult & Paediatric Specialist</span>
+              {/* Timing indicator */}
+              <div className="flex items-center justify-center gap-2 text-xs text-[#687987] pt-0.5">
+                <Clock className="w-3.5 h-3.5 text-primary" />
+                <span>Mon – Sat: 9:00 AM – 8:00 PM • Dedicated EndoCare Center</span>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Floating Visual System (3D Medical Visual & Credentials) */}
-          <div className="lg:col-span-6 relative flex items-center justify-center w-full min-h-[350px] sm:min-h-[440px] lg:min-h-[580px]">
-            {/* 3D Visual System */}
+          {/* Right Column: Interactive 3D Endocrine Medical Animation */}
+          <div className="lg:col-span-5 relative flex items-center justify-center min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] xl:min-h-[620px]">
+            <Hero3DVisual />
+
+            {/* Floating Center of Excellence & Clinic Verification Badge */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.0, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full h-[350px] sm:h-[440px] lg:h-[580px] flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.9, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute -bottom-3 -left-2 sm:left-4 bg-white/95 backdrop-blur-md p-3.5 sm:p-4 rounded-3xl border border-[#E3EBF0] shadow-[0_8px_30px_rgba(22,124,128,0.14)] flex items-center gap-3.5 z-20 pointer-events-auto hover:shadow-2xl transition-all"
             >
-              <Hero3DVisual />
-
-              {/* Floating Doctor Profile Card — premium glass treatment */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute bottom-2 left-2 sm:left-4 glass-card p-2 sm:p-3 flex items-center gap-2.5 sm:gap-3 z-30 max-w-[250px] sm:max-w-xs pointer-events-auto hover-lift"
-              >
-                <div className="relative w-10 h-10 sm:w-14 sm:h-14 rounded-xl overflow-hidden shrink-0 border-2 border-primary/20 shadow-xs">
-                  <Image
-                    src="/images/dr-navya-sruthi-mandapati.jpg"
-                    alt="Dr. Navya Sruthi Mandapati — Consultant Endocrinologist"
-                    fill
-                    sizes="56px"
-                    className="object-cover object-top"
-                  />
+              <div className="w-12 h-12 rounded-2xl bg-soft-teal border border-primary/20 flex items-center justify-center text-primary shrink-0 shadow-2xs">
+                <ShieldCheck className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-[10px] text-primary font-bold uppercase tracking-wider">
+                    Center of Excellence
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-[9.5px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Open Today
+                  </span>
                 </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-accent-warm uppercase tracking-wider">
-                    <Award className="w-3 h-3 text-accent-warm shrink-0" />
-                    <span className="truncate">DM University Topper</span>
-                  </div>
-                  <h3 className="text-xs sm:text-sm font-bold text-navy truncate font-heading">
-                    Dr. Navya Sruthi M.
-                  </h3>
-                  <p className="text-[10px] sm:text-[10.5px] text-text-secondary truncate">
-                    MD, DM (Endocrinology)
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Floating Live Clinic Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: -15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="absolute top-2 right-2 sm:right-4 glass px-2.5 sm:px-3.5 py-1 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 z-30"
-              >
-                <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[9.5px] sm:text-[11px] font-bold text-navy">Open Today • Vizianagaram</span>
-              </motion.div>
+                <h4 className="text-xs sm:text-sm font-bold font-heading text-navy leading-tight">
+                  Dr. Navya’s EndoCare Center
+                </h4>
+                <p className="text-[10px] sm:text-[11px] text-[#687987] font-medium mt-0.5">
+                  Diabetes, Thyroid & Hormonal Superspeciality
+                </p>
+              </div>
             </motion.div>
           </div>
 
         </div>
       </div>
-
-      {/* Bottom decorative gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 }
+

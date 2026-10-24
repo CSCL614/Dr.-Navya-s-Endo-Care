@@ -1,10 +1,11 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { Clock, Users, Scale, HeartPulse, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Activity, HelpCircle, Phone, MessageCircle } from "lucide-react";
+import { Clock, Users, Scale, HeartPulse, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Activity, HelpCircle, Phone, MessageCircle, Apple, LineChart, LucideIcon } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import { doctorData } from "@/data/doctorData";
 import Link from "next/link";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 export default function ObesityClinicPage() {
   const { openModal } = useAppointment();
@@ -45,7 +46,7 @@ export default function ObesityClinicPage() {
     <div className="overflow-hidden bg-background min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-gradient-hero border-b border-border overflow-hidden">
+      <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-gradient-hero border-b border-border overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-soft-teal/40 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
@@ -164,21 +165,32 @@ export default function ObesityClinicPage() {
             </ScrollReveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {steps.map((st, i) => (
-                <ScrollReveal key={st.num} delay={i * 0.1} direction="up">
-                  <div className="bg-white rounded-3xl p-7 border border-border shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
-                    <span className="text-xs font-bold text-primary bg-soft-teal/80 border border-primary/20 px-3 py-1 rounded-full w-fit mb-4">
-                      PHASE {st.num}
-                    </span>
-                    <h3 className="text-base font-bold font-heading text-navy mb-2">
-                      {st.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-text-secondary leading-relaxed flex-grow">
-                      {st.desc}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              ))}
+              {steps.map((st, i) => {
+                const stepIcons: LucideIcon[] = [Activity, Users, Apple, LineChart];
+                const stepVariants: IconBadgeVariant[] = ["teal", "amber", "emerald", "indigo"];
+                const StepIcon = stepIcons[i % stepIcons.length];
+                const stepVariant = stepVariants[i % stepVariants.length];
+
+                return (
+                  <ScrollReveal key={st.num} delay={i * 0.1} direction="up">
+                    <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+                      <span className="text-[11px] font-bold text-primary bg-soft-teal/80 border border-primary/20 px-3 py-0.5 rounded-full mb-3 uppercase tracking-wider">
+                        PHASE {st.num}
+                      </span>
+                      <div className="mb-3.5">
+                        <CenterIconBadge icon={StepIcon} variant={stepVariant} size="sm" />
+                      </div>
+                      <h3 className="text-base font-bold font-heading text-navy mb-2 leading-snug group-hover:text-primary transition-colors">
+                        {st.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-text-secondary leading-relaxed flex-grow">
+                        {st.desc}
+                      </p>
+                      <div className="w-8 h-0.5 bg-primary/20 group-hover:w-14 group-hover:bg-primary transition-all duration-300 rounded-full mt-4" />
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
 

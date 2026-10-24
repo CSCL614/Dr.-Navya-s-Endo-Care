@@ -4,10 +4,11 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { 
   Sparkles, CheckCircle2, ArrowRight, ShieldCheck, 
-  Bone, AlertCircle, CalendarHeart, ChevronDown, Phone, HeartPulse, Sun, Activity, MessageCircle
+  Bone, AlertCircle, CalendarHeart, ChevronDown, Phone, HeartPulse, Sun, Activity, MessageCircle, ShieldAlert, LucideIcon
 } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import Link from "next/link";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 export default function BoneMineralHealthPage() {
   const { openModal } = useAppointment();
@@ -84,7 +85,7 @@ export default function BoneMineralHealthPage() {
     <div className="overflow-hidden bg-slate-50 min-h-screen pb-24">
       
       {/* Hero Section */}
-      <section className="relative pt-16 lg:pt-20 pb-20 bg-white border-b border-slate-200 overflow-hidden">
+      <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-white border-b border-slate-200 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-50/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
@@ -168,25 +169,32 @@ export default function BoneMineralHealthPage() {
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {conditions.map((item, index) => (
-              <ScrollReveal key={index} delay={index * 0.08} direction="up">
-                <div className="bg-white rounded-3xl p-7 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col group">
-                  <div className="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                    <Bone className="w-6 h-6" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+            {conditions.map((item, index) => {
+              const boneIcons: LucideIcon[] = [Bone, Activity, Sun, ShieldAlert, HeartPulse, ShieldCheck];
+              const boneVariants: IconBadgeVariant[] = ["amber", "teal", "amber", "rose", "sky", "mint"];
+              const BoneIcon = boneIcons[index % boneIcons.length];
+              const boneVariant = boneVariants[index % boneVariants.length];
+
+              return (
+                <ScrollReveal key={index} delay={index * 0.08} direction="up">
+                  <div className="bg-white rounded-3xl p-7 sm:p-8 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+                    <div className="mb-4">
+                      <CenterIconBadge icon={BoneIcon} variant={boneVariant} size="md" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold font-heading text-slate-800 mb-2.5 group-hover:text-primary transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4 flex-grow">
+                      {item.description}
+                    </p>
+                    <div className="pt-3.5 border-t border-[#E3EBF0] text-xs font-medium text-teal-700 w-full text-left">
+                      <strong className="text-slate-700">Action: </strong>{item.focus}
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold font-heading text-slate-800 mb-2.5 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4 flex-grow">
-                    {item.description}
-                  </p>
-                  <div className="pt-3 border-t border-slate-100 text-xs font-medium text-teal-700">
-                    <strong className="text-slate-700">Action: </strong>{item.focus}
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              );
+            })}
           </div>
 
           {/* Warning Signs Checklist */}

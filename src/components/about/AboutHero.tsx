@@ -11,7 +11,7 @@ export function AboutHero() {
   const { openModal } = useAppointment();
 
   return (
-    <section className="relative pt-6 pb-14 lg:pb-20 overflow-hidden bg-background">
+    <section className="relative pt-4 sm:pt-6 pb-12 lg:pb-16 overflow-hidden bg-background">
       {/* Animated Subtle Background Gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-soft-teal/40 rounded-full blur-3xl transform-gpu" />
@@ -22,7 +22,7 @@ export function AboutHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Text Content */}
-          <div className="lg:col-span-7 max-w-2xl">
+          <div className="lg:col-span-7 max-w-2xl order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ export function AboutHero() {
           </div>
 
           {/* Doctor Portrait Card */}
-          <div className="lg:col-span-5 flex justify-center">
+          <div className="lg:col-span-5 flex justify-center order-1 lg:order-2">
             <div className="relative w-full max-w-sm">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}

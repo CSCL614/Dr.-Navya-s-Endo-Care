@@ -3,6 +3,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Sparkles, HeartPulse, Scale, Baby, Activity, ShieldCheck, Stethoscope, LucideIcon } from "lucide-react";
 import { doctorData } from "@/data/doctorData";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 export function WhyChoseEndocrinology() {
   const iconMap: Record<string, LucideIcon> = {
@@ -11,6 +12,14 @@ export function WhyChoseEndocrinology() {
     "Thyroid & PCOS Balance": Activity,
     "Paediatric Growth & Puberty": Baby,
     "Pregnancy Endocrine Care": HeartPulse,
+  };
+
+  const variantMap: Record<string, IconBadgeVariant> = {
+    "Prevention & Early Diagnosis": "teal",
+    "Metabolic Health & Weight": "amber",
+    "Thyroid & PCOS Balance": "sky",
+    "Paediatric Growth & Puberty": "mint",
+    "Pregnancy Endocrine Care": "rose",
   };
 
   return (
@@ -67,18 +76,21 @@ export function WhyChoseEndocrinology() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {doctorData.whyChoseEndocrinology.focusAreas.map((area, index) => {
             const Icon = iconMap[area.title] || Stethoscope;
+            const variant = variantMap[area.title] || "teal";
+
             return (
               <ScrollReveal key={index} delay={index * 0.08} direction="up">
-                <div className="bg-white rounded-2xl p-6 border border-border hover:border-primary/40 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 h-full flex flex-col group">
-                  <div className="w-12 h-12 rounded-xl bg-soft-teal/70 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-2xs">
-                    <Icon className="w-6 h-6" />
+                <div className="bg-white rounded-3xl p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+                  <div className="mb-4">
+                    <CenterIconBadge icon={Icon} variant={variant} size="md" />
                   </div>
-                  <h3 className="text-lg font-bold font-heading text-navy mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-bold font-heading text-navy mb-2 group-hover:text-primary transition-colors leading-snug">
                     {area.title}
                   </h3>
-                  <p className="text-sm text-text-secondary leading-relaxed flex-grow">
+                  <p className="text-xs sm:text-sm text-text-secondary leading-relaxed flex-grow">
                     {area.description}
                   </p>
+                  <div className="w-8 h-0.5 bg-primary/20 group-hover:w-14 group-hover:bg-primary transition-all duration-300 rounded-full mt-4" />
                 </div>
               </ScrollReveal>
             );

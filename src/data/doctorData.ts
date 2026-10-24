@@ -412,36 +412,36 @@ export const doctorData: DoctorProfileData = {
 
   whyChoosePoints: [
     {
-      title: "Endocrine Superspecialist Care",
-      description: "Trained at premier institutions (DM University Topper) with dedicated superspeciality expertise in complex hormones."
+      title: "Dedicated Hormone Specialist",
+      description: "Dr. Navya is a DM Endocrinologist (University Topper), providing focused care for sugar, thyroid, and hormone disorders."
     },
     {
-      title: "Adults + Children",
-      description: "Unique capability in both adult metabolic conditions and specialized paediatric growth, puberty, and juvenile diabetes."
+      title: "Care for Adults & Children",
+      description: "Specialized care for diabetes, thyroid, and hormones for both adults and young children under one roof."
     },
     {
-      title: "Root-Cause Approach",
-      description: "Investigating why hormonal or metabolic imbalances happened rather than just treating superficial numbers."
+      title: "Treating the Root Cause",
+      description: "Finding out why your sugar or thyroid is out of balance instead of only increasing pills or masking symptoms."
     },
     {
-      title: "Strong Patient Counselling",
-      description: "Unhurried consultations where medical records are reviewed thoroughly and your questions are welcomed."
+      title: "Friendly & Unhurried Time",
+      description: "Every consultation is unhurried. We review your previous medical reports in detail and answer all your questions."
     },
     {
-      title: "Lifestyle-Focused Care",
-      description: "Prescribing practical, achievable nutrition and activity changes that integrate seamlessly into real family life."
+      title: "Real-Life Home Diets",
+      description: "Practical eating and walking habits tailored to your authentic home cooking rather than demanding extreme diets."
     },
     {
-      title: "Evidence-Based Treatment",
-      description: "Strict adherence to latest national and international clinical practice guidelines without unverified fads."
+      title: "Safe & Scientific Care",
+      description: "Strict adherence to proven medical science and international clinical guidelines without unverified shortcuts."
     },
     {
-      title: "Personalised Follow-Up",
-      description: "Continuous guidance with accessible lab parameters, dosage adjustments, and proactive preventive screening."
+      title: "Clear Lab & Follow-Up Guidance",
+      description: "Regular checkups, lab parameter guidance, and proactive preventive screening to safeguard your long-term health."
     },
     {
-      title: "Integrated Obesity Care",
-      description: "Dedicated Wednesday Obesity & Lifestyle Clinic combining an Endocrinologist with a Clinical Dietician."
+      title: "Dedicated Wednesday Obesity Clinic",
+      description: "Endocrinologist and Clinical Dietician working together every Wednesday 4–6 PM for healthy, sustainable weight loss."
     }
   ],
 

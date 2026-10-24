@@ -364,15 +364,141 @@ p {
 
 /* ── Text gradient utility ── */
 @utility text-gradient-primary {
-  background-image: linear-gradient(135deg, #167C80 0%, #1A9599 50%, #167C80 100%);
+  background-image: linear-gradient(135deg, #235AB5 0%, #3D72CB 50%, #235AB5 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 @utility text-gradient-warm {
-  background-image: linear-gradient(135deg, #D8B779 0%, #E5CFA0 100%);
+  background-image: linear-gradient(135deg, #FF6600 0%, #FFA366 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* ── Refined Editorial White Sections & Colored Text Utilities ── */
+@utility text-highlight-teal {
+  color: #167C80;
+  font-weight: 700;
+}
+
+@utility text-highlight-navy {
+  color: #173B57;
+  font-weight: 800;
+}
+
+@utility badge-mint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.35rem 0.875rem;
+  background-color: #DDF2EF;
+  color: #167C80;
+  border: 1px solid rgba(22, 124, 128, 0.18);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@utility pill-mint {
+  display: inline-block;
+  background-color: #DDF2EF;
+  color: #167C80;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+}
+
+@utility card-white {
+  background-color: #FFFFFF;
+  border: 1px solid #E3EBF0;
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 3px rgba(23, 59, 87, 0.04), 0 6px 20px rgba(23, 59, 87, 0.03);
+  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+}
+
+@utility card-white-hover {
+  &:hover {
+    border-color: rgba(22, 124, 128, 0.35);
+    box-shadow: 0 4px 12px rgba(23, 59, 87, 0.06), 0 16px 36px rgba(22, 124, 128, 0.12), 0 0 20px rgba(22, 124, 128, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+@utility touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Glow & Pulse Keyframes ── */
+@keyframes card-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(22, 124, 128, 0.08), 0 0 0 1px rgba(22, 124, 128, 0.12);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(22, 124, 128, 0.18), 0 0 24px rgba(22, 124, 128, 0.22), 0 0 0 2px rgba(22, 124, 128, 0.25);
+  }
+}
+
+@keyframes halo-glow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.85;
+  }
+}
+
+@keyframes badge-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(22, 124, 128, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(22, 124, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 124, 128, 0);
+  }
+}
+
+.card-glow-pulse {
+  animation: card-glow-pulse 3.5s ease-in-out infinite;
+}
+
+.halo-glow-pulse {
+  animation: halo-glow-pulse 3s ease-in-out infinite;
+}
+
+.badge-pulse-ring {
+  animation: badge-pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.card-interactive-glow {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  &:hover {
+    border-color: rgba(22, 124, 128, 0.45);
+    box-shadow: 0 12px 36px rgba(23, 59, 87, 0.08), 0 0 28px rgba(22, 124, 128, 0.16);
+    transform: translateY(-4px);
+  }
+}
+
+/* Global scroll & overflow safeguards */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+

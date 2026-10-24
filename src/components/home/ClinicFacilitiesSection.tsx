@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import Link from "next/link";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 interface ClinicFacilitiesSectionProps {
   isCompact?: boolean;
@@ -28,8 +29,9 @@ export function ClinicFacilitiesSection({ isCompact = false }: ClinicFacilitiesS
         "Custom diabetic foot care and footwear guidance"
       ],
       icon: Footprints,
+      badgeVariant: "teal" as IconBadgeVariant,
       badge: "Specialized Lab",
-      badgeColor: "bg-primary/10 text-primary border-primary/25",
+      badgeColor: "bg-soft-teal text-primary border-primary/20",
       ctaText: "Learn About Foot Care",
       ctaHref: "/diabetes-care#foot-assessment"
     },
@@ -45,8 +47,9 @@ export function ClinicFacilitiesSection({ isCompact = false }: ClinicFacilitiesS
         "Serum Calcium, Vitamin D, and hormonal assays"
       ],
       icon: FlaskConical,
+      badgeVariant: "sky" as IconBadgeVariant,
       badge: "In-House Lab",
-      badgeColor: "bg-sky-500/10 text-sky-700 border-sky-300/40",
+      badgeColor: "bg-sky-50 text-sky-800 border-sky-200",
       ctaText: "Inquire at Clinic",
       ctaHref: "/contact"
     },
@@ -62,14 +65,15 @@ export function ClinicFacilitiesSection({ isCompact = false }: ClinicFacilitiesS
         "Emergency medication support anytime day or night"
       ],
       icon: Pill,
+      badgeVariant: "emerald" as IconBadgeVariant,
       badge: "Open 24/7",
-      badgeColor: "bg-emerald-500/10 text-emerald-700 border-emerald-300/40",
+      badgeColor: "bg-emerald-50 text-emerald-800 border-emerald-200",
       ctaText: "Call Pharmacy",
       ctaHref: "tel:8464070196"
     },
     {
       id: "obesity-clinic",
-      title: "Dedicated Obesity Clinics",
+      title: "Dedicated Obesity Clinic",
       subtitle: "Every Wednesday | 4:00 PM – 6:00 PM",
       description: "Science-backed medical weight management addressing neuroendocrine drivers, visceral fat, and insulin resistance with joint medical and dietary guidance.",
       highlights: [
@@ -79,220 +83,139 @@ export function ClinicFacilitiesSection({ isCompact = false }: ClinicFacilitiesS
         "Evidence-based medical weight loss pharmacotherapy"
       ],
       icon: Scale,
+      badgeVariant: "amber" as IconBadgeVariant,
       badge: "Every Wednesday",
-      badgeColor: "bg-amber-500/10 text-amber-800 border-amber-300/40",
+      badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
       ctaText: "Obesity Clinic Details",
       ctaHref: "/obesity-metabolic-health"
     }
   ];
 
-  if (isCompact) {
-    return (
-      <section className="py-16 bg-pale-blue/40 border-y border-border/80 relative overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-            <div>
-              <div className="section-tag mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-primary" />
-                <span>Clinic Infrastructure</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-navy">
-                Clinic Facilities & <span className="gradient-text">Support Services</span>
-              </h2>
-            </div>
-            <div className="flex items-center gap-3">
-              <a
-                href="tel:8464070196"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white text-navy hover:text-primary font-bold rounded-full border border-border shadow-xs hover:border-primary/40 hover:shadow-card transition-all text-xs sm:text-sm"
-              >
-                <Phone className="w-3.5 h-3.5 text-primary" />
-                <span>Call: 8464070196</span>
-              </a>
-              <Link
-                href="/services#clinic-facilities"
-                className="text-xs sm:text-sm font-semibold text-primary hover:text-primary-dark transition-colors inline-flex items-center group"
-              >
-                <span>View Details</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {facilities.map((fac, idx) => {
-              const Icon = fac.icon;
-              return (
-                <ScrollReveal key={fac.id} delay={idx * 0.06} direction="up">
-                  <div className="glass-card rounded-2xl p-6 border border-border/80 shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full group">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-11 h-11 rounded-xl bg-pale-blue text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-xs group-hover:scale-105">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${fac.badgeColor}`}>
-                        {fac.badge}
-                      </span>
-                    </div>
-
-                    <h3 className="text-base font-bold font-heading text-navy mb-1 group-hover:text-primary transition-colors">
-                      {fac.title}
-                    </h3>
-                    <p className="text-xs text-primary font-semibold mb-2.5">
-                      {fac.subtitle}
-                    </p>
-                    <p className="text-xs text-text-secondary leading-relaxed mb-4 flex-grow line-clamp-3">
-                      {fac.description}
-                    </p>
-
-                    <Link
-                      href={fac.ctaHref}
-                      className="text-xs font-semibold text-primary group-hover:text-primary-dark inline-flex items-center mt-auto pt-3 border-t border-border/70 group-hover:border-primary/30 transition-colors"
-                    >
-                      <span>{fac.ctaText}</span>
-                      <ArrowRight className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // Full comprehensive section
   return (
-    <section id="clinic-facilities" className="py-20 lg:py-28 bg-background-alt/50 relative overflow-hidden scroll-mt-24">
+    <section id="facilities" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden scroll-mt-16 sm:scroll-mt-20">
       {/* Soft Ambient Accents */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-pale-blue/60 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-pale-blue/50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-soft-teal/20 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <ScrollReveal>
-            <div className="section-tag mb-4">
-              <Sparkles className="w-4 h-4 text-primary" />
+            <div className="badge-mint mb-3">
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
               <span>Integrated Healthcare Infrastructure</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-navy mb-4 leading-tight tracking-tight">
-              Comprehensive <span className="gradient-text">Clinic Facilities</span>
+            <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl lg:text-[2.6rem] font-bold font-heading text-navy mb-3 leading-tight tracking-tight">
+              Comprehensive <span className="text-highlight-teal">Clinic Facilities</span>
             </h2>
 
-            <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
+            <p className="text-[#344654] text-xs sm:text-sm lg:text-base leading-relaxed">
               Dr. Navya’s EndoCare is equipped with dedicated medical facilities to provide complete, integrated adult and paediatric endocrine care under one roof in Vizianagaram.
             </p>
           </ScrollReveal>
         </div>
 
         {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mb-16">
-          {facilities.map((fac, idx) => {
-            const Icon = fac.icon;
-            return (
-              <ScrollReveal key={fac.id} delay={idx * 0.08} direction="up">
-                <div className="glass-card rounded-3xl p-7 lg:p-9 border border-border shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full group relative overflow-hidden">
-                  
-                  {/* Subtle hover gradient wash */}
-                  <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full pointer-events-none group-hover:scale-125 transition-transform duration-500" />
-
-                  {/* Top Bar */}
-                  <div className="flex items-start justify-between gap-4 mb-5 relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-pale-blue text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-xs group-hover:scale-110">
-                      <Icon className="w-7 h-7" />
-                    </div>
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full border shadow-2xs ${fac.badgeColor}`}>
-                      {fac.badge}
-                    </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-10 sm:mb-14">
+          {facilities.map((fac, idx) => (
+            <ScrollReveal key={fac.id} delay={idx * 0.05} direction="up">
+              <div className="relative rounded-3xl p-6 sm:p-7 lg:p-8 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full bg-white group card-interactive-glow">
+                
+                {/* Upper Area: Centered Icon Badge with Status Pill */}
+                <div className="flex items-center justify-between mb-4 relative z-10 w-full">
+                  <div className="flex items-center gap-3">
+                    <CenterIconBadge 
+                      icon={fac.icon} 
+                      variant={fac.badgeVariant} 
+                      size="md" 
+                    />
                   </div>
-
-                  {/* Title & Subtitle */}
-                  <div className="relative z-10">
-                    <h3 className="text-xl sm:text-2xl font-bold font-heading text-navy mb-1 group-hover:text-primary transition-colors">
-                      {fac.title}
-                    </h3>
-                    <div className="text-xs sm:text-sm font-semibold text-primary mb-4">
-                      {fac.subtitle}
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-6">
-                      {fac.description}
-                    </p>
-
-                    {/* Highlights Bullet List */}
-                    <div className="space-y-2.5 mb-8 flex-grow">
-                      <span className="text-[11px] font-bold text-navy uppercase tracking-wider block mb-1.5">
-                        Key Highlights:
-                      </span>
-                      {fac.highlights.map((item, hIdx) => (
-                        <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-text-secondary">
-                          <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Bottom Action */}
-                  <div className="pt-5 border-t border-border/70 flex items-center justify-between gap-3 mt-auto relative z-10">
-                    <Link
-                      href={fac.ctaHref}
-                      className="text-xs sm:text-sm font-bold text-primary hover:text-primary-dark inline-flex items-center transition-colors group/link"
-                    >
-                      <span>{fac.ctaText}</span>
-                      <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/link:translate-x-1" />
-                    </Link>
-
-                    {fac.id === "obesity-clinic" ? (
-                      <button
-                        onClick={openModal}
-                        className="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-xl font-semibold text-xs transition-all shadow-xs hover:shadow-card active:scale-95"
-                      >
-                        Book Slot
-                      </button>
-                    ) : (
-                      <a
-                        href="tel:8464070196"
-                        className="px-3.5 py-1.5 bg-pale-blue hover:bg-primary hover:text-white text-navy font-semibold rounded-xl text-xs border border-border/70 transition-all inline-flex items-center gap-1.5 active:scale-95"
-                      >
-                        <Phone className="w-3 h-3 text-primary group-hover:text-white" />
-                        <span>Call Clinic</span>
-                      </a>
-                    )}
-                  </div>
-
+                  <span className={`text-[11px] font-bold px-3 py-1 rounded-full border shadow-2xs uppercase tracking-wider ${fac.badgeColor}`}>
+                    {fac.badge}
+                  </span>
                 </div>
-              </ScrollReveal>
-            );
-          })}
+
+                {/* Title & Subtitle */}
+                <div className="relative z-10 flex-grow">
+                  <h3 className="text-lg sm:text-xl font-bold font-heading text-navy mb-1 group-hover:text-primary transition-colors">
+                    {fac.title}
+                  </h3>
+                  <div className="text-xs sm:text-sm font-semibold text-primary mb-3">
+                    {fac.subtitle}
+                  </div>
+
+                  <p className="text-[#344654] text-xs sm:text-sm leading-relaxed mb-4">
+                    {fac.description}
+                  </p>
+
+                  {/* Highlights Bullet List */}
+                  <div className="space-y-2 mb-6 pt-3 border-t border-[#E3EBF0]">
+                    <span className="text-[10.5px] font-bold text-navy uppercase tracking-wider block mb-1">
+                      Key Highlights:
+                    </span>
+                    {fac.highlights.map((item, hIdx) => (
+                      <div key={hIdx} className="flex items-start gap-2 text-xs sm:text-sm text-[#344654]">
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom Action */}
+                <div className="pt-4 border-t border-border flex items-center justify-between gap-3 mt-auto relative z-10">
+                  <Link
+                    href={fac.ctaHref}
+                    className="text-xs sm:text-sm font-bold text-primary hover:text-primary-dark inline-flex items-center transition-colors group/link touch-target"
+                  >
+                    <span>{fac.ctaText}</span>
+                    <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/link:translate-x-1" />
+                  </Link>
+
+                  {fac.id === "obesity-clinic" ? (
+                    <button
+                      onClick={openModal}
+                      className="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold text-xs transition-all shadow-xs hover:shadow-card active:scale-95 touch-target"
+                    >
+                      Book Slot
+                    </button>
+                  ) : (
+                    <a
+                      href="tel:8464070196"
+                      className="px-3.5 py-2 bg-soft-teal hover:bg-primary hover:text-white text-navy font-bold rounded-xl text-xs border border-primary/20 transition-all inline-flex items-center gap-1.5 active:scale-95 touch-target"
+                    >
+                      <Phone className="w-3.5 h-3.5 text-primary group-hover:text-white" />
+                      <span>Call Clinic</span>
+                    </a>
+                  )}
+                </div>
+
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
 
-        {/* Call The Clinic Bar with Phone: 8464070196 */}
-        <ScrollReveal direction="up" delay={0.15}>
-          <div className="bg-navy rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-white/10">
-            {/* Organic Glow */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-primary/25 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-60 h-60 bg-pale-blue/10 rounded-full blur-2xl pointer-events-none" />
-            
-            <div className="text-center md:text-left max-w-xl relative z-10">
-              <span className="text-xs uppercase tracking-widest font-bold text-accent-warm block mb-1.5">
+        {/* Direct Patient Assistance Bar — Editorial Light & White Treatment */}
+        <ScrollReveal direction="up" delay={0.1}>
+          <div className="card-white bg-gradient-to-r from-soft-teal/40 via-white to-pale-blue/40 border border-primary/20 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-card flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left max-w-xl">
+              <span className="text-[10.5px] uppercase tracking-widest font-bold text-primary block mb-1">
                 Direct Patient Assistance
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-2.5 text-white">
+              <h3 className="text-xl sm:text-2xl font-bold font-heading mb-2 text-navy">
                 Have Inquiries About Our Facilities?
               </h3>
-              <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
-                Reach out directly to confirm laboratory timing, diabetic foot screening appointments, or 24/7 pharmacy queries.
+              <p className="text-[#344654] text-xs sm:text-sm leading-relaxed">
+                Reach out directly to confirm laboratory timing, diabetic foot screening appointments, or 24/7 pharmacy queries in Vizianagaram.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto relative z-10">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0 w-full md:w-auto">
               <a
                 href="tel:8464070196"
-                className="w-full sm:w-auto px-6 py-3.5 bg-white text-navy hover:bg-pale-blue font-bold rounded-xl text-sm transition-all shadow-md hover:shadow-card hover:scale-[1.02] flex items-center justify-center gap-2 active:scale-95"
+                className="px-5 py-3 bg-white text-navy hover:text-primary border border-border font-bold rounded-xl text-xs sm:text-sm transition-all shadow-xs flex items-center justify-center gap-2 active:scale-95 touch-target"
               >
                 <Phone className="w-4 h-4 text-primary" />
                 <span>Call: 8464070196</span>
@@ -301,14 +224,14 @@ export function ClinicFacilitiesSection({ isCompact = false }: ClinicFacilitiesS
                 href="https://wa.me/918464070196"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow-md transition-all flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95"
+                className="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-xs transition-all flex items-center justify-center gap-2 active:scale-95 touch-target"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>WhatsApp: 8464070196</span>
+                <span>WhatsApp</span>
               </a>
               <button
                 onClick={openModal}
-                className="w-full sm:w-auto px-6 py-3.5 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl text-sm border border-white/20 transition-all flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95"
+                className="px-5 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl text-xs sm:text-sm shadow-soft transition-all flex items-center justify-center gap-2 active:scale-95 touch-target"
               >
                 <CalendarHeart className="w-4 h-4 text-white" />
                 <span>Book Appointment</span>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 interface IntroContextType {
   isIntroPlaying: boolean;
@@ -15,15 +15,27 @@ export function IntroProvider({ children }: { children: React.ReactNode }) {
   const [isIntroPlaying, setIsIntroPlaying] = useState(true);
   const [introFinished, setIntroFinished] = useState(false);
 
-  const skipIntro = () => {
-    setIsIntroPlaying(false);
-    setIntroFinished(true);
-  };
+  // Prevent background scrolling while intro animation is running
+  useEffect(() => {
+    if (isIntroPlaying && !introFinished) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isIntroPlaying, introFinished]);
 
-  const finishIntro = () => {
+  const skipIntro = useCallback(() => {
     setIsIntroPlaying(false);
     setIntroFinished(true);
-  };
+  }, []);
+
+  const finishIntro = useCallback(() => {
+    setIsIntroPlaying(false);
+    setIntroFinished(true);
+  }, []);
 
   return (
     <IntroContext.Provider value={{ isIntroPlaying, introFinished, skipIntro, finishIntro }}>

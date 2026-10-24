@@ -1,13 +1,15 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { ShieldCheck, Baby, HeartPulse, Activity, Sparkles, AlertCircle } from "lucide-react";
+import { ShieldCheck, Baby, HeartPulse, Activity, Sparkles, AlertCircle, LucideIcon } from "lucide-react";
 import { doctorData } from "@/data/doctorData";
+import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
 
 export function PreventionSection() {
   const prevention = doctorData.prevention;
 
-  const icons = [Baby, Sparkles, AlertCircle, HeartPulse, ShieldCheck];
+  const icons: LucideIcon[] = [Baby, Sparkles, AlertCircle, HeartPulse, ShieldCheck];
+  const variants: IconBadgeVariant[] = ["mint", "indigo", "amber", "rose", "teal"];
 
   return (
     <section className="py-20 lg:py-24 bg-background-alt/50 border-t border-border relative overflow-hidden" id="prevention">
@@ -33,25 +35,28 @@ export function PreventionSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {prevention.areas.map((area, index) => {
             const Icon = icons[index % icons.length];
+            const variant = variants[index % variants.length];
+
             return (
               <ScrollReveal key={index} delay={index * 0.08} direction="up">
-                <div className="bg-white rounded-3xl p-7 border border-border shadow-card hover:border-primary/40 hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col group">
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-soft-teal/70 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-2xs">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="text-[11px] font-bold text-primary-dark bg-soft-teal/80 border border-primary/20 px-3 py-1 rounded-full uppercase tracking-wider">
-                      {area.audience}
-                    </span>
+                <div className="bg-white rounded-3xl p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:border-primary/40 hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
+                  <span className="text-[11px] font-bold text-primary-dark bg-soft-teal/80 border border-primary/20 px-3 py-0.5 rounded-full uppercase tracking-wider mb-3">
+                    {area.audience}
+                  </span>
+                  
+                  <div className="mb-3.5">
+                    <CenterIconBadge icon={Icon} variant={variant} size="md" />
                   </div>
 
-                  <h3 className="text-lg font-bold font-heading text-navy mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-bold font-heading text-navy mb-2 group-hover:text-primary transition-colors leading-snug">
                     {area.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-text-secondary leading-relaxed flex-grow">
                     {area.description}
                   </p>
+                  
+                  <div className="w-8 h-0.5 bg-primary/20 group-hover:w-14 group-hover:bg-primary transition-all duration-300 rounded-full mt-4" />
                 </div>
               </ScrollReveal>
             );
