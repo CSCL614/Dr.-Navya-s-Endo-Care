@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Phone, CalendarHeart, MessageCircle } from "lucide-react";
+import { Phone, CalendarHeart } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -32,7 +32,7 @@ export function MobileActionDock() {
             className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-border shadow-[0_-4px_20px_rgba(23,59,87,0.08)] py-2 px-3 sm:hidden"
             style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
           >
-            <div className="flex items-center gap-2 max-w-md mx-auto">
+            <div className="flex items-center gap-2.5 max-w-md mx-auto">
               {/* Quick Call */}
               <a
                 href="tel:8464070196"
@@ -48,22 +48,11 @@ export function MobileActionDock() {
               {/* Primary Book Appointment */}
               <button
                 onClick={openModal}
-                className="flex-[1.4] h-11 px-3 bg-primary hover:bg-primary-dark text-white font-bold text-xs rounded-xl shadow-soft flex items-center justify-center gap-1.5 active:scale-98 transition-all touch-target"
+                className="flex-[1.5] h-11 px-4 bg-primary hover:bg-primary-dark text-white font-bold text-xs rounded-xl shadow-soft flex items-center justify-center gap-1.5 active:scale-98 transition-all touch-target cursor-pointer"
               >
                 <CalendarHeart className="w-4 h-4 text-white shrink-0" />
                 <span className="truncate">Book Appointment</span>
               </button>
-
-              {/* Quick WhatsApp Icon */}
-              <a
-                href="https://wa.me/918464070196"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Chat with Dr. Navya’s EndoCare on WhatsApp"
-                className="w-11 h-11 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200/70 flex items-center justify-center shrink-0 active:scale-95 transition-colors touch-target"
-              >
-                <MessageCircle className="w-5 h-5" />
-              </a>
             </div>
           </motion.div>
         )}
