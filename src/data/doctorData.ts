@@ -924,7 +924,8 @@ export const clinicContact = {
   appointmentsEmail: "appointments@drnavyaendocare.com",
   address: "Dr. Navya’s Endo Care, Ajay Children’s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002",
   googleMapsUrl: "https://maps.google.com/?q=Dr.+Navya's+Endo+Care,+Ajay+Children's+Hospital+junction,+Phool+Bagh+Rd,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002",
-  hours: "Mon - Sat: 9:00 AM – 8:00 PM",
+  hours: "Mon, Wed – Sat: 10:00 AM – 6:00 PM | Tue: 2:00 PM – 6:00 PM | Sun: 11:00 AM – 2:00 PM",
+  hoursSummary: "Mon – Sat: 10:00 AM – 6:00 PM (Tue: 2:00 PM – 6:00 PM, Sun: 11:00 AM – 2:00 PM)",
   obesityClinicHours: "Every Wednesday: 4:00 PM – 6:00 PM",
 };
 

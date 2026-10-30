@@ -13,6 +13,7 @@ import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 import { useAppointment } from "@/context/AppointmentContext";
 import Image from "next/image";
+import { ClinicStatusBadge } from "@/components/common/ClinicStatusBadge";
 
 function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
@@ -269,13 +270,7 @@ export function Navbar() {
                   </div>
                 </div>
 
-                <div className="shrink-0 text-right">
-                  <span className="inline-flex items-center gap-1 text-[8.5px] sm:text-[9px] font-bold text-emerald-700 bg-emerald-100/90 px-1.5 sm:px-2 py-0.5 rounded-full border border-emerald-300/60 whitespace-nowrap">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Open Today
-                  </span>
-                  <span className="text-[8.5px] sm:text-[9px] text-text-muted block mt-0.5 font-medium whitespace-nowrap">9 AM – 8 PM</span>
-                </div>
+                <ClinicStatusBadge variant="navbar" />
               </div>
 
               {/* Navigation List — Exactly matching desktop pages */}

@@ -131,8 +131,8 @@ export function DoctorIntroSection() {
                       <Clock className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[11px] sm:text-xs font-bold text-navy leading-tight">9:00 AM – 8:00 PM</div>
-                      <div className="text-[10px] text-text-secondary">Mon – Sat Daily</div>
+                      <div className="text-[11px] sm:text-xs font-bold text-navy leading-tight">10:00 AM – 6:00 PM</div>
+                      <div className="text-[10px] text-text-secondary">Mon – Sat (Tue 2–6 PM)</div>
                     </div>
                   </div>
                 </div>

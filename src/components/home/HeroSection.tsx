@@ -10,6 +10,7 @@ import { doctorData } from "@/data/doctorData";
 import Image from "next/image";
 import Link from "next/link";
 import { Hero3DVisual } from "./Hero3DVisual";
+import { ClinicStatusBadge } from "@/components/common/ClinicStatusBadge";
 
 export function HeroSection() {
   const { openModal } = useAppointment();
@@ -151,7 +152,7 @@ export function HeroSection() {
               {/* Timing indicator */}
               <div className="flex items-center justify-center gap-2 text-xs text-[#687987] pt-0.5">
                 <Clock className="w-3.5 h-3.5 text-primary" />
-                <span>Mon – Sat: 9:00 AM – 8:00 PM • Dedicated EndoCare Center</span>
+                <span>Mon – Sat: 10:00 AM – 6:00 PM • Dedicated EndoCare Center</span>
               </div>
             </motion.div>
           </motion.div>
@@ -175,10 +176,7 @@ export function HeroSection() {
                   <span className="text-[10px] text-primary font-bold uppercase tracking-wider">
                     Center of Excellence
                   </span>
-                  <span className="inline-flex items-center gap-1 text-[9.5px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Open Today
-                  </span>
+                  <ClinicStatusBadge variant="floating" />
                 </div>
                 <h4 className="text-xs sm:text-sm font-bold font-heading text-navy leading-tight">
                   Dr. Navya’s EndoCare Center

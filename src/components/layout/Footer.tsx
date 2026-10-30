@@ -205,8 +205,9 @@ export function Footer() {
               </li>
               <li className="flex items-start">
                 <Clock className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-0.5" />
-                <span className="text-white/55 leading-relaxed">
-                  Mon - Sat: 9:00 AM – 8:00 PM<br/>
+                <span className="text-white/55 leading-relaxed text-xs">
+                  Mon, Wed – Sat: 10:00 AM – 6:00 PM<br/>
+                  Tue: 2:00 PM – 6:00 PM • Sun: 11:00 AM – 2:00 PM<br/>
                   <strong className="text-accent-warm">Obesity Clinic:</strong> Wed 4:00 PM – 6:00 PM
                 </span>
               </li>

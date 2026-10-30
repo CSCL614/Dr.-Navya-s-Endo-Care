@@ -6,6 +6,7 @@ import {
   MapPin, Phone, Mail, Clock, Send, AlertCircle, CheckCircle2, 
   PhoneCall, Building2, MessageCircle, Navigation, Compass, ExternalLink 
 } from "lucide-react";
+import { ClinicStatusBadge } from "@/components/common/ClinicStatusBadge";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -177,12 +178,28 @@ export default function ContactPage() {
                       <div className="w-12 h-12 bg-white/15 border border-white/20 rounded-2xl flex items-center justify-center shrink-0 shadow-2xs">
                         <Clock className="w-6 h-6 text-emerald-300" />
                       </div>
-                      <div>
-                        <h4 className="font-bold !text-white text-base mb-1">Consultation Timings</h4>
-                        <p className="!text-white/95 leading-relaxed text-xs sm:text-sm font-medium">
-                          Mon – Sat: 9:00 AM – 8:00 PM<br />
-                          Sunday: By Prior Appointment Only
-                        </p>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between gap-2 mb-1">
+                          <h4 className="font-bold !text-white text-base">Consultation Timings</h4>
+                          <ClinicStatusBadge variant="floating" />
+                        </div>
+                        <div className="!text-white/95 leading-relaxed text-xs sm:text-sm font-medium space-y-1">
+                          <div className="flex justify-between gap-2">
+                            <span>Mon, Wed – Sat:</span>
+                            <span className="font-bold">10:00 AM – 6:00 PM</span>
+                          </div>
+                          <div className="flex justify-between gap-2">
+                            <span>Tuesday:</span>
+                            <span className="font-bold">2:00 PM – 6:00 PM</span>
+                          </div>
+                          <div className="flex justify-between gap-2">
+                            <span>Sunday:</span>
+                            <span className="font-bold">11:00 AM – 2:00 PM</span>
+                          </div>
+                          <div className="pt-1 text-[11px] text-emerald-300/90 border-t border-white/10 font-semibold">
+                            ✦ Joint Obesity Clinic: Wednesdays 4:00 PM – 6:00 PM
+                          </div>
+                        </div>
                       </div>
                     </div>
 
