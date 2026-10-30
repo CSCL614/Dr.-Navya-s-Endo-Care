@@ -59,11 +59,12 @@ function CenterGland({ timeline }: { timeline: gsap.core.Timeline | null }) {
   });
 
   return (
-    <Sphere ref={meshRef} args={[1, 128, 128]}>
+    <Sphere ref={meshRef} args={isMobile ? [1, 48, 48] : [1, 128, 128]}>
       <MeshTransmissionMaterial 
         ref={materialRef}
         color="#14b8a6"
-        resolution={1024}
+        resolution={isMobile ? 384 : 1024}
+        samples={isMobile ? 2 : 6}
         transmission={0}
         opacity={0}
         transparent
