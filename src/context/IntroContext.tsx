@@ -22,12 +22,12 @@ export function IntroProvider({ children }: { children: React.ReactNode }) {
     // Lock background scrolling while intro is active
     document.body.style.overflow = "hidden";
 
-    // Guaranteed failsafe timer: automatically finish intro and restore scrolling
+    // Failsafe timer: only trigger if animation somehow hangs past 8.0s
     const timer = setTimeout(() => {
       setIsIntroPlaying(false);
       setIntroFinished(true);
       document.body.style.overflow = "";
-    }, 2100);
+    }, 8000);
 
     return () => {
       clearTimeout(timer);

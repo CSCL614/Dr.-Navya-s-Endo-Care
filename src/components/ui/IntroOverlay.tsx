@@ -30,7 +30,7 @@ export function IntroOverlay() {
 
     setTimeline(tl);
 
-    // Text Animations (starts at 3.0 seconds, stays for 1.8s, then smoothly exits)
+    // Text Animations (starts at 3.2 seconds, stays for 2.0s, then smoothly exits as energy ring washes)
     if (textRef.current) {
       const texts = textRef.current.children;
       gsap.set(texts, { y: 25, opacity: 0, filter: "blur(8px)" });
@@ -42,9 +42,9 @@ export function IntroOverlay() {
         duration: 0.8,
         stagger: 0.15,
         ease: "power3.out"
-      }, 3.0);
+      }, 3.2);
 
-      // Fade out text cleanly before finish
+      // Fade out text cleanly as energy ring expands
       tl.to(texts, {
         y: -20,
         opacity: 0,
@@ -52,18 +52,18 @@ export function IntroOverlay() {
         duration: 0.6,
         stagger: 0.1,
         ease: "power3.in"
-      }, 4.8);
+      }, 5.3);
     }
 
-    // Call finishIntro at 5.4 seconds
+    // Call finishIntro at 6.3 seconds (after energy ring washes the screen at 5.5-6.2s)
     tl.call(() => {
       finishIntro();
-    }, [], 5.4);
+    }, [], 6.3);
 
-    // Force end failsafe timer: guaranteed exit at 5.8s
+    // Force end failsafe timer: guaranteed exit at 6.8s
     const endTimer = setTimeout(() => {
       finishIntro();
-    }, 5800);
+    }, 6800);
 
     return () => {
       clearTimeout(skipTimer);
