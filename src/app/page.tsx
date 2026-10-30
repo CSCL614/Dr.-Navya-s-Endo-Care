@@ -5,6 +5,7 @@ import { DoctorIntroSection } from "@/components/home/DoctorIntroSection";
 import { WhyChooseHomeSection } from "@/components/home/WhyChooseHomeSection";
 import { ClinicFacilitiesSection } from "@/components/home/ClinicFacilitiesSection";
 import { ObesityClinicBanner } from "@/components/home/ObesityClinicBanner";
+import { PatientEducationHomeSection } from "@/components/home/PatientEducationHomeSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 
 export default function Home() {
@@ -31,7 +32,10 @@ export default function Home() {
       {/* Section 7: Obesity Clinic Highlight (Every Wednesday | 4:00 PM – 6:00 PM) */}
       <ObesityClinicBanner />
 
-      {/* Section 8: Contact & Appointment (8464070196, Address, Map, WhatsApp, Booking) */}
+      {/* Section 8: Patient Education & FAQs (Expandable/Compact) */}
+      <PatientEducationHomeSection />
+
+      {/* Section 9: Contact & Appointment (8464070196, Address, Map, WhatsApp, Booking) */}
       <FinalCtaSection />
     </div>
   );

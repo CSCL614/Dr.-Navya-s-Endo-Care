@@ -80,9 +80,9 @@ export function Navbar() {
             : "py-4 sm:py-4.5 bg-white/85 backdrop-blur-md border-b border-border/20"
       )}
     >
-      <div className="container mx-auto px-3 sm:px-6 flex items-center justify-between max-w-7xl w-full">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 flex items-center justify-between gap-3 lg:gap-6">
         {/* Brand / Logo */}
-        <Link href="/" className="flex items-center gap-2 sm:gap-2.5 z-50 min-w-0 group py-0.5">
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 z-50 shrink-0 group py-0.5">
           <Image 
             src="/logo.png" 
             alt="Dr Navya's Endo Care Logo" 
@@ -94,8 +94,8 @@ export function Navbar() {
             )}
             priority
           />
-          <div className="flex flex-col justify-center min-w-0">
-            <span className="text-[12.5px] min-[360px]:text-[13.5px] min-[390px]:text-[14.5px] sm:text-base font-extrabold font-heading text-navy leading-none uppercase tracking-tight group-hover:text-primary transition-colors duration-200 whitespace-nowrap">
+          <div className="flex flex-col justify-center shrink-0">
+            <span className="text-[13px] min-[360px]:text-[14px] sm:text-base font-extrabold font-heading text-navy leading-none uppercase tracking-tight group-hover:text-primary transition-colors duration-200 whitespace-nowrap">
               DR. NAVYA&apos;S ENDOCARE
             </span>
             {/* Responsive sub-heading that never overflows */}
@@ -107,7 +107,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden xl:flex items-center space-x-1 2xl:space-x-2">
+        <nav className="hidden xl:flex items-center space-x-0.5 2xl:space-x-1 shrink">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -115,7 +115,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "relative text-xs 2xl:text-sm font-medium transition-all duration-200 hover:text-primary whitespace-nowrap px-2.5 2xl:px-3 py-2 rounded-lg flex items-center gap-1.5",
+                  "relative text-xs 2xl:text-sm font-medium transition-all duration-200 hover:text-primary whitespace-nowrap px-2 xl:px-2.5 2xl:px-3 py-2 rounded-lg flex items-center gap-1.5",
                   isActive 
                     ? "text-primary font-semibold bg-soft-teal/40" 
                     : "text-navy/75 hover:bg-soft-teal/20"
@@ -125,7 +125,7 @@ export function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute -bottom-0.5 left-2.5 right-2.5 h-[2px] bg-primary rounded-full"
+                    className="absolute -bottom-0.5 left-2 right-2 h-[2px] bg-primary rounded-full"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -135,10 +135,10 @@ export function Navbar() {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden xl:flex items-center space-x-3">
+        <div className="hidden xl:flex items-center space-x-2.5 2xl:space-x-3 shrink-0">
           <a
             href="tel:8464070196"
-            className="flex items-center space-x-2 text-xs xl:text-sm font-semibold text-navy/90 hover:text-primary transition-all duration-200 group px-3.5 py-2 rounded-full bg-soft-teal/50 border border-primary/15 hover:bg-soft-teal hover:border-primary/25 shadow-xs"
+            className="flex items-center space-x-2 text-xs xl:text-sm font-semibold text-navy/90 hover:text-primary transition-all duration-200 group px-3.5 py-2 rounded-full bg-soft-teal/50 border border-primary/15 hover:bg-soft-teal hover:border-primary/25 shadow-xs shrink-0"
             title="Direct Clinic Line: 8464070196"
           >
             <div className="p-1.5 bg-primary rounded-full text-white shadow-2xs group-hover:scale-110 transition-transform">
@@ -149,7 +149,7 @@ export function Navbar() {
 
           <button 
             onClick={openModal}
-            className="bg-primary hover:bg-primary-dark text-white px-4 xl:px-5 py-2.5 rounded-full font-semibold shadow-soft hover:shadow-glow whitespace-nowrap text-xs xl:text-sm transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5"
+            className="bg-primary hover:bg-primary-dark text-white px-4 xl:px-5 py-2.5 rounded-full font-semibold shadow-soft hover:shadow-glow whitespace-nowrap text-xs xl:text-sm transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 shrink-0"
           >
             <CalendarHeart className="w-4 h-4 mr-1.5 inline" />
             <span>Book Appointment</span>

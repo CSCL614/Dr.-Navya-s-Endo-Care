@@ -23,7 +23,7 @@ export function Footer() {
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-64 h-64 bg-accent-warm/5 rounded-full blur-3xl pointer-events-none" />
       
-      <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
           
           {/* Brand Info */}

@@ -1,36 +1,61 @@
 "use client";
 
+import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { Clock, Users, Scale, HeartPulse, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, Activity, HelpCircle, Phone, MessageCircle, Apple, LineChart, LucideIcon } from "lucide-react";
+import { 
+  Clock, Users, Scale, HeartPulse, Sparkles, CheckCircle2, ArrowRight, 
+  ShieldCheck, Activity, HelpCircle, Phone, MessageCircle, Apple, LineChart, LucideIcon, CalendarHeart 
+} from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import { doctorData } from "@/data/doctorData";
 import Link from "next/link";
-import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
+import { ExpandableGroup } from "@/components/ui/ExpandableGroup";
 
 export default function ObesityClinicPage() {
   const { openModal } = useAppointment();
   const clinic = doctorData.obesityClinic;
+  const [openPhaseGroupId, setOpenPhaseGroupId] = useState<string | null>("diagnostic-joint");
 
-  const steps = [
+  const phaseGroups = [
     {
-      num: "01",
-      title: "Comprehensive Metabolic Assessment",
-      desc: "Detailed evaluation of fasting glucose, insulin levels, lipid profile, liver enzymes, and hormonal triggers like thyroid or PCOS."
+      id: "diagnostic-joint",
+      title: "Phases 01 & 02: Metabolic Diagnosis & Joint Specialist Consultation",
+      subtitle: "Biomarker Evaluation, Fasting Glucose, Liver Function & Joint Doctor-Dietician Review",
+      badge: "Clinical Investigation",
+      icon: Activity,
+      iconVariant: "teal" as const,
+      phases: [
+        {
+          num: "01",
+          title: "Comprehensive Metabolic Assessment",
+          desc: "Detailed evaluation of fasting glucose, insulin levels, lipid profile, liver enzymes, and hormonal triggers like thyroid or PCOS to uncover why weight loss has stalled."
+        },
+        {
+          num: "02",
+          title: "Joint Medical & Dietary Consultation",
+          desc: "Meeting with both Consultant Endocrinologist Dr. Navya and Clinical Dietician Dr. Syamini Siripuram to evaluate authentic food habits, sleep cycles, and daily stressors."
+        }
+      ]
     },
     {
-      num: "02",
-      title: "Joint Medical & Dietary Consultation",
-      desc: "Meeting with both the Consultant Endocrinologist and Clinical Dietician to analyze food habits, sleep cycles, and daily stressors."
-    },
-    {
-      num: "03",
-      title: "Customized Medical & Nutrition Plan",
-      desc: "Formulation of realistic medical nutrition therapy, physical activity pacing, and prescription of obesity pharmacotherapy if clinically indicated."
-    },
-    {
-      num: "04",
-      title: "Long-term Monitoring & Support",
-      desc: "Structured follow-ups to measure metabolic improvements, track body composition, and solidify sustainable lifelong health habits."
+      id: "therapy-maintenance",
+      title: "Phases 03 & 04: Tailored Medical Therapy & Sustainable Maintenance",
+      subtitle: "Andhra Nutrition Planning, Evidence-Based Pharmacotherapy & Body Composition Follow-ups",
+      badge: "Treatment & Longevity",
+      icon: Apple,
+      iconVariant: "emerald" as const,
+      phases: [
+        {
+          num: "03",
+          title: "Customized Medical & Nutrition Plan",
+          desc: "Formulation of realistic medical nutrition therapy, physical activity pacing, and prescription of evidence-based obesity pharmacotherapy if clinically indicated."
+        },
+        {
+          num: "04",
+          title: "Long-term Monitoring & Support",
+          desc: "Structured follow-ups to measure metabolic improvements, track body composition, and solidify sustainable lifelong health habits without rebound weight gain."
+        }
+      ]
     }
   ];
 
@@ -76,7 +101,7 @@ export default function ObesityClinicPage() {
               </div>
               <button
                 onClick={openModal}
-                className="mt-2 sm:mt-0 sm:ml-auto px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-sm shadow-card hover:shadow-card-hover transition-all"
+                className="mt-2 sm:mt-0 sm:ml-auto px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl text-sm shadow-card hover:shadow-card-hover transition-all cursor-pointer"
               >
                 Book Slot
               </button>
@@ -86,27 +111,27 @@ export default function ObesityClinicPage() {
       </section>
 
       {/* Main Content & Approach */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-6xl">
+      <section className="py-12 sm:py-16 lg:py-20 relative">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-5xl">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
             
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-5">
               <ScrollReveal direction="right">
-                <h2 className="text-3xl font-bold font-heading text-navy">
+                <h2 className="text-2xl sm:text-3xl font-bold font-heading text-navy leading-tight">
                   Moving Beyond Simplistic Advice to Medical Science
                 </h2>
-                <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
+                <p className="text-text-secondary leading-relaxed text-xs sm:text-sm md:text-base">
                   Obesity is not a lack of willpower; it is a complex, neuroendocrine and metabolic condition where hormonal signals regulating hunger, satiety, fat storage, and metabolic rate become dysregulated.
                 </p>
-                <p className="text-text-secondary leading-relaxed text-base">
+                <p className="text-text-secondary leading-relaxed text-xs sm:text-sm md:text-base">
                   At Dr. Navya’s EndoCare Obesity & Lifestyle Clinic, we partner an <strong className="text-navy font-bold">Endocrinologist</strong> with a <strong className="text-navy font-bold">Dedicated Clinical Dietician</strong> to evaluate and treat the medical drivers of excess weight. We do not promote unsustainable crash diets or unverified supplements.
                 </p>
 
-                <div className="space-y-3 pt-2">
+                <div className="space-y-2.5 pt-1">
                   {clinic.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-3 text-text-primary text-sm font-medium">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <div key={idx} className="flex items-start gap-2.5 text-text-primary text-xs sm:text-sm font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -116,21 +141,21 @@ export default function ObesityClinicPage() {
 
             <div className="lg:col-span-5">
               <ScrollReveal direction="left">
-                <div className="bg-white rounded-3xl p-8 border border-border shadow-card space-y-6">
-                  <div className="flex items-center gap-3 pb-4 border-b border-border-light">
+                <div className="bg-white rounded-3xl p-6 sm:p-7 border border-border shadow-card space-y-4">
+                  <div className="flex items-center gap-3 pb-3 border-b border-border-light">
                     <div className="w-10 h-10 rounded-xl bg-soft-teal text-primary flex items-center justify-center shadow-2xs">
                       <Scale className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="font-bold font-heading text-navy text-lg">Who Should Consult?</h3>
+                      <h3 className="font-bold font-heading text-navy text-base">Who Should Consult?</h3>
                       <p className="text-xs text-text-muted">Indications for medical obesity evaluation</p>
                     </div>
                   </div>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     {whoBenefits.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-text-secondary bg-background-alt p-3.5 rounded-xl border border-border">
-                        <span className="w-2 h-2 rounded-full bg-primary shrink-0 mt-1.5" />
+                      <div key={idx} className="flex items-start gap-2.5 text-xs text-text-secondary bg-background-alt p-3 rounded-xl border border-border">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -139,10 +164,10 @@ export default function ObesityClinicPage() {
                   <div className="pt-2">
                     <button
                       onClick={openModal}
-                      className="w-full py-3.5 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold shadow-card hover:shadow-card-hover transition-all flex items-center justify-center gap-2 text-sm"
+                      className="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold shadow-card hover:shadow-card-hover transition-all flex items-center justify-center gap-2 text-xs sm:text-sm cursor-pointer"
                     >
-                      <span>Schedule a Consultation</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <CalendarHeart className="w-4 h-4" />
+                      <span>Reserve Wednesday Slot</span>
                     </button>
                   </div>
                 </div>
@@ -151,43 +176,61 @@ export default function ObesityClinicPage() {
 
           </div>
 
-          {/* 4 Step Process */}
-          <div className="pt-10">
+          {/* 4 Step Process Grouped Accordion */}
+          <div>
             <ScrollReveal>
-              <div className="text-center max-w-2xl mx-auto mb-14">
-                <h2 className="text-3xl font-bold font-heading text-navy mb-3">
+              <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+                <h2 className="text-2xl sm:text-3xl font-bold font-heading text-navy mb-2">
                   How the Clinic Works
                 </h2>
-                <p className="text-text-secondary text-sm sm:text-base">
-                  A structured, empathetic patient journey from root-cause diagnosis to lasting lifestyle transformation.
+                <p className="text-text-secondary text-xs sm:text-sm md:text-base">
+                  Structured into two streamlined clinical stages from root-cause diagnosis to lasting lifestyle transformation.
                 </p>
               </div>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {steps.map((st, i) => {
-                const stepIcons: LucideIcon[] = [Activity, Users, Apple, LineChart];
-                const stepVariants: IconBadgeVariant[] = ["teal", "amber", "emerald", "indigo"];
-                const StepIcon = stepIcons[i % stepIcons.length];
-                const stepVariant = stepVariants[i % stepVariants.length];
+            <div className="space-y-4">
+              {phaseGroups.map((grp, idx) => {
+                const isExpanded = openPhaseGroupId === grp.id;
 
                 return (
-                  <ScrollReveal key={st.num} delay={i * 0.1} direction="up">
-                    <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
-                      <span className="text-[11px] font-bold text-primary bg-soft-teal/80 border border-primary/20 px-3 py-0.5 rounded-full mb-3 uppercase tracking-wider">
-                        PHASE {st.num}
-                      </span>
-                      <div className="mb-3.5">
-                        <CenterIconBadge icon={StepIcon} variant={stepVariant} size="sm" />
+                  <ScrollReveal key={grp.id} delay={idx * 0.06} direction="up">
+                    <ExpandableGroup
+                      id={grp.id}
+                      title={grp.title}
+                      subtitle={grp.subtitle}
+                      badge={grp.badge}
+                      icon={grp.icon}
+                      iconVariant={grp.iconVariant}
+                      itemCount={`${grp.phases.length} Phases`}
+                      isExpanded={isExpanded}
+                      onToggle={() => setOpenPhaseGroupId((prev) => (prev === grp.id ? null : grp.id))}
+                      variant="card"
+                      toggleStyle="pill"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                        {grp.phases.map((st) => (
+                          <div
+                            key={st.num}
+                            className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs flex flex-col justify-between"
+                          >
+                            <div>
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="px-2 py-0.5 bg-soft-teal text-primary border border-primary/20 rounded-md font-bold text-[11px]">
+                                  PHASE {st.num}
+                                </span>
+                                <h4 className="text-xs sm:text-sm font-bold font-heading text-navy">
+                                  {st.title}
+                                </h4>
+                              </div>
+                              <p className="text-xs text-text-secondary leading-relaxed">
+                                {st.desc}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                      <h3 className="text-base font-bold font-heading text-navy mb-2 leading-snug group-hover:text-primary transition-colors">
-                        {st.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-text-secondary leading-relaxed flex-grow">
-                        {st.desc}
-                      </p>
-                      <div className="w-8 h-0.5 bg-primary/20 group-hover:w-14 group-hover:bg-primary transition-all duration-300 rounded-full mt-4" />
-                    </div>
+                    </ExpandableGroup>
                   </ScrollReveal>
                 );
               })}
@@ -198,27 +241,27 @@ export default function ObesityClinicPage() {
       </section>
 
       {/* Booking CTA Banner */}
-      <section className="container mx-auto px-4 md:px-6 max-w-5xl">
+      <section className="container mx-auto px-4 md:px-6 max-w-5xl mt-6">
         <ScrollReveal>
-          <div className="bg-gradient-navy rounded-[2.5rem] p-8 md:p-12 text-center text-white relative overflow-hidden shadow-xl border border-white/10">
+          <div className="bg-gradient-navy rounded-[2.5rem] p-6 sm:p-10 md:p-12 text-center text-white relative overflow-hidden shadow-xl border border-white/10">
             <div className="absolute top-0 right-0 w-80 h-80 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mb-4 text-white">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mb-3 text-white">
                 Take the First Step This Wednesday
               </h3>
-              <p className="text-white/85 max-w-xl mx-auto text-base mb-8">
+              <p className="text-white/85 max-w-xl mx-auto text-xs sm:text-sm md:text-base mb-6">
                 Join Dr. Navya and our clinical dietician every Wednesday between 4:00 PM and 6:00 PM. Reserve your dedicated consultation slot today.
               </p>
-              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
                 <button
                   onClick={openModal}
-                  className="px-8 py-3.5 bg-white text-navy font-bold rounded-full shadow-md hover:bg-soft-teal transition-all text-base"
+                  className="px-8 py-3 bg-white text-navy font-bold rounded-full shadow-md hover:bg-soft-teal transition-all text-xs sm:text-sm cursor-pointer"
                 >
                   Book Appointment
                 </button>
                 <a
                   href="tel:8464070196"
-                  className="px-7 py-3.5 bg-primary/80 hover:bg-primary text-white font-semibold rounded-full border border-white/20 transition-all text-base inline-flex items-center gap-2"
+                  className="px-7 py-3 bg-primary/80 hover:bg-primary text-white font-semibold rounded-full border border-white/20 transition-all text-xs sm:text-sm inline-flex items-center gap-2"
                 >
                   <Phone className="w-4 h-4 text-white" />
                   Call: 8464070196
@@ -227,7 +270,7 @@ export default function ObesityClinicPage() {
                   href="https://wa.me/918464070196"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-7 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full shadow-md transition-all text-base inline-flex items-center gap-2"
+                  className="px-7 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full shadow-md transition-all text-xs sm:text-sm inline-flex items-center gap-2"
                 >
                   <MessageCircle className="w-4 h-4" />
                   WhatsApp: 8464070196

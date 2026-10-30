@@ -1,13 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { Award, GraduationCap, CheckCircle2, Star, Shield, Quote, HeartPulse, FileText, ArrowRight, Phone, MessageCircle, CalendarHeart } from "lucide-react";
+import { Award, GraduationCap, CheckCircle2, Star, Shield, Quote, HeartPulse, FileText, ArrowRight, Phone, MessageCircle, CalendarHeart, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { doctorData } from "@/data/doctorData";
 import { useAppointment } from "@/context/AppointmentContext";
 
 export function DoctorProfile() {
   const { openModal } = useAppointment();
+  const [showFullBio, setShowFullBio] = useState(false);
 
   return (
     <section className="pt-6 sm:pt-10 pb-16 lg:pb-24 bg-white relative overflow-hidden" id="doctor-profile">
@@ -203,9 +205,24 @@ export function DoctorProfile() {
                   <p>
                     Dr. Navya Sruthi Mandapati is an accomplished Endocrinologist specializing in adult and paediatric hormonal and metabolic disorders. Having secured top university honors throughout her medical training—including graduating as the <strong className="text-navy font-bold">University Topper in DM Endocrinology</strong> and earning <strong className="text-navy font-bold">multiple Gold Medals along with the Best Outgoing Student award</strong> in MBBS—she combines academic rigor with empathetic, human-centered clinical care.
                   </p>
-                  <p>
-                    Dr. Navya's core philosophy is anchored in patient-centred care. Rather than hurried visits that merely end with a prescription, she dedicates substantial consultation time to thoroughly reviewing each patient's previous medical files, explaining physiological mechanisms, and answering questions in clear, accessible language.
-                  </p>
+                  
+                  {/* Paragraph 2: Collapsible on mobile, always visible on md+ */}
+                  <div className={showFullBio ? "block" : "hidden md:block"}>
+                    <p>
+                      Dr. Navya's core philosophy is anchored in patient-centred care. Rather than hurried visits that merely end with a prescription, she dedicates substantial consultation time to thoroughly reviewing each patient's previous medical files, explaining physiological mechanisms, and answering questions in clear, accessible language.
+                    </p>
+                  </div>
+
+                  <div className="pt-1 md:hidden">
+                    <button
+                      type="button"
+                      onClick={() => setShowFullBio(!showFullBio)}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-bold text-xs bg-soft-teal text-primary border border-primary/20 touch-target cursor-pointer"
+                    >
+                      <span>{showFullBio ? "Read Less" : "Read Full Philosophy"}</span>
+                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showFullBio ? "rotate-180" : ""}`} />
+                    </button>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>

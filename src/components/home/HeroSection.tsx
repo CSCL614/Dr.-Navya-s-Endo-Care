@@ -42,8 +42,8 @@ export function HeroSection() {
         <div className="absolute bottom-[-10%] left-[-5%] w-[350px] sm:w-[450px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-soft-teal/20 via-pale-blue/20 to-transparent rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
 
           {/* Left Column: Clear Text & Visible Action Buttons */}
           <motion.div
@@ -54,7 +54,7 @@ export function HeroSection() {
           >
             {/* Clinic Location & Trust Pill */}
             <motion.div variants={itemVariants}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[#E3EBF0] rounded-full shadow-2xs text-xs font-semibold text-primary">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-white border border-[#E3EBF0] rounded-full shadow-2xs text-xs font-semibold text-primary badge-glow-teal">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Dr. Navya’s EndoCare • Vizianagaram</span>
               </div>
@@ -63,7 +63,7 @@ export function HeroSection() {
             {/* Main Heading — Requested: Expert Care for Diabetes, Thyroid & Hormonal Health */}
             <motion.h1 
               variants={itemVariants}
-              className="text-[2rem] leading-[1.18] min-[360px]:text-[2.25rem] min-[390px]:text-[2.45rem] sm:text-4xl lg:text-[2.9rem] xl:text-[3.25rem] font-extrabold font-heading text-navy tracking-tight"
+              className="text-[2.1rem] leading-[1.15] min-[360px]:text-[2.35rem] min-[390px]:text-[2.5rem] sm:text-4xl lg:text-[2.9rem] xl:text-[3.5rem] 2xl:text-[3.85rem] font-extrabold font-heading text-navy tracking-tight max-w-3xl"
             >
               Expert Care for Diabetes, Thyroid &{" "}
               <span className="text-[#167C80] font-extrabold block min-[430px]:inline">
@@ -74,18 +74,18 @@ export function HeroSection() {
             {/* Supporting Text — Requested */}
             <motion.p 
               variants={itemVariants} 
-              className="text-sm sm:text-base lg:text-lg text-[#344654] leading-relaxed max-w-xl font-normal"
+              className="text-sm sm:text-base lg:text-lg xl:text-xl text-[#344654] leading-relaxed max-w-2xl font-normal"
             >
               Personalised adult and paediatric endocrinology care with a focus on diagnosis, treatment, and long-term health.
             </motion.p>
 
             {/* Action Buttons & Direct Clinic Helpline Stack (As requested in reference image) */}
-            <motion.div variants={itemVariants} className="pt-1 space-y-3 max-w-md">
+            <motion.div variants={itemVariants} className="pt-1 space-y-3 max-w-lg">
               
-              {/* Button 1: BOOK AN APPOINTMENT */}
+              {/* Button 1: BOOK AN APPOINTMENT with Glow & Shimmer */}
               <button
                 onClick={openModal}
-                className="w-full bg-[#167C80] hover:bg-[#126466] text-white text-xs sm:text-sm py-3.5 px-7 font-bold rounded-full shadow-[0_4px_18px_rgba(22,124,128,0.25)] hover:shadow-[0_6px_24px_rgba(22,124,128,0.35)] touch-target flex items-center justify-center gap-2.5 uppercase tracking-wider transition-all duration-200 active:scale-[0.98]"
+                className="w-full bg-[#167C80] hover:bg-[#126466] text-white text-xs sm:text-sm py-3.5 px-7 font-bold rounded-full btn-glow-primary shimmer-hover touch-target flex items-center justify-center gap-2.5 uppercase tracking-wider transition-all duration-200 active:scale-[0.98] cursor-pointer"
               >
                 <CalendarHeart className="w-4 h-4 text-white" />
                 <span>BOOK AN APPOINTMENT</span>

@@ -1,19 +1,117 @@
 "use client";
 
+import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { 
   Activity, Syringe, Footprints, ShieldAlert, Sparkles, CheckCircle2, 
   ArrowRight, Building2, FlaskConical, Clock, HeartPulse, Stethoscope, 
-  Phone, MessageCircle, Apple, AlertCircle, LineChart, Thermometer, ShieldCheck, LucideIcon 
+  Phone, MessageCircle, Apple, AlertCircle, LineChart, Thermometer, ShieldCheck, LucideIcon, CalendarHeart 
 } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import { doctorData } from "@/data/doctorData";
 import { ClinicFacilitiesSection } from "@/components/home/ClinicFacilitiesSection";
-import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
+import { ExpandableGroup } from "@/components/ui/ExpandableGroup";
 
 export default function DiabetesCarePage() {
   const { openModal } = useAppointment();
-  const diabetes = doctorData.diabetesSupport;
+  const [openServiceGroupId, setOpenServiceGroupId] = useState<string | null>("insulin-cgm");
+  const [openFootGroupId, setOpenFootGroupId] = useState<string | null>("sensory-testing");
+
+  const serviceGroups = [
+    {
+      id: "insulin-cgm",
+      title: "Insulin Guidance & Glucose Monitoring",
+      subtitle: "SMBG, CGM Sensors, Pen Techniques & Cold-Chain Storage Protocols",
+      badge: "Self-Management",
+      icon: Syringe,
+      iconVariant: "teal" as const,
+      services: [
+        {
+          title: "Diabetes Education & Glucose Monitoring",
+          desc: "Step-by-step guidance on self-monitoring of blood glucose (SMBG), continuous glucose monitoring (CGM) sensor interpretation, and recognizing spike patterns."
+        },
+        {
+          title: "Insulin Initiation & Technical Training",
+          desc: "One-on-one training on insulin pen usage, syringe technique, needle hygiene, rotation of injection sites to avoid lipohypertrophy, and painless delivery."
+        },
+        {
+          title: "Meal Timing & Storage Counselling",
+          desc: "Clear instructions on timing meals with rapid or basal insulin, preventing crystallization, travelling with insulin kits, and cold-chain safety."
+        }
+      ]
+    },
+    {
+      id: "nutrition-hypo",
+      title: "Nutrition, Andhra Meal Plans & Hypo Safety",
+      subtitle: "Authentic Andhra Meal Guidance, Glycemic Index & The Rule of 15",
+      badge: "Lifestyle & Safety",
+      icon: Apple,
+      iconVariant: "emerald" as const,
+      services: [
+        {
+          title: "Personalised Dietary Guidance",
+          desc: "Practical nutritional plans based on authentic Andhra dietary habits, local millet/rice awareness, glycemic index pairing, and realistic portion control."
+        },
+        {
+          title: "Hypoglycaemia Prevention Education",
+          desc: "Recognizing early warning signs of low blood sugar (cold sweat, palpitations, tremors, extreme hunger) and master the Rule of 15 for prompt, safe recovery."
+        }
+      ]
+    },
+    {
+      id: "foot-screening",
+      title: "Comprehensive Diabetic Foot Complication Prevention",
+      subtitle: "Early Neuropathy Detection, Vascular Doppler & Plantar Pressure Protection",
+      badge: "Complication Screening",
+      icon: Footprints,
+      iconVariant: "rose" as const,
+      services: [
+        {
+          title: "Comprehensive Diabetic Foot Risk Assessment",
+          desc: "Proactive annual evaluation of nerve sensation, arterial circulation, and foot pressure points to prevent diabetic foot ulcers, infections, and amputations."
+        }
+      ]
+    }
+  ];
+
+  const footAssessmentGroups = [
+    {
+      id: "sensory-testing",
+      title: "Neuropathy & Sensory Nerve Loss Testing",
+      subtitle: "Detecting silent nerve damage before numbness and ulcers develop",
+      icon: Activity,
+      iconVariant: "teal" as const,
+      badge: "Sensory Function",
+      items: [
+        {
+          name: "Vibration Perception Threshold (VPT) / Biothesiometry",
+          purpose: "Digital quantitative assessment measuring nerve sensitivity to detect early loss of protective vibration sensation before clinical neuropathy develops."
+        },
+        {
+          name: "10g Semmes-Weinstein Monofilament Testing",
+          purpose: "Standardized clinical tactile sensory evaluation across critical plantar pressure areas to identify high-risk non-responsive foot zones."
+        }
+      ]
+    },
+    {
+      id: "vascular-thermal",
+      title: "Arterial Blood Supply & Thermal Screening",
+      subtitle: "Assessing blood circulation and localized inflammatory hot spots",
+      icon: HeartPulse,
+      iconVariant: "rose" as const,
+      badge: "Vascular Health",
+      items: [
+        {
+          name: "Ankle–Brachial Index (ABI) Doppler Screening",
+          purpose: "Ultrasound Doppler-assisted arterial pressure assessment to detect peripheral arterial disease (PAD) and poor lower-limb blood supply."
+        },
+        {
+          name: "Foot-Temperature Assessment (Infrared Thermometry)",
+          purpose: "Detection of subtle skin temperature discrepancies indicating subclinical tissue inflammation, early Charcot foot, or vascular compromise."
+        }
+      ]
+    }
+  ];
 
   return (
     <div className="overflow-hidden bg-slate-50 min-h-screen pb-24">
@@ -40,7 +138,7 @@ export default function DiabetesCarePage() {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={openModal}
-                className="px-8 py-3.5 bg-primary hover:bg-primary-dark text-white rounded-full font-bold shadow-soft transition-all text-sm sm:text-base"
+                className="px-8 py-3.5 bg-primary hover:bg-primary-dark text-white rounded-full font-bold shadow-soft transition-all text-sm sm:text-base cursor-pointer"
               >
                 Book Diabetes Consultation
               </button>
@@ -55,65 +153,84 @@ export default function DiabetesCarePage() {
         </div>
       </section>
 
-      {/* Core Support Services Grid */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-6xl">
+      {/* Core Support Services - Grouped Accordion */}
+      <section className="py-12 sm:py-16 relative">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-5xl">
           
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
             <ScrollReveal>
-              <h2 className="text-3xl font-bold font-heading text-slate-800 mb-4">
-                Core Diabetes Care Services
+              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800 mb-3">
+                Core Diabetes Care Groups
               </h2>
-              <p className="text-slate-600 text-base">
-                Structured clinical support covering education, daily medicine management, and sustainable habits.
+              <p className="text-slate-600 text-xs sm:text-sm md:text-base">
+                Structured clinical support covering education, daily medicine management, and sustainable habits. Tap any group to view detailed services.
               </p>
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-20">
-            {diabetes.services.map((svc, index) => {
-              const serviceIcons = [Activity, Syringe, ShieldCheck, Apple, AlertCircle, LineChart];
-              const serviceVariants: IconBadgeVariant[] = ["teal", "emerald", "sky", "amber", "rose", "indigo"];
-              const SvcIcon = serviceIcons[index % serviceIcons.length];
-              const svcVariant = serviceVariants[index % serviceVariants.length];
+          <div className="space-y-4">
+            {serviceGroups.map((grp, idx) => {
+              const isExpanded = openServiceGroupId === grp.id;
 
               return (
-                <ScrollReveal key={index} delay={index * 0.08} direction="up">
-                  <div className="bg-white rounded-3xl p-7 sm:p-8 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
-                    <div className="mb-4">
-                      <CenterIconBadge icon={SvcIcon} variant={svcVariant} size="md" />
+                <ScrollReveal key={grp.id} delay={idx * 0.05} direction="up">
+                  <ExpandableGroup
+                    id={grp.id}
+                    title={grp.title}
+                    subtitle={grp.subtitle}
+                    badge={grp.badge}
+                    icon={grp.icon}
+                    iconVariant={grp.iconVariant}
+                    itemCount={`${grp.services.length} Services`}
+                    isExpanded={isExpanded}
+                    onToggle={() => setOpenServiceGroupId((prev) => (prev === grp.id ? null : grp.id))}
+                    variant="card"
+                    toggleStyle="pill"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
+                      {grp.services.map((svc, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-2xs flex flex-col justify-between"
+                        >
+                          <div>
+                            <div className="flex items-start gap-2 mb-2">
+                              <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                              <h4 className="text-xs sm:text-sm font-bold text-navy leading-snug">
+                                {svc.title}
+                              </h4>
+                            </div>
+                            <p className="text-xs text-text-secondary leading-relaxed pl-6">
+                              {svc.desc}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold font-heading text-slate-800 mb-2.5 group-hover:text-primary transition-colors leading-snug">
-                      {svc.title}
-                    </h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed flex-grow">
-                      {svc.description}
-                    </p>
-                    <div className="w-8 h-0.5 bg-primary/20 group-hover:w-16 group-hover:bg-primary transition-all duration-300 rounded-full mt-4" />
-                  </div>
+                  </ExpandableGroup>
                 </ScrollReveal>
               );
             })}
           </div>
 
           {/* Diabetic Foot Risk Assessment Section */}
-          <div className="pt-10 scroll-mt-28" id="foot-assessment">
+          <div className="pt-12 sm:pt-16 scroll-mt-28" id="foot-assessment">
             <ScrollReveal>
-              <div className="bg-white rounded-3xl p-8 lg:p-12 border border-teal-100 shadow-md mb-16">
-                <div className="max-w-3xl mb-10 text-center sm:text-left">
+              <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-teal-100 shadow-md mb-12">
+                <div className="max-w-3xl mb-8 sm:mb-10 text-center sm:text-left">
                   <span className="text-xs font-bold text-teal-600 uppercase tracking-widest block mb-2">Complication Prevention</span>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-slate-800 mb-4">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-slate-800 mb-3">
                     Diabetic Foot Risk Assessment Facilities
                   </h2>
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                  <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed">
                     Peripheral neuropathy and reduced blood supply can develop silently in diabetes. Our center houses specialized non-invasive testing modalities. <em>Note: Tests are recommended individually based on clinical evaluation; not every patient requires every test.</em>
                   </p>
                 </div>
 
-                {/* Real Equipment & Education Visual Showcase */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 pb-10 border-b border-slate-100 items-center">
+                {/* Real Equipment Showcase */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pb-8 border-b border-slate-100 items-center">
                   <div className="bg-slate-50 p-4 rounded-3xl border border-slate-200/80 shadow-xs flex flex-col items-center">
-                    <div className="relative aspect-[4/5] w-full max-w-sm rounded-2xl overflow-hidden bg-white shadow-md">
+                    <div className="relative aspect-[4/5] w-full max-w-xs rounded-2xl overflow-hidden bg-white shadow-md">
                       <img 
                         src="/gallery/diabetic-foot-profiler.jpg" 
                         alt="Diabetic Foot Profiler Workstation at Dr. Navya's EndoCare" 
@@ -127,7 +244,7 @@ export default function DiabetesCarePage() {
                   </div>
 
                   <div className="bg-slate-50 p-4 rounded-3xl border border-slate-200/80 shadow-xs flex flex-col items-center">
-                    <div className="relative aspect-square w-full max-w-sm rounded-2xl overflow-hidden bg-white shadow-md">
+                    <div className="relative aspect-square w-full max-w-xs rounded-2xl overflow-hidden bg-white shadow-md">
                       <img 
                         src="/gallery/diabetic-foot-care-guide.jpg" 
                         alt="Diabetic Foot Care & Prevention Guide at Dr. Navya's EndoCare" 
@@ -141,25 +258,40 @@ export default function DiabetesCarePage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {diabetes.assessmentFacilities.map((fac, idx) => {
-                    const footIcons = [Activity, ShieldCheck, HeartPulse, Thermometer, Footprints, Sparkles];
-                    const footVariants: IconBadgeVariant[] = ["teal", "sky", "rose", "amber", "mint", "emerald"];
-                    const FootIcon = footIcons[idx % footIcons.length];
-                    const footVariant = footVariants[idx % footVariants.length];
+                {/* Grouped Foot Testing Modalities */}
+                <div className="space-y-3.5">
+                  {footAssessmentGroups.map((grp) => {
+                    const isExpanded = openFootGroupId === grp.id;
 
                     return (
-                      <div key={idx} className="bg-white p-6 sm:p-7 rounded-3xl border border-[#E3EBF0] hover:border-teal-300 shadow-[0_2px_10px_rgba(23,59,87,0.04)] hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group">
-                        <div className="mb-3.5">
-                          <CenterIconBadge icon={FootIcon} variant={footVariant} size="sm" />
+                      <ExpandableGroup
+                        key={grp.id}
+                        id={grp.id}
+                        title={grp.title}
+                        subtitle={grp.subtitle}
+                        badge={grp.badge}
+                        icon={grp.icon}
+                        iconVariant={grp.iconVariant}
+                        itemCount={`${grp.items.length} Tests`}
+                        isExpanded={isExpanded}
+                        onToggle={() => setOpenFootGroupId((prev) => (prev === grp.id ? null : grp.id))}
+                        variant="subtle"
+                        toggleStyle="pill"
+                      >
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                          {grp.items.map((item, idx) => (
+                            <div key={idx} className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-2xs">
+                              <h5 className="text-xs sm:text-sm font-bold text-navy mb-1 flex items-center gap-1.5">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                                <span>{item.name}</span>
+                              </h5>
+                              <p className="text-xs text-text-secondary leading-relaxed pl-5">
+                                {item.purpose}
+                              </p>
+                            </div>
+                          ))}
                         </div>
-                        <h3 className="text-base font-bold font-heading text-slate-800 mb-2 leading-snug group-hover:text-primary transition-colors">
-                          {fac.name}
-                        </h3>
-                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed flex-grow">
-                          {fac.purpose}
-                        </p>
-                      </div>
+                      </ExpandableGroup>
                     );
                   })}
                 </div>
@@ -169,34 +301,71 @@ export default function DiabetesCarePage() {
 
           {/* On-Site Center Amenities */}
           <ScrollReveal direction="up">
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-8 lg:p-10 shadow-xl">
-              <div className="max-w-2xl mb-8">
-                <span className="text-xs font-bold text-teal-300 uppercase tracking-widest block mb-2">Comprehensive Patient Support</span>
-                <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-3">
+            <div className="bg-gradient-to-br from-navy-dark via-navy to-slate-900 !text-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-elevated border border-white/15 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="max-w-2xl mb-6 sm:mb-8 relative z-10">
+                <span className="text-xs font-bold text-teal-300 uppercase tracking-widest block mb-2">
+                  Comprehensive Patient Support
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold font-heading !text-white mb-2.5 tracking-tight">
                   On-Site Clinical Facilities
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-base">
+                <p className="!text-slate-200 text-xs sm:text-sm leading-relaxed font-normal">
                   To provide a seamless healthcare experience, Dr. Navya’s EndoCare offers integrated diagnostic and supportive amenities within the premises.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div className="bg-white/10 rounded-2xl p-6 border border-white/10">
-                  <FlaskConical className="w-8 h-8 text-teal-400 mb-3" />
-                  <h4 className="font-bold text-base mb-1">Laboratory Services</h4>
-                  <p className="text-xs text-slate-300">Timely blood glucose, HbA1c, thyroid panel, and urine microalbumin testing.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 relative z-10">
+                <div className="bg-white/10 hover:bg-white/15 rounded-2xl p-5 sm:p-6 border border-white/20 transition-all duration-200 flex flex-col justify-between">
+                  <div>
+                    <div className="w-11 h-11 rounded-xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-teal-300 mb-3.5">
+                      <FlaskConical className="w-6 h-6" />
+                    </div>
+                    <h4 className="font-bold text-base !text-white mb-1.5 font-heading">
+                      Laboratory Services
+                    </h4>
+                    <p className="text-xs !text-slate-200 leading-relaxed font-normal">
+                      Timely blood glucose, HbA1c, complete thyroid panel, and urine microalbumin testing with fast turnaround.
+                    </p>
+                  </div>
+                  <span className="mt-3.5 text-[10px] font-semibold text-teal-300 uppercase tracking-wider block">
+                    • In-House Correlation
+                  </span>
                 </div>
 
-                <div className="bg-white/10 rounded-2xl p-6 border border-white/10">
-                  <Clock className="w-8 h-8 text-teal-400 mb-3" />
-                  <h4 className="font-bold text-base mb-1">24-Hour Pharmacy</h4>
-                  <p className="text-xs text-slate-300">Continuous cold-chain preservation for genuine insulins and oral medications.</p>
+                <div className="bg-white/10 hover:bg-white/15 rounded-2xl p-5 sm:p-6 border border-white/20 transition-all duration-200 flex flex-col justify-between">
+                  <div>
+                    <div className="w-11 h-11 rounded-xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-teal-300 mb-3.5">
+                      <Clock className="w-6 h-6" />
+                    </div>
+                    <h4 className="font-bold text-base !text-white mb-1.5 font-heading">
+                      24-Hour Pharmacy
+                    </h4>
+                    <p className="text-xs !text-slate-200 leading-relaxed font-normal">
+                      Continuous cold-chain temperature preservation for genuine insulins, GLP-1 analogs, and oral medications.
+                    </p>
+                  </div>
+                  <span className="mt-3.5 text-[10px] font-semibold text-teal-300 uppercase tracking-wider block">
+                    • Cold-Chain Safe
+                  </span>
                 </div>
 
-                <div className="bg-white/10 rounded-2xl p-6 border border-white/10">
-                  <Building2 className="w-8 h-8 text-teal-400 mb-3" />
-                  <h4 className="font-bold text-base mb-1">Day-Care Services</h4>
-                  <p className="text-xs text-slate-300">Comfortable short-stay observation for stabilization, IV fluids, and insulin adjustment.</p>
+                <div className="bg-white/10 hover:bg-white/15 rounded-2xl p-5 sm:p-6 border border-white/20 transition-all duration-200 flex flex-col justify-between">
+                  <div>
+                    <div className="w-11 h-11 rounded-xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-teal-300 mb-3.5">
+                      <Building2 className="w-6 h-6" />
+                    </div>
+                    <h4 className="font-bold text-base !text-white mb-1.5 font-heading">
+                      Day-Care Services
+                    </h4>
+                    <p className="text-xs !text-slate-200 leading-relaxed font-normal">
+                      Comfortable short-stay observation for stabilization, IV fluids, and supervised insulin dose titration.
+                    </p>
+                  </div>
+                  <span className="mt-3.5 text-[10px] font-semibold text-teal-300 uppercase tracking-wider block">
+                    • Supervised Care
+                  </span>
                 </div>
               </div>
             </div>
@@ -209,7 +378,7 @@ export default function DiabetesCarePage() {
       <ClinicFacilitiesSection isCompact={false} />
 
       {/* Appointment CTA */}
-      <section className="container mx-auto px-4 md:px-6 max-w-5xl mt-12">
+      <section className="container mx-auto px-4 md:px-6 max-w-5xl mt-8 sm:mt-12">
         <ScrollReveal>
           <div className="bg-teal-50 border border-teal-200 rounded-3xl p-8 md:p-12 text-center">
             <h3 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800 mb-3">
@@ -221,25 +390,16 @@ export default function DiabetesCarePage() {
             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
               <button
                 onClick={openModal}
-                className="w-full sm:w-auto px-8 py-3.5 bg-primary hover:bg-primary-dark text-white font-bold rounded-full shadow-soft transition-all"
+                className="w-full sm:w-auto px-8 py-3.5 bg-primary hover:bg-primary-dark text-white font-bold rounded-full shadow-soft transition-all cursor-pointer"
               >
                 Book Consultation Now
               </button>
               <a
                 href="tel:8464070196"
-                className="w-full sm:w-auto px-7 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-full border border-slate-300 shadow-xs transition-all inline-flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-teal-100/60 text-slate-800 font-bold rounded-full border border-teal-200 transition-all flex items-center justify-center gap-2"
               >
                 <Phone className="w-4 h-4 text-primary" />
-                Call: 8464070196
-              </a>
-              <a
-                href="https://wa.me/918464070196"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-7 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full shadow-xs transition-all inline-flex items-center justify-center gap-2"
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp: 8464070196
+                <span>Call Clinic</span>
               </a>
             </div>
           </div>

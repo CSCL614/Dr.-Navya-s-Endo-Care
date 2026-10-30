@@ -4,6 +4,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { FileText, ClipboardList, ShieldAlert, Sparkles, Syringe, HeartPulse, HelpCircle, ArrowRight, Phone, MessageCircle, Pill, LucideIcon } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
+import { ExpandableCard } from "@/components/ui/ExpandableCard";
 
 export default function PatientResourcesPage() {
   const { openModal } = useAppointment();
@@ -98,7 +99,8 @@ export default function PatientResourcesPage() {
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {/* Preparation Checklist Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-16 sm:mb-20 items-start">
             {preparationSteps.map((step, idx) => {
               const prepIcons: LucideIcon[] = [FileText, ClipboardList, Pill, HelpCircle];
               const prepVariants: IconBadgeVariant[] = ["teal", "sky", "emerald", "amber"];
@@ -106,54 +108,65 @@ export default function PatientResourcesPage() {
               const prepVariant = prepVariants[idx % prepVariants.length];
 
               return (
-                <ScrollReveal key={idx} delay={idx * 0.1} direction="up">
-                  <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
-                    <span className="text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 px-3 py-0.5 rounded-full mb-3 uppercase tracking-wider">
-                      CHECKLIST {idx + 1}
-                    </span>
-                    <div className="mb-3.5">
-                      <CenterIconBadge icon={PrepIcon} variant={prepVariant} size="sm" />
+                <ScrollReveal key={idx} delay={idx * 0.08} direction="up">
+                  <ExpandableCard
+                    badge={`CHECKLIST ${idx + 1}`}
+                    badgeColor="bg-teal-50 text-teal-800 border-teal-200"
+                    icon={PrepIcon}
+                    iconVariant={prepVariant}
+                    iconSize="sm"
+                    title={step.title}
+                    summary={step.desc.slice(0, 85) + (step.desc.length > 85 ? "..." : "")}
+                    expandLabel="Explore Tips"
+                    collapseLabel="Hide Tips"
+                    toggleStyle="pill"
+                    className="h-full"
+                  >
+                    <div className="text-left pt-1">
+                      <p className="text-xs text-text-secondary leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                        {step.desc}
+                      </p>
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold font-heading text-slate-800 mb-2 leading-snug group-hover:text-primary transition-colors">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed flex-grow">
-                      {step.desc}
-                    </p>
-                    <div className="w-8 h-0.5 bg-primary/20 group-hover:w-14 group-hover:bg-primary transition-all duration-300 rounded-full mt-4" />
-                  </div>
+                  </ExpandableCard>
                 </ScrollReveal>
               );
             })}
           </div>
 
-          {/* Education Guides */}
-          <div className="space-y-8">
+          {/* Education Guides — Compact Expandable Guidelines */}
+          <div className="space-y-5 sm:space-y-6">
             {guidelines.map((guide, index) => {
               const guideVariants: IconBadgeVariant[] = ["teal", "rose", "sky"];
               const gVariant = guideVariants[index % guideVariants.length];
+              const guideSummaries = [
+                "Essential insulin refrigeration parameters, room-temperature duration, and anatomical rotation techniques.",
+                "Clinical protocol for recognizing and correcting sudden low blood sugar before severe complications arise.",
+                "Plain-language explanation of essential blood and urine biomarkers monitored during your care."
+              ];
 
               return (
-                <ScrollReveal key={index} delay={index * 0.1} direction="up">
-                  <div className="bg-white rounded-3xl p-7 sm:p-9 lg:p-10 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/30 transition-all duration-300 group">
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-6 text-center sm:text-left">
-                      <CenterIconBadge icon={guide.icon} variant={gVariant} size="md" />
-                      <div>
-                        <h3 className="text-xl sm:text-2xl font-bold font-heading text-slate-800 group-hover:text-primary transition-colors">
-                          {guide.title}
-                        </h3>
-                        <p className="text-xs text-text-muted mt-0.5">Clinical Best Practice Protocol</p>
-                      </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
+                <ScrollReveal key={index} delay={index * 0.08} direction="up">
+                  <ExpandableCard
+                    icon={guide.icon}
+                    iconVariant={gVariant}
+                    iconSize="md"
+                    title={guide.title}
+                    subtitle="Clinical Best Practice Protocol"
+                    summary={guideSummaries[index] || "Detailed patient instructions and safety principles."}
+                    expandLabel="Explore Step-by-Step Guide"
+                    collapseLabel="Hide Guide"
+                    toggleStyle="pill"
+                    headerAlign="left"
+                    className="border-slate-200"
+                  >
+                    <div className="grid sm:grid-cols-2 gap-3 pt-2">
                       {guide.points.map((pt, pIdx) => (
-                        <div key={pIdx} className="bg-slate-50/80 p-4 rounded-2xl border border-slate-100/90 text-xs sm:text-sm text-slate-700 leading-relaxed hover:bg-white hover:border-teal-200 transition-colors">
+                        <div key={pIdx} className="bg-slate-50/80 p-3.5 rounded-2xl border border-slate-100 text-xs sm:text-sm text-slate-700 leading-relaxed hover:bg-white hover:border-teal-200 transition-colors">
                           • {pt}
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </ExpandableCard>
                 </ScrollReveal>
               );
             })}

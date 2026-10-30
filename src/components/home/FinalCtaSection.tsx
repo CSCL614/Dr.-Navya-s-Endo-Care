@@ -12,37 +12,38 @@ export function FinalCtaSection() {
 
   return (
     <section className="py-14 sm:py-20 lg:py-24 bg-white relative overflow-hidden scroll-mt-16 sm:scroll-mt-20" id="final-cta">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
-        <ScrollReveal direction="scale">
-          <div className="bg-gradient-to-br from-navy via-navy-light to-navy-dark rounded-3xl p-6 sm:p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-elevated">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
+        <ScrollReveal direction="glow">
+          <div className="bg-gradient-to-br from-navy via-navy-light to-navy-dark rounded-3xl p-6 sm:p-12 lg:p-16 text-center text-white relative overflow-hidden shadow-elevated border border-white/20 glow-card-featured">
             
             {/* Decorative ambient elements */}
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-accent-warm/8 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none animate-[pulse_6s_ease-in-out_infinite]" />
+            <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-amber-400/15 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 pointer-events-none animate-[pulse_8s_ease-in-out_infinite]" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none" />
 
             <div className="max-w-3xl mx-auto relative z-10 space-y-5">
               
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 py-1 px-3.5 bg-white/10 border border-white/15 rounded-full text-xs font-semibold text-soft-teal uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 py-1 px-3.5 bg-white/10 border border-white/15 rounded-full text-xs font-semibold text-soft-teal uppercase tracking-wider badge-glow-teal">
                 <Sparkles className="w-3.5 h-3.5 text-accent-warm" />
                 Begin Your Care Journey
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading leading-tight text-white tracking-tight">
-                &ldquo;Your Health Has A Story. <span className="text-soft-teal">Let&rsquo;s Understand It Together.&rdquo;</span>
+              <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading leading-tight !text-white tracking-tight drop-shadow-sm">
+                &ldquo;<span className="text-white">Your Health Has A Story.</span>{" "}
+                <span className="text-amber-300 font-black">Let&rsquo;s Understand It Together.&rdquo;</span>
               </h2>
 
               {/* Brand and Telugu Tagline */}
               <div className="space-y-1 pt-1">
-                <div className="text-lg sm:text-2xl font-bold font-heading text-white tracking-wide">
+                <div className="text-lg sm:text-2xl font-bold font-heading !text-white tracking-wide">
                   Dr. Navya&rsquo;s EndoCare
                 </div>
-                <div className="text-xs sm:text-sm font-semibold tracking-wider text-white/70 uppercase">
+                <div className="text-xs sm:text-sm font-semibold tracking-wider !text-teal-200 uppercase">
                   Diabetes • Thyroid • Obesity & Endocrine Superspeciality Centre
                 </div>
-                <div className="text-xs sm:text-base font-bold text-accent-warm font-sans tracking-wide pt-1">
+                <div className="text-xs sm:text-base font-bold !text-amber-300 font-sans tracking-wide pt-1">
                   {doctorData.teluguTagline}
                 </div>
               </div>
@@ -66,7 +67,7 @@ export function FinalCtaSection() {
               <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-3">
                 <button
                   onClick={openModal}
-                  className="w-full sm:w-auto px-7 py-3.5 bg-white text-navy hover:bg-soft-teal font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 text-xs sm:text-sm active:scale-[0.97] group touch-target"
+                  className="w-full sm:w-auto px-7 py-3.5 bg-white text-navy hover:bg-soft-teal font-bold rounded-full shadow-[0_4px_24px_rgba(255,255,255,0.25)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.4)] shimmer-hover transition-all duration-200 flex items-center justify-center gap-2 text-xs sm:text-sm active:scale-[0.97] group touch-target cursor-pointer"
                 >
                   <CalendarHeart className="w-4 h-4 text-primary" />
                   <span>BOOK AN APPOINTMENT</span>

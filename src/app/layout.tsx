@@ -8,6 +8,7 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { EventPopup } from "@/components/ui/EventPopup";
 import { GlobalBackground } from "@/components/ui/GlobalBackground";
+import { ScrollGlowEffects } from "@/components/ui/ScrollGlowEffects";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -88,6 +89,7 @@ export default function RootLayout({
             <SmoothScrollProvider>
               <AppointmentProvider>
                 <GlobalBackground />
+                <ScrollGlowEffects />
                 <LogoPageTransitionProvider>
                   <Navbar />
                   <main className="flex-grow pt-[70px] sm:pt-[76px] relative z-10 flex flex-col">

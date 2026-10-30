@@ -72,10 +72,10 @@ export function PersonalSide() {
                   <Languages className="w-6 h-6 text-accent-warm" />
                 </div>
                 
-                <h3 className="text-2xl font-bold font-heading mb-3 text-white">
+                <h3 className="text-2xl font-bold font-heading mb-3 !text-white">
                   Comfortable Communication
                 </h3>
-                <p className="text-sm text-white/80 leading-relaxed mb-6 font-normal">
+                <p className="text-sm !text-white/90 leading-relaxed mb-6 font-normal">
                   Effective healthcare starts with feeling heard in the language you are most comfortable speaking. Dr. Navya communicates warmly with patients and families across:
                 </p>
 

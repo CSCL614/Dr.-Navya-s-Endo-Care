@@ -167,28 +167,32 @@ function EnergyRing({ timeline }: { timeline: gsap.core.Timeline | null }) {
   );
 }
 
+import React, { Suspense } from "react";
+
 export function Intro3DCanvas({ timeline }: { timeline: gsap.core.Timeline | null }) {
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none">
-      <Canvas 
-        camera={{ position: [0, 0, 10], fov: 45 }} 
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      >
-        <Environment preset="city" />
-        <ambientLight intensity={1.5} />
-        <spotLight position={[10, 10, 10]} intensity={3} angle={0.15} penumbra={1} color="#0ea5e9" />
-        <pointLight position={[-10, -10, -10]} intensity={2} color="#14b8a6" />
-        
-        <MedicalParticles />
-        
-        <CenterGland timeline={timeline} />
-        <EnergyRing timeline={timeline} />
+      <Suspense fallback={null}>
+        <Canvas 
+          camera={{ position: [0, 0, 10], fov: 45 }} 
+          dpr={[1, 1.5]}
+          gl={{ antialias: false, alpha: true, powerPreference: "default" }}
+        >
+          <ambientLight intensity={1.8} />
+          <directionalLight position={[5, 10, 7]} intensity={2.2} color="#ffffff" />
+          <spotLight position={[10, 10, 10]} intensity={2.5} angle={0.25} penumbra={1} color="#0ea5e9" />
+          <pointLight position={[-10, -10, -10]} intensity={1.5} color="#14b8a6" />
+          
+          <MedicalParticles />
+          
+          <CenterGland timeline={timeline} />
+          <EnergyRing timeline={timeline} />
 
-        <GlassIcon icon={Activity} color="text-emerald-500" position={[-3.5, 2, 0]} delay={0} timeline={timeline} />
-        <GlassIcon icon={Dna} color="text-purple-500" position={[3.5, 1.5, 1]} delay={0.2} timeline={timeline} />
-        <GlassIcon icon={Syringe} color="text-teal-500" position={[0, -2.5, 2.5]} delay={0.4} timeline={timeline} />
-      </Canvas>
+          <GlassIcon icon={Activity} color="text-emerald-500" position={[-3.5, 2, 0]} delay={0} timeline={timeline} />
+          <GlassIcon icon={Dna} color="text-purple-500" position={[3.5, 1.5, 1]} delay={0.2} timeline={timeline} />
+          <GlassIcon icon={Syringe} color="text-teal-500" position={[0, -2.5, 2.5]} delay={0.4} timeline={timeline} />
+        </Canvas>
+      </Suspense>
     </div>
   );
 }

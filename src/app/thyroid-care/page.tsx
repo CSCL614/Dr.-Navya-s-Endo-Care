@@ -3,66 +3,129 @@
 import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { 
-  ActivitySquare, Sparkles, CheckCircle2, ArrowRight, ShieldCheck, ShieldAlert,
-  Baby, Search, AlertCircle, CalendarHeart, ChevronDown, Phone, HeartPulse, MessageCircle, Activity, LucideIcon
+  ActivitySquare, ShieldAlert, Sparkles, CheckCircle2, ArrowRight, 
+  Phone, MessageCircle, CalendarHeart, HelpCircle, ChevronDown, 
+  Baby, Search, AlertCircle, HeartPulse, Activity, ShieldCheck, LucideIcon 
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useAppointment } from "@/context/AppointmentContext";
 import Link from "next/link";
-import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
+import { useAppointment } from "@/context/AppointmentContext";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExpandableGroup } from "@/components/ui/ExpandableGroup";
 
 export default function ThyroidCarePage() {
   const { openModal } = useAppointment();
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openConditionGroup, setOpenConditionGroup] = useState<string | null>("hypo-hashimoto");
+  const [openSymptomGroup, setOpenSymptomGroup] = useState<string | null>("hypo-signs");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const conditions = [
+  const conditionGroups = [
     {
-      title: "Hypothyroidism (Underactive Thyroid)",
-      description: "When the thyroid produces insufficient hormones, causing metabolism to slow down. Characterized by persistent fatigue, unexplained weight gain, dry skin, constipation, and cold intolerance.",
-      focus: "Personalized levothyroxine dosage titration based on weight, age, and cardiac status."
+      id: "hypo-hashimoto",
+      title: "Hypothyroidism & Autoimmune Hashimoto's",
+      subtitle: "Underactive Thyroid, Anti-TPO Antibodies, Fatigue & Weight Metabolism",
+      icon: ActivitySquare,
+      iconVariant: "sky" as const,
+      badge: "Underactive",
+      conditions: [
+        {
+          title: "Primary Hypothyroidism",
+          description: "When the thyroid produces insufficient hormones, causing metabolism to slow down. Characterized by persistent fatigue, unexplained weight gain, dry skin, constipation, and cold intolerance.",
+          focus: "Personalized levothyroxine dosage titration based on weight, age, and cardiac status."
+        },
+        {
+          title: "Hashimoto's Autoimmune Thyroiditis",
+          description: "The most common cause of hypothyroidism where the body's immune system attacks thyroid tissue, confirmed via elevated Anti-TPO antibodies.",
+          focus: "Long-term monitoring to preserve glandular function and prevent sudden metabolic swings."
+        }
+      ]
     },
     {
-      title: "Hashimoto's Autoimmune Thyroiditis",
-      description: "The most common cause of hypothyroidism where the body's immune system attacks thyroid tissue, confirmed via elevated Anti-TPO antibodies.",
-      focus: "Long-term monitoring to preserve glandular function and prevent sudden metabolic swings."
+      id: "hyper-nodules",
+      title: "Hyperthyroidism, Graves' & Thyroid Nodules",
+      subtitle: "Overactive Gland, Palpitations, Weight Loss, Goitre & TI-RADS Evaluation",
+      icon: ShieldAlert,
+      iconVariant: "amber" as const,
+      badge: "Overactive & Structural",
+      conditions: [
+        {
+          title: "Hyperthyroidism & Graves' Disease",
+          description: "An overactive thyroid gland producing excess hormones, leading to rapid heart rate, tremors, unintended weight loss, heat intolerance, anxiety, and bulging eyes (Graves' orbitopathy).",
+          focus: "Careful medical therapy with anti-thyroid drugs, beta-blockers, and definitive care planning."
+        },
+        {
+          title: "Thyroid Nodules & Goitre",
+          description: "Lumps or swelling in the thyroid gland. While the vast majority are benign, accurate endocrine workup determines if ultrasound imaging or FNAC (biopsy) is needed.",
+          focus: "High-resolution ultrasound evaluation, TI-RADS risk stratification, and non-surgical surveillance."
+        }
+      ]
     },
     {
-      title: "Hyperthyroidism & Graves' Disease",
-      description: "An overactive thyroid gland producing excess hormones, leading to rapid heart rate, tremors, unintended weight loss, heat intolerance, anxiety, and bulging eyes (Graves' orbitopathy).",
-      focus: "Careful medical therapy with anti-thyroid drugs, beta-blockers, and definitive care planning."
-    },
-    {
-      title: "Thyroid in Pregnancy & Pre-Conception",
-      description: "Thyroid hormone is critical for fetal brain and neurocognitive development during early gestation. TSH levels must be strictly monitored within pregnancy-specific target ranges.",
-      focus: "Pre-conceptional optimization, trimester-specific TSH monitoring, and immediate dose adjustments."
-    },
-    {
-      title: "Thyroid Nodules & Goitre",
-      description: "Lumps or swelling in the thyroid gland. While the vast majority are benign, accurate endocrine workup determines if ultrasound imaging or FNAC (biopsy) is needed.",
-      focus: "High-resolution ultrasound evaluation, TI-RADS risk stratification, and non-surgical surveillance."
-    },
-    {
-      title: "Subclinical Thyroid Disorders",
-      description: "Mild elevations or depressions in TSH with normal free T4 levels. Requires expert endocrine judgment to decide when treatment is beneficial versus watchful waiting.",
-      focus: "Avoiding overtreatment while addressing subtle cardiovascular, fertility, or fatigue symptoms."
+      id: "pregnancy-subclinical",
+      title: "Pregnancy, Pre-Conception & Subclinical Thyroid Health",
+      subtitle: "Strict Trimester-Specific Targets, Fetal Neurocognitive Safety & Borderline TSH",
+      icon: Baby,
+      iconVariant: "rose" as const,
+      badge: "Maternal Health",
+      conditions: [
+        {
+          title: "Thyroid in Pregnancy & Pre-Conception",
+          description: "Thyroid hormone is critical for fetal brain and neurocognitive development during early gestation. TSH levels must be strictly monitored within pregnancy-specific target ranges.",
+          focus: "Pre-conceptional optimization, trimester-specific TSH monitoring, and immediate dose adjustments."
+        },
+        {
+          title: "Subclinical Thyroid Disorders",
+          description: "Mild elevations or depressions in TSH with normal free T4 levels. Requires expert endocrine judgment to decide when treatment is beneficial versus watchful waiting.",
+          focus: "Avoiding overtreatment while addressing subtle cardiovascular, fertility, or fatigue symptoms."
+        }
+      ]
     }
   ];
 
-  const commonSymptoms = [
-    { symptom: "Persistent fatigue and low energy", type: "Underactive (Hypo)" },
-    { symptom: "Unexplained weight gain despite normal diet", type: "Underactive (Hypo)" },
-    { symptom: "Feeling constantly cold when others are comfortable", type: "Underactive (Hypo)" },
-    { symptom: "Dry coarse skin and thinning hair", type: "Underactive (Hypo)" },
-    { symptom: "Irregular, heavy, or missed menstrual cycles", type: "Hormonal Disruption" },
-    { symptom: "Rapid or pounding heartbeat (palpitations)", type: "Overactive (Hyper)" },
-    { symptom: "Unintentional sudden weight loss", type: "Overactive (Hyper)" },
-    { symptom: "Hand tremors, nervous irritability, and sleep trouble", type: "Overactive (Hyper)" },
-    { symptom: "Visible swelling or fullness at the base of the neck", type: "Goitre / Nodule" },
-    { symptom: "Difficulty getting pregnant or recurrent miscarriages", type: "Fertility Impact" }
+  const symptomGroups = [
+    {
+      id: "hypo-signs",
+      title: "Underactive (Hypo) Indicators",
+      subtitle: "Metabolism slowdown signs",
+      badge: "Hypothyroidism",
+      icon: ActivitySquare,
+      iconVariant: "sky" as const,
+      symptoms: [
+        "Persistent fatigue and low energy despite adequate sleep",
+        "Unexplained weight gain or inability to shed weight despite normal diet",
+        "Feeling constantly cold when others are comfortable",
+        "Dry coarse skin, brittle nails, and thinning hair"
+      ]
+    },
+    {
+      id: "hyper-signs",
+      title: "Overactive (Hyper) Indicators",
+      subtitle: "Hyper-metabolic acceleration signs",
+      badge: "Hyperthyroidism",
+      icon: HeartPulse,
+      iconVariant: "amber" as const,
+      symptoms: [
+        "Rapid or pounding heartbeat (palpitations) at rest",
+        "Unintentional sudden weight loss despite increased appetite",
+        "Hand tremors, nervous irritability, and sleep trouble"
+      ]
+    },
+    {
+      id: "hormonal-structural",
+      title: "Structural & Hormonal Indicators",
+      subtitle: "Neck enlargement, cycles & fertility",
+      badge: "Reproductive & Gland",
+      icon: ShieldCheck,
+      iconVariant: "rose" as const,
+      symptoms: [
+        "Visible swelling, lump, or fullness at the base of the neck (Goitre)",
+        "Irregular, heavy, or missed menstrual cycles",
+        "Difficulty getting pregnant or history of recurrent miscarriages"
+      ]
+    }
   ];
 
   const faqs = [
@@ -115,7 +178,7 @@ export default function ThyroidCarePage() {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={openModal}
-                className="btn-primary group"
+                className="btn-primary group cursor-pointer"
               >
                 <CalendarHeart className="w-5 h-5" />
                 <span>Book Thyroid Consultation</span>
@@ -142,7 +205,7 @@ export default function ThyroidCarePage() {
       </section>
 
       {/* Philosophy Callout: Why an Endocrinologist */}
-      <section className="py-12 bg-white border-b border-border/80">
+      <section className="py-10 bg-white border-b border-border/80">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             <div className="md:col-span-1">
@@ -160,82 +223,122 @@ export default function ThyroidCarePage() {
         </div>
       </section>
 
-      {/* Conditions Treated Grid */}
-      <section className="py-20 lg:py-28 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-6xl">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+      {/* Conditions Treated - Grouped Accordion */}
+      <section className="py-12 sm:py-16 lg:py-20 relative">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-5xl">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
             <ScrollReveal direction="up">
-              <div className="section-tag mb-4">
+              <div className="section-tag mb-3">
                 <ShieldCheck className="w-4 h-4 text-primary" />
                 <span>Specialized Conditions</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold font-heading text-navy mb-4 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-navy mb-3 tracking-tight">
                 Thyroid Conditions <span className="gradient-text">We Manage</span>
               </h2>
-              <p className="text-text-secondary text-sm sm:text-base">
-                Structured clinical protocols for every category of adult, adolescent, and maternal thyroid health.
+              <p className="text-text-secondary text-xs sm:text-sm md:text-base">
+                Structured into 3 clinical groups covering adult, maternal, and structural thyroid health. Tap any group to view clinical protocols.
               </p>
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 mb-20">
-            {conditions.map((item, index) => {
-              const conditionIcons: LucideIcon[] = [ActivitySquare, ShieldAlert, Activity, Baby, Search, Sparkles];
-              const conditionVariants: IconBadgeVariant[] = ["sky", "teal", "amber", "rose", "indigo", "mint"];
-              const CondIcon = conditionIcons[index % conditionIcons.length];
-              const condVariant = conditionVariants[index % conditionVariants.length];
+          {/* Grouped Conditions */}
+          <div className="space-y-4 mb-16">
+            {conditionGroups.map((grp, idx) => {
+              const isExpanded = openConditionGroup === grp.id;
 
               return (
-                <ScrollReveal key={index} delay={index * 0.08} direction="up">
-                  <div className="bg-white rounded-3xl p-7 sm:p-8 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
-                    <div className="mb-4">
-                      <CenterIconBadge icon={CondIcon} variant={condVariant} size="md" />
+                <ScrollReveal key={grp.id} delay={idx * 0.05} direction="up">
+                  <ExpandableGroup
+                    id={grp.id}
+                    title={grp.title}
+                    subtitle={grp.subtitle}
+                    badge={grp.badge}
+                    icon={grp.icon}
+                    iconVariant={grp.iconVariant}
+                    itemCount={`${grp.conditions.length} Conditions`}
+                    isExpanded={isExpanded}
+                    onToggle={() => setOpenConditionGroup((prev) => (prev === grp.id ? null : grp.id))}
+                    variant="card"
+                    toggleStyle="pill"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                      {grp.conditions.map((item, cIdx) => (
+                        <div
+                          key={cIdx}
+                          className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs flex flex-col justify-between"
+                        >
+                          <div>
+                            <h4 className="text-sm sm:text-base font-bold font-heading text-navy mb-2 flex items-center gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                              <span>{item.title}</span>
+                            </h4>
+                            <p className="text-xs text-text-secondary leading-relaxed mb-3">
+                              {item.description}
+                            </p>
+                          </div>
+                          <div className="p-3 bg-soft-teal/40 rounded-xl border border-primary/20 text-xs">
+                            <strong className="text-navy font-bold block mb-0.5">Clinical Approach:</strong>
+                            <span className="text-primary font-medium">{item.focus}</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold font-heading text-navy mb-2.5 group-hover:text-primary transition-colors leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-5 flex-grow">
-                      {item.description}
-                    </p>
-                    <div className="pt-3.5 border-t border-[#E3EBF0] text-xs font-medium text-primary w-full text-left">
-                      <strong className="text-navy">Approach: </strong>{item.focus}
-                    </div>
-                  </div>
+                  </ExpandableGroup>
                 </ScrollReveal>
               );
             })}
           </div>
 
-          {/* Symptoms Checklist */}
+          {/* Symptoms Checklist — Grouped Accordion */}
           <ScrollReveal direction="up">
-            <div className="glass-card rounded-3xl p-8 lg:p-12 border border-border/80 shadow-card mb-20">
-              <div className="max-w-3xl mb-8">
+            <div className="glass-card rounded-3xl p-6 sm:p-8 lg:p-10 border border-border/80 shadow-card mb-16">
+              <div className="max-w-3xl mb-6 sm:mb-8">
                 <span className="text-xs font-bold text-primary uppercase tracking-widest block mb-2">Clinical Warning Signs</span>
                 <h3 className="text-2xl sm:text-3xl font-bold font-heading text-navy mb-3">
                   Symptoms That Warrant a Thyroid Evaluation
                 </h3>
-                <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-                  Thyroid disorders can develop gradually and mimic routine stress or fatigue. If you experience combinations of the following signs, an endocrine test provides definitive clarity:
+                <p className="text-text-secondary text-xs sm:text-sm md:text-base leading-relaxed">
+                  Thyroid disorders can develop gradually. Grouped by clinical symptom category below:
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {commonSymptoms.map((symp, i) => (
-                  <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-pale-blue/30 border border-border/70 hover:border-primary/30 transition-colors">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                    <div>
-                      <div className="text-sm font-semibold text-navy">{symp.symptom}</div>
-                      <div className="text-[11px] text-primary font-medium">{symp.type}</div>
-                    </div>
-                  </div>
-                ))}
+              <div className="space-y-3.5">
+                {symptomGroups.map((grp) => {
+                  const isExpanded = openSymptomGroup === grp.id;
+
+                  return (
+                    <ExpandableGroup
+                      key={grp.id}
+                      id={grp.id}
+                      title={grp.title}
+                      subtitle={grp.subtitle}
+                      badge={grp.badge}
+                      icon={grp.icon}
+                      iconVariant={grp.iconVariant}
+                      itemCount={`${grp.symptoms.length} Signs`}
+                      isExpanded={isExpanded}
+                      onToggle={() => setOpenSymptomGroup((prev) => (prev === grp.id ? null : grp.id))}
+                      variant="subtle"
+                      toggleStyle="pill"
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                        {grp.symptoms.map((symp, sIdx) => (
+                          <div key={sIdx} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs">
+                            <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                            <span className="text-xs font-semibold text-navy leading-snug">{symp}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </ExpandableGroup>
+                  );
+                })}
               </div>
             </div>
           </ScrollReveal>
 
           {/* Educational FAQs */}
-          <div className="max-w-3xl mx-auto mb-20">
-            <div className="text-center mb-10">
+          <div className="max-w-3xl mx-auto mb-16 sm:mb-20">
+            <div className="text-center mb-8">
               <span className="text-xs font-bold text-primary uppercase tracking-widest block mb-2">Patient Education</span>
               <h3 className="text-2xl sm:text-3xl font-bold font-heading text-navy">
                 Frequently Asked Thyroid Questions
@@ -245,7 +348,7 @@ export default function ThyroidCarePage() {
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3.5">
               {faqs.map((faq, index) => {
                 const isOpen = openFaq === index;
                 return (
@@ -255,14 +358,14 @@ export default function ThyroidCarePage() {
                   >
                     <button
                       onClick={() => toggleFaq(index)}
-                      className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-heading font-bold text-navy text-sm sm:text-base hover:text-primary transition-colors cursor-pointer"
+                      className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-heading font-bold text-navy text-xs sm:text-sm hover:text-primary transition-colors cursor-pointer"
                       aria-expanded={isOpen}
                     >
                       <span>{faq.q}</span>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
                         isOpen ? "bg-primary text-white rotate-180" : "bg-pale-blue text-primary"
                       }`}>
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="w-3.5 h-3.5" />
                       </div>
                     </button>
                     <AnimatePresence initial={false}>
@@ -274,7 +377,7 @@ export default function ThyroidCarePage() {
                           transition={{ duration: 0.25, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="px-5 sm:px-6 pb-6 pt-1 text-text-secondary text-xs sm:text-sm leading-relaxed border-t border-border/60 bg-pale-blue/20">
+                          <div className="px-4 sm:px-5 pb-5 pt-1 text-text-secondary text-xs sm:text-sm leading-relaxed border-t border-border/60 bg-pale-blue/20">
                             {faq.a}
                           </div>
                         </motion.div>
@@ -288,25 +391,25 @@ export default function ThyroidCarePage() {
 
           {/* Action Card */}
           <ScrollReveal direction="up">
-            <div className="bg-navy rounded-3xl p-8 sm:p-12 text-white shadow-xl text-center max-w-4xl mx-auto relative overflow-hidden border border-white/10">
+            <div className="bg-navy rounded-3xl p-6 sm:p-10 text-white shadow-xl text-center max-w-4xl mx-auto relative overflow-hidden border border-white/10">
               <div className="absolute top-0 right-0 w-72 h-72 bg-primary/25 rounded-full blur-3xl pointer-events-none" />
               <div className="relative z-10">
-                <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-4 text-white">
+                <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-3 text-white">
                   Have Questions About Your Thyroid Reports?
                 </h3>
-                <p className="text-white/85 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
+                <p className="text-white/85 text-xs sm:text-sm md:text-base max-w-2xl mx-auto mb-6 leading-relaxed">
                   Bring your previous reports for an unhurried, evidence-based review with Dr. Navya Sruthi Mandapati, DM (Endocrinology) — University Topper.
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-4">
+                <div className="flex flex-wrap items-center justify-center gap-3">
                   <button
                     onClick={openModal}
-                    className="px-8 py-3.5 bg-white text-navy hover:bg-pale-blue font-bold rounded-full shadow-card hover:shadow-card-hover transition-all text-sm sm:text-base active:scale-95"
+                    className="px-7 py-3 bg-white text-navy hover:bg-pale-blue font-bold rounded-full shadow-card hover:shadow-card-hover transition-all text-xs sm:text-sm active:scale-95 cursor-pointer"
                   >
                     Schedule Consultation
                   </button>
                   <Link
                     href="/contact"
-                    className="px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/30 transition-all text-sm sm:text-base active:scale-95"
+                    className="px-7 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/30 transition-all text-xs sm:text-sm active:scale-95"
                   >
                     Clinic Address & Directions
                   </Link>

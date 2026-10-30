@@ -4,19 +4,73 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { 
   Activity, ArrowRight, Bone, Scale, ActivitySquare, Droplets, Baby, 
-  Brain, Apple, Stethoscope, HeartPulse, LineChart, Syringe, Sparkles, CheckCircle2, ShieldCheck, LucideIcon, Phone, MessageCircle 
+  Brain, Apple, Stethoscope, HeartPulse, LineChart, Syringe, Sparkles, CheckCircle2, ShieldCheck, LucideIcon, Phone, MessageCircle, CalendarHeart 
 } from "lucide-react";
 import Link from "next/link";
 import { useAppointment } from "@/context/AppointmentContext";
 import { doctorData } from "@/data/doctorData";
 import { PreventionSection } from "@/components/home/PreventionSection";
 import { ClinicFacilitiesSection } from "@/components/home/ClinicFacilitiesSection";
+import { IconBadgeVariant } from "@/components/ui/CreativeCard";
+import { ExpandableGroup } from "@/components/ui/ExpandableGroup";
 
-import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
+interface CategoryMeta {
+  id: string;
+  label: string;
+  subtitle: string;
+  icon: LucideIcon;
+  variant: IconBadgeVariant;
+  badge: string;
+}
+
+const categoryMetadata: CategoryMeta[] = [
+  {
+    id: "metabolic",
+    label: "Diabetes & Metabolic Disorders",
+    subtitle: "Type 1 & Type 2 Diabetes, Prediabetes Reversal, Medical Obesity & Metabolic Syndrome",
+    icon: Activity,
+    variant: "teal",
+    badge: "Metabolic Care"
+  },
+  {
+    id: "thyroid",
+    label: "Thyroid Disorders & Nodules",
+    subtitle: "Hypothyroidism, Hyperthyroidism, Hashimoto's, Goitre & Pregnancy Thyroid Health",
+    icon: ActivitySquare,
+    variant: "sky",
+    badge: "Thyroid Care"
+  },
+  {
+    id: "reproductive",
+    label: "Reproductive & Women's Hormonal Health",
+    subtitle: "PCOS, Cycle Irregularity, Hirsutism, Hormonal Acne & Fertility Balance",
+    icon: Droplets,
+    variant: "rose",
+    badge: "Women's Health"
+  },
+  {
+    id: "paediatric",
+    label: "Paediatric & Growth Endocrinology",
+    subtitle: "Short Stature, Growth Delays, Early/Delayed Puberty & Juvenile Endocrine Care",
+    icon: Baby,
+    variant: "mint",
+    badge: "Child Growth"
+  },
+  {
+    id: "hormonal",
+    label: "Pituitary, Adrenal & Bone Mineral Health",
+    subtitle: "Prolactinoma, Cushing's, Adrenal Disorders, Osteoporosis & Calcium Equilibrium",
+    icon: Brain,
+    variant: "navy",
+    badge: "Master Glands"
+  }
+];
 
 export default function ServicesPage() {
   const { openModal } = useAppointment();
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedFilter, setSelectedFilter] = useState<string>("all");
+  // Default open the first group or the filtered one
+  const [openGroupIds, setOpenGroupIds] = useState<string[]>(["metabolic"]);
 
   const categoryIcons: Record<string, LucideIcon> = {
     "type-1-diabetes": Activity,
@@ -60,18 +114,35 @@ export default function ServicesPage() {
     "calcium-bone": "/bone-mineral-health",
   };
 
-  const categories = [
-    { id: "all", label: "All Specialities" },
+  const filterTabs = [
+    { id: "all", label: "All 5 Groups" },
     { id: "metabolic", label: "Diabetes & Metabolism" },
     { id: "thyroid", label: "Thyroid" },
-    { id: "paediatric", label: "Paediatric Endocrinology" },
     { id: "reproductive", label: "Reproductive & PCOS" },
+    { id: "paediatric", label: "Paediatric & Growth" },
     { id: "hormonal", label: "Pituitary, Adrenal & Bone" }
   ];
 
-  const filteredSpecialities = selectedCategory === "all"
-    ? doctorData.specialities
-    : doctorData.specialities.filter(s => s.category === selectedCategory);
+  const handleFilterSelect = (catId: string) => {
+    setSelectedFilter(catId);
+    if (catId === "all") {
+      setOpenGroupIds(["metabolic"]);
+    } else {
+      setOpenGroupIds([catId]);
+    }
+  };
+
+  const toggleGroup = (groupId: string) => {
+    setOpenGroupIds((prev) =>
+      prev.includes(groupId)
+        ? prev.filter((id) => id !== groupId)
+        : [...prev, groupId]
+    );
+  };
+
+  const displayedGroups = selectedFilter === "all"
+    ? categoryMetadata
+    : categoryMetadata.filter((g) => g.id === selectedFilter);
 
   return (
     <div className="overflow-hidden bg-background min-h-screen pb-24">
@@ -92,24 +163,24 @@ export default function ServicesPage() {
             </h1>
             
             <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto">
-              Comprehensive, patient-centred care for complex hormonal, metabolic, and glandular disorders guided by Dr. Navya Sruthi Mandapati, DM (Endocrinology).
+              Organized into 5 clinical groups covering 11 endocrine specialities. Tap any group to view related services, clinical focus, and guidance by Dr. Navya Sruthi Mandapati, DM (Endocrinology).
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Filter Tabs */}
-      <section className="pt-12 pb-4">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            {categories.map((cat) => (
+      {/* Category Filter Tabs */}
+      <section className="pt-8 sm:pt-10 pb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            {filterTabs.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all ${
-                  selectedCategory === cat.id
-                    ? "bg-primary text-white shadow-card"
-                    : "bg-white text-navy hover:bg-soft-teal border border-border"
+                onClick={() => handleFilterSelect(cat.id)}
+                className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all touch-target cursor-pointer ${
+                  selectedFilter === cat.id
+                    ? "bg-primary text-white shadow-card scale-102"
+                    : "bg-white text-navy hover:bg-soft-teal border border-border hover:border-primary/30"
                 }`}
               >
                 {cat.label}
@@ -119,67 +190,100 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 11 Clinical Specialities Cards Grid */}
-      <section className="py-16 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {filteredSpecialities.map((item, index) => {
-              const Icon = categoryIcons[item.id] || Stethoscope;
-              const variant = categoryVariants[item.id] || "teal";
+      {/* Grouped Accordion Sections */}
+      <section className="py-6 sm:py-10 relative">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-5xl">
+          <div className="space-y-4 sm:space-y-5">
+            {displayedGroups.map((group, idx) => {
+              const groupServices = doctorData.specialities.filter(
+                (s) => s.category === group.id
+              );
+              const isExpanded = openGroupIds.includes(group.id);
+
               return (
-                <ScrollReveal key={item.id} delay={(index % 3) * 0.08}>
-                  <div 
-                    id={item.id}
-                    className="bg-white rounded-3xl p-7 sm:p-8 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col group scroll-mt-28"
+                <ScrollReveal key={group.id} delay={idx * 0.05} direction="up">
+                  <ExpandableGroup
+                    id={group.id}
+                    title={group.label}
+                    subtitle={group.subtitle}
+                    badge={group.badge}
+                    icon={group.icon}
+                    iconVariant={group.variant}
+                    itemCount={`${groupServices.length} Services`}
+                    isExpanded={isExpanded}
+                    onToggle={() => toggleGroup(group.id)}
+                    variant="card"
+                    toggleStyle="pill"
                   >
-                    {/* Centered Icon Badge */}
-                    <div className="flex justify-center mb-5">
-                      <CenterIconBadge 
-                        icon={Icon} 
-                        variant={variant} 
-                        size="md" 
-                      />
+                    {/* Rendered Specialities Inside Group */}
+                    <div className="space-y-4 pt-1">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {groupServices.map((item) => {
+                          const Icon = categoryIcons[item.id] || Stethoscope;
+                          const variant = categoryVariants[item.id] || "teal";
+
+                          return (
+                            <div
+                              key={item.id}
+                              id={item.id}
+                              className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-card transition-all flex flex-col justify-between"
+                            >
+                              <div>
+                                <div className="flex items-center gap-3 mb-3">
+                                  <div className="w-10 h-10 rounded-xl bg-soft-teal/50 text-primary flex items-center justify-center border border-primary/20 shrink-0">
+                                    <Icon className="w-5 h-5 text-primary" />
+                                  </div>
+                                  <div>
+                                    <h4 className="text-sm sm:text-base font-bold font-heading text-navy">
+                                      {item.title}
+                                    </h4>
+                                    <p className="text-xs text-text-secondary line-clamp-1">
+                                      {item.shortDesc}
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <p className="text-xs text-text-secondary leading-relaxed mb-3">
+                                  {item.fullDesc}
+                                </p>
+
+                                <div className="space-y-1.5 mb-4 bg-slate-50/70 p-3 rounded-xl border border-slate-200/60">
+                                  <span className="text-[10px] font-bold text-navy uppercase tracking-wider block">
+                                    Key Clinical Focus:
+                                  </span>
+                                  {item.keyPoints.map((point, pIdx) => (
+                                    <div key={pIdx} className="flex items-start gap-1.5 text-xs text-slate-700">
+                                      <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                                      <span>{point}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-2 pt-2 border-t border-slate-100">
+                                {detailLinkMap[item.id] && (
+                                  <Link 
+                                    href={detailLinkMap[item.id]}
+                                    className="flex-1 py-2 px-3 rounded-xl border border-border text-navy hover:text-primary hover:border-primary/40 text-center font-bold transition-colors text-xs flex items-center justify-center gap-1 group/link touch-target"
+                                  >
+                                    <span>Learn More</span>
+                                    <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
+                                  </Link>
+                                )}
+                                <button 
+                                  onClick={openModal}
+                                  className="flex-1 py-2 px-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold transition-colors text-xs shadow-2xs text-center active:scale-95 touch-target cursor-pointer flex items-center justify-center gap-1"
+                                >
+                                  <CalendarHeart className="w-3.5 h-3.5" />
+                                  <span>Book Visit</span>
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
-
-                    <h3 className="text-xl sm:text-2xl font-bold font-heading text-navy mb-2.5 text-center group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-6 text-center">
-                      {item.fullDesc}
-                    </p>
-
-                    {/* Key Highlights */}
-                    <div className="space-y-2 mb-8 flex-grow pt-4 border-t border-[#E3EBF0]">
-                      <span className="text-[11px] font-bold text-navy uppercase tracking-wider block mb-1.5">
-                        Clinical Focus:
-                      </span>
-                      {item.keyPoints.map((pt, pIdx) => (
-                        <div key={pIdx} className="flex items-start gap-2 text-xs text-text-secondary">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{pt}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Action buttons */}
-                    <div className="flex items-center gap-2.5 mt-auto pt-2">
-                      {detailLinkMap[item.id] && (
-                        <Link 
-                          href={detailLinkMap[item.id]}
-                          className="flex-1 py-2.5 rounded-xl border border-border text-navy hover:text-primary hover:border-primary/40 text-center font-semibold transition-colors text-xs"
-                        >
-                          Learn More
-                        </Link>
-                      )}
-                      <button 
-                        onClick={openModal}
-                        className="flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold transition-colors text-xs shadow-2xs text-center active:scale-95"
-                      >
-                        Book Visit
-                      </button>
-                    </div>
-                  </div>
+                  </ExpandableGroup>
                 </ScrollReveal>
               );
             })}
@@ -187,57 +291,61 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Complete Clinic Facilities Section */}
-      <ClinicFacilitiesSection isCompact={false} />
-
-      {/* Prevention Before Complications Section */}
+      {/* Prevention & Warning Signs Section */}
       <PreventionSection />
 
-      {/* CTA Section */}
-      <section className="container mx-auto px-4 md:px-6 pt-16 max-w-5xl">
-        <ScrollReveal>
-          <div className="bg-gradient-navy rounded-[2.5rem] p-8 md:p-14 text-center text-white relative overflow-hidden shadow-xl border border-white/10">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-white">
-                Need Expert Endocrine Guidance?
-              </h2>
-              <p className="text-base sm:text-lg text-white/85 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
-                Don't leave hormonal or metabolic symptoms unresolved. Dr. Navya Sruthi Mandapati provides thorough, individualized evaluations tailored to your health goals.
-              </p>
-              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
-                <button 
-                  onClick={openModal}
-                  className="px-8 py-4 bg-white text-navy font-bold rounded-full shadow-md hover:bg-soft-teal transition-all text-base"
-                >
-                  Schedule An Appointment
-                </button>
-                <a
-                  href="tel:8464070196"
-                  className="px-8 py-4 bg-primary/80 hover:bg-primary text-white font-semibold rounded-full border border-white/20 transition-all text-base inline-flex items-center gap-2"
-                >
-                  <Phone className="w-4 h-4 text-white" />
-                  Call: 8464070196
-                </a>
-                <a
-                  href="https://wa.me/918464070196"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full shadow-md transition-all text-base inline-flex items-center gap-2"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  WhatsApp: 8464070196
-                </a>
-                <Link
-                  href="/contact"
-                  className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/20 transition-all text-base"
-                >
-                  Contact Clinic
-                </Link>
+      {/* Facilities Section */}
+      <ClinicFacilitiesSection />
+
+      {/* Final Appointment CTA with Guaranteed High-Contrast Styling */}
+      <section className="py-16 sm:py-20 bg-pale-blue/30 border-t border-border">
+        <div className="container mx-auto px-4 md:px-6 text-center max-w-4xl">
+          <ScrollReveal>
+            <div className="bg-gradient-to-br from-[#173B57] via-[#1E4D6E] to-[#0F2B40] text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-white/10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-72 h-72 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-white/15 border border-white/20 text-teal-200 font-semibold rounded-full text-xs sm:text-sm mb-4">
+                  <ShieldCheck className="w-4 h-4 text-amber-300" />
+                  Vizianagaram&apos;s Dedicated Endocrine Centre
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading !text-white mb-4">
+                  Need Personalized Guidance for <span className="text-amber-300">Your Reports?</span>
+                </h2>
+
+                <p className="text-white/85 text-xs sm:text-sm md:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
+                  Book a detailed clinical consultation with Dr. Navya Sruthi Mandapati. We provide clear answers, root-cause diagnosis, and personalized treatment plans in Telugu and English.
+                </p>
+
+                <div className="flex flex-wrap items-center justify-center gap-3.5">
+                  <button
+                    onClick={openModal}
+                    className="px-8 py-3.5 bg-white hover:bg-teal-50 text-navy font-bold rounded-full shadow-card transition-all text-xs sm:text-sm cursor-pointer active:scale-95"
+                  >
+                    Book In-Person Consultation
+                  </button>
+                  <a
+                    href="tel:8464070196"
+                    className="px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full border border-white/25 transition-all text-xs sm:text-sm flex items-center gap-2"
+                  >
+                    <Phone className="w-4 h-4 text-teal-300" />
+                    <span>Call: 8464070196</span>
+                  </a>
+                  <a
+                    href="https://wa.me/918464070196"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-7 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-full shadow-xs transition-all text-xs sm:text-sm flex items-center gap-2"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </section>
 
     </div>

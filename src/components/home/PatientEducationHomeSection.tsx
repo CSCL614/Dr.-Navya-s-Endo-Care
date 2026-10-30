@@ -8,7 +8,17 @@ import Link from "next/link";
 import { doctorData } from "@/data/doctorData";
 
 export function PatientEducationHomeSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showAllMobile, setShowAllMobile] = useState<boolean>(false);
+
+  const categories = ["All", ...Array.from(new Set(doctorData.patientQuestions.map((q) => q.category)))];
+
+  const filteredQuestions = selectedCategory === "All"
+    ? doctorData.patientQuestions
+    : doctorData.patientQuestions.filter((q) => q.category === selectedCategory);
+
+  const displayedQuestions = showAllMobile ? filteredQuestions : filteredQuestions.slice(0, 4);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -19,14 +29,14 @@ export function PatientEducationHomeSection() {
       {/* Soft Ambient Accents */}
       <div className="absolute top-0 right-1/3 w-[400px] h-[400px] bg-pale-blue/40 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-5xl">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
           <ScrollReveal>
             <div className="badge-mint mb-3">
               <BookOpen className="w-3.5 h-3.5 text-primary" />
-              <span>Patient Education & Clarity</span>
+              <span>Patient Education & FAQs</span>
             </div>
 
             <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl lg:text-[2.6rem] font-bold font-heading text-navy leading-tight mb-3 tracking-tight">
@@ -41,18 +51,42 @@ export function PatientEducationHomeSection() {
             </div>
 
             <p className="text-xs sm:text-sm text-[#344654] max-w-2xl mx-auto leading-relaxed">
-              Understanding your condition is the first and most powerful step toward regaining your metabolic health. Here are clear answers to questions patients frequently ask us in Vizianagaram.
+              Clear, evidence-backed answers to questions patients frequently ask Dr. Navya Sruthi Mandapati in Vizianagaram. Tap any question to explore.
             </p>
           </ScrollReveal>
+
+          {/* Interactive Category Filter Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-6">
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    setOpenIndex(null);
+                    setShowAllMobile(false);
+                  }}
+                  className={`text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-200 touch-target ${
+                    isSelected
+                      ? "bg-primary text-white shadow-2xs"
+                      : "bg-slate-100 text-text-secondary hover:bg-slate-200"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Scalable Accordion Grid */}
-        <div className="space-y-3 mb-10 sm:mb-14">
-          {doctorData.patientQuestions.map((item, index) => {
+        <div className="space-y-3 mb-6 sm:mb-10">
+          {displayedQuestions.map((item, index) => {
             const isOpen = openIndex === index;
             return (
-              <ScrollReveal key={index} delay={index * 0.02} direction="up">
-                <div className="card-white rounded-2xl border border-[#E3EBF0] shadow-card overflow-hidden transition-all duration-300 bg-white">
+              <ScrollReveal key={`${item.question}-${index}`} delay={index * 0.02} direction="up">
+                <div className="card-white rounded-2xl border border-[#E3EBF0] shadow-card overflow-hidden transition-all duration-300 bg-white hover:border-primary/40">
                   <button
                     onClick={() => toggleAccordion(index)}
                     aria-expanded={isOpen}
@@ -79,7 +113,7 @@ export function PatientEducationHomeSection() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.22, ease: "easeInOut" }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
                         <div className="px-4 sm:px-5 pb-5 pt-2 text-[#344654] text-xs sm:text-sm leading-relaxed border-t border-[#E3EBF0] bg-slate-50/60">
@@ -98,6 +132,19 @@ export function PatientEducationHomeSection() {
             );
           })}
         </div>
+
+        {/* Mobile Show More / Less Toggle */}
+        {filteredQuestions.length > 4 && (
+          <div className="text-center mb-10 sm:mb-14">
+            <button
+              onClick={() => setShowAllMobile(!showAllMobile)}
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-soft-teal hover:bg-soft-teal-dark text-primary font-bold text-xs sm:text-sm rounded-full border border-primary/25 transition-all shadow-2xs touch-target"
+            >
+              <span>{showAllMobile ? "Show Fewer Questions" : `View All ${filteredQuestions.length} Questions (+${filteredQuestions.length - 4})`}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showAllMobile ? "rotate-180" : ""}`} />
+            </button>
+          </div>
+        )}
 
         {/* CTA to Patient Resources */}
         <ScrollReveal direction="up" delay={0.1}>

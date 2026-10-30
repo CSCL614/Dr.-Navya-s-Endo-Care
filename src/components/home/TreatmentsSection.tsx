@@ -4,6 +4,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import Link from "next/link";
 import { ArrowRight, Activity, Scale, ActivitySquare, Droplets, Baby, HeartPulse, LineChart } from "lucide-react";
 import { CenterIconBadge } from "@/components/ui/CreativeCard";
+import { ExpandableCard } from "@/components/ui/ExpandableCard";
 import { doctorData } from "@/data/doctorData";
 
 export function TreatmentsSection() {
@@ -48,39 +49,47 @@ export function TreatmentsSection() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7 items-start">
           {featured.map((treatment, index) => {
             const config = iconConfig[index % iconConfig.length];
             return (
               <ScrollReveal key={treatment.id} delay={index * 0.05} direction="up">
-                <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E3EBF0] shadow-card hover:shadow-card-hover hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-pale-blue/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  
-                  <div className="relative z-10 flex flex-col items-center h-full w-full">
-                    <CenterIconBadge 
-                      icon={config.icon}
-                      variant={config.variant}
-                      size="lg"
-                      className="mb-4"
-                    />
-                    
-                    <h3 className="text-lg sm:text-xl font-bold text-navy mb-2 font-heading group-hover:text-primary transition-colors">
-                      {treatment.title}
-                    </h3>
-                    
-                    <p className="text-[#344654] text-xs sm:text-sm leading-relaxed mb-5 flex-grow">
-                      {treatment.shortDesc}
-                    </p>
-                    
+                <ExpandableCard
+                  icon={config.icon}
+                  iconVariant={config.variant}
+                  iconSize="md"
+                  title={treatment.title}
+                  summary={treatment.shortDesc}
+                  expandLabel="Clinical Focus"
+                  collapseLabel="Hide Details"
+                  toggleStyle="pill"
+                  className="h-full"
+                  action={
                     <Link 
                       href={`/services#${treatment.id}`}
-                      className="inline-flex items-center text-xs sm:text-sm font-bold text-primary group-hover:text-primary-dark transition-colors pt-2 border-t border-[#E3EBF0] w-full justify-center"
+                      className="inline-flex items-center text-xs font-bold text-primary group-hover:text-primary-dark transition-colors w-full justify-center gap-1 group/link touch-target"
                     >
                       <span>Read Full Details</span>
-                      <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
                     </Link>
+                  }
+                >
+                  <div className="space-y-2 text-left pt-1 text-xs text-[#344654]">
+                    <p className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                      {treatment.fullDesc}
+                    </p>
+                    {treatment.keyPoints && (
+                      <div className="space-y-1 pt-1">
+                        {treatment.keyPoints.slice(0, 3).map((kp, kIdx) => (
+                          <div key={kIdx} className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                            <span>{kp}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                </div>
+                </ExpandableCard>
               </ScrollReveal>
             );
           })}

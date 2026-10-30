@@ -1,49 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Phone, CalendarHeart, MessageCircle, ArrowUp } from "lucide-react";
+import { Phone, CalendarHeart, MessageCircle } from "lucide-react";
 import { useAppointment } from "@/context/AppointmentContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function MobileActionDock() {
   const { openModal } = useAppointment();
   const [isVisible, setIsVisible] = useState(false);
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setIsVisible(scrollY > 240);
-      setShowBackToTop(scrollY > 600);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <>
-      {/* Floating Back to Top Button (Subtle, Accessible) */}
-      <AnimatePresence>
-        {showBackToTop && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.2 }}
-            onClick={scrollToTop}
-            aria-label="Scroll back to top of page"
-            className="fixed bottom-24 sm:bottom-22 right-4 sm:right-6 z-40 w-10 h-10 rounded-full bg-white text-navy border border-border shadow-md hover:bg-soft-teal hover:text-primary flex items-center justify-center transition-colors active:scale-95 touch-target"
-          >
-            <ArrowUp className="w-4 h-4" />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
       {/* Pinned Bottom Mobile Action Dock */}
       <AnimatePresence>
         {isVisible && (

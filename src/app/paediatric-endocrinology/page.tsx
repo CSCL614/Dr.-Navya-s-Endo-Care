@@ -3,73 +3,137 @@
 import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { 
-  Sparkles, CheckCircle2, ArrowRight, ShieldCheck, 
-  Baby, AlertCircle, CalendarHeart, ChevronDown, Phone, HeartPulse, LineChart, Clock, MessageCircle, ActivitySquare, Activity, Scale, LucideIcon
+  Sparkles, CheckCircle2, ArrowRight, CalendarHeart, 
+  Clock, ShieldCheck, HeartPulse, ChevronDown, LucideIcon, 
+  Baby, Scale, LineChart, Activity, ActivitySquare, AlertCircle, Phone, MessageCircle 
 } from "lucide-react";
-import { useAppointment } from "@/context/AppointmentContext";
 import Link from "next/link";
-import { CenterIconBadge, IconBadgeVariant } from "@/components/ui/CreativeCard";
+import { useAppointment } from "@/context/AppointmentContext";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExpandableGroup } from "@/components/ui/ExpandableGroup";
 
 export default function PaediatricEndocrinologyPage() {
   const { openModal } = useAppointment();
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openServiceGroupId, setOpenServiceGroupId] = useState<string | null>("growth-velocity");
+  const [openSignsGroupId, setOpenSignsGroupId] = useState<string | null>("height-velocity-signs");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const services = [
+  const serviceGroups = [
     {
-      title: "Short Stature & Growth Velocity Tracking",
-      description: "Careful plotting on Indian Academy of Pediatrics (IAP) and WHO growth charts to calculate yearly height velocity and compare against target genetic height.",
-      highlight: "Differentiating normal constitutional delay from endocrine growth failure."
+      id: "growth-velocity",
+      title: "Growth Velocity & Stature Assessment",
+      subtitle: "Short Stature, IAP/WHO Growth Charts, Bone Age & Growth Hormone Deficiency",
+      icon: LineChart,
+      iconVariant: "teal" as const,
+      badge: "Linear Growth",
+      services: [
+        {
+          title: "Short Stature & Growth Velocity Tracking",
+          description: "Careful plotting on Indian Academy of Pediatrics (IAP) and WHO growth charts to calculate yearly height velocity and compare against target genetic height.",
+          highlight: "Differentiating normal constitutional delay from endocrine growth failure."
+        },
+        {
+          title: "Growth Hormone Deficiency (GHD)",
+          description: "Specialized endocrine evaluation including bone age X-rays and dynamic growth hormone stimulation testing when growth velocity falls persistently below normal.",
+          highlight: "Evidence-based growth hormone therapy monitoring during open growth-plate windows."
+        }
+      ]
     },
     {
-      title: "Growth Hormone Deficiency (GHD)",
-      description: "Specialized endocrine evaluation including bone age X-rays and dynamic growth hormone stimulation testing when growth velocity falls persistently below normal.",
-      highlight: "Evidence-based growth hormone therapy monitoring during open growth-plate windows."
+      id: "puberty-timing",
+      title: "Pubertal Development & Timing",
+      subtitle: "Precocious (Early) Puberty, Delayed Puberty & Hypothalamic-Pituitary Signals",
+      icon: Clock,
+      iconVariant: "amber" as const,
+      badge: "Pubertal Health",
+      services: [
+        {
+          title: "Precocious (Early) Puberty",
+          description: "Development of secondary sexual characteristics before age 8 in girls (breast buds) or age 9 in boys (testicular enlargement). Early puberty accelerates bone aging and halts final adult height prematurely.",
+          highlight: "Central precocious puberty hormonal therapy to pause pubertal acceleration safely."
+        },
+        {
+          title: "Delayed Puberty Assessment",
+          description: "Absence of breast development by age 13 in girls or lack of testicular enlargement by age 14 in boys. Detailed evaluation of pituitary-gonadal signaling.",
+          highlight: "Restoring physiological pubertal progression with timely hormonal support."
+        }
+      ]
     },
     {
-      title: "Precocious (Early) Puberty",
-      description: "Development of secondary sexual characteristics before age 8 in girls (breast buds) or age 9 in boys (testicular enlargement). Early puberty accelerates bone aging and halts final adult height prematurely.",
-      highlight: "Central precocious puberty hormonal therapy to pause pubertal acceleration safely."
-    },
-    {
-      title: "Delayed Puberty",
-      description: "Absence of breast development by age 13 in girls or lack of testicular enlargement by age 14 in boys. Detailed evaluation of pituitary-gonadal signaling.",
-      highlight: "Restoring physiological pubertal progression with timely hormonal support."
-    },
-    {
-      title: "Childhood Type 1 Diabetes",
-      description: "Compassionate, child-centric diabetes management with multiple daily insulin injection (MDI) education, Continuous Glucose Monitoring (CGM), carbohydrate counting, and school care plans.",
-      highlight: "Empowering children and parents to live active, joyful, complication-free lives."
-    },
-    {
-      title: "Congenital & Paediatric Thyroid Disorders",
-      description: "Managing congenital hypothyroidism diagnosed at birth to protect brain and intellectual development, as well as juvenile Hashimoto's thyroiditis in school-age children.",
-      highlight: "Strict developmental milestone tracking and age-adjusted thyroxine dosing."
-    },
-    {
-      title: "Congenital Adrenal Hyperplasia (CAH)",
-      description: "Management of genetic enzyme deficiencies affecting cortisol and aldosterone production, preventing life-threatening adrenal salt-wasting crises.",
-      highlight: "Careful steroid dosing to balance growth and prevent virilization."
-    },
-    {
-      title: "Childhood Obesity & Juvenile Metabolic Health",
-      description: "Gentle, non-stigmatizing medical and dietary assessment for children gaining rapid weight, screening for early insulin resistance, fatty liver, and lipid changes.",
-      highlight: "Family-centred lifestyle guidance rather than restrictive dieting."
+      id: "paediatric-glands",
+      title: "Paediatric Glands, Juvenile Diabetes & Metabolism",
+      subtitle: "Childhood Type 1 Diabetes, Congenital Thyroid, CAH & Juvenile Weight Care",
+      icon: Baby,
+      iconVariant: "mint" as const,
+      badge: "Glands & Metabolism",
+      services: [
+        {
+          title: "Childhood Type 1 Diabetes",
+          description: "Compassionate, child-centric diabetes management with multiple daily insulin injection (MDI) education, Continuous Glucose Monitoring (CGM), carbohydrate counting, and school care plans.",
+          highlight: "Empowering children and parents to live active, joyful, complication-free lives."
+        },
+        {
+          title: "Congenital & Paediatric Thyroid Disorders",
+          description: "Managing congenital hypothyroidism diagnosed at birth to protect brain and intellectual development, as well as juvenile Hashimoto's thyroiditis in school-age children.",
+          highlight: "Strict developmental milestone tracking and age-adjusted thyroxine dosing."
+        },
+        {
+          title: "Congenital Adrenal Hyperplasia (CAH)",
+          description: "Management of genetic enzyme deficiencies affecting cortisol and aldosterone production, preventing life-threatening adrenal salt-wasting crises.",
+          highlight: "Careful steroid dosing to balance growth and prevent virilization."
+        },
+        {
+          title: "Childhood Obesity & Juvenile Metabolic Health",
+          description: "Gentle, non-stigmatizing medical and dietary assessment for children gaining rapid weight, screening for early insulin resistance, fatty liver, and lipid changes.",
+          highlight: "Family-centred lifestyle guidance rather than restrictive dieting."
+        }
+      ]
     }
   ];
 
-  const warningSigns = [
-    "Child is noticeably shorter than peers or class fellows of the same age and gender",
-    "Growing less than 4 to 5 centimetres per year after age 4",
-    "Clothes and shoe sizes do not change for over a year",
-    "Breast development or pubic hair appearing in girls before age 8",
-    "Testicular enlargement or voice change in boys before age 9",
-    "No pubertal signs by age 13 in girls or age 14 in boys",
-    "Sudden extreme thirst, bedwetting in a previously toilet-trained child, or rapid weight loss",
-    "Poor academic focus, constant sluggishness, and dry skin in a growing child"
+  const warningSignsGroups = [
+    {
+      id: "height-velocity-signs",
+      title: "Height & Growth Velocity Indicators",
+      subtitle: "Slower growth compared to age peers",
+      icon: LineChart,
+      iconVariant: "teal" as const,
+      badge: "Growth Rate",
+      signs: [
+        "Child is noticeably shorter than peers or class fellows of the same age and gender",
+        "Growing less than 4 to 5 centimetres per year after age 4",
+        "Clothes and shoe sizes do not change for over a year"
+      ]
+    },
+    {
+      id: "puberty-timing-signs",
+      title: "Pubertal Timing Indicators",
+      subtitle: "Too early or noticeably delayed puberty signs",
+      icon: Clock,
+      iconVariant: "amber" as const,
+      badge: "Pubertal Timing",
+      signs: [
+        "Breast development or pubic hair appearing in girls before age 8",
+        "Testicular enlargement or voice change in boys before age 9",
+        "No pubertal signs by age 13 in girls or age 14 in boys"
+      ]
+    },
+    {
+      id: "systemic-signs",
+      title: "Systemic Endocrine & Blood Sugar Signs",
+      subtitle: "Metabolism, hydration and energy flags",
+      icon: Baby,
+      iconVariant: "rose" as const,
+      badge: "Metabolism",
+      signs: [
+        "Sudden extreme thirst, bedwetting in a previously toilet-trained child, or rapid weight loss",
+        "Poor academic focus, constant sluggishness, and dry skin in a growing child"
+      ]
+    }
   ];
 
   const faqs = [
@@ -120,7 +184,7 @@ export default function PaediatricEndocrinologyPage() {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={openModal}
-                className="px-8 py-3.5 bg-primary hover:bg-primary-dark text-white rounded-full font-bold shadow-soft transition-all text-sm sm:text-base flex items-center gap-2"
+                className="px-8 py-3.5 bg-primary hover:bg-primary-dark text-white rounded-full font-bold shadow-soft transition-all text-sm sm:text-base flex items-center gap-2 cursor-pointer"
               >
                 <CalendarHeart className="w-5 h-5" />
                 Book Child Growth Consultation
@@ -136,27 +200,27 @@ export default function PaediatricEndocrinologyPage() {
                 href="https://wa.me/918464070196"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full shadow-xs transition-all text-sm sm:text-base flex items-center gap-2"
+                className="px-7 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full shadow-card hover:shadow-card-hover transition-all text-sm sm:text-base flex items-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
-                WhatsApp: 8464070196
+                WhatsApp
               </a>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Time-Sensitive Growth Window Message */}
-      <section className="py-12 bg-amber-50/70 border-b border-amber-200/60">
+      {/* Critical Window Banner */}
+      <section className="py-10 bg-teal-50/60 border-b border-teal-100">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             <div className="md:col-span-1">
-              <span className="text-xs font-bold text-amber-800 uppercase tracking-widest block mb-1">Time-Sensitive Window</span>
+              <span className="text-xs font-bold text-teal-700 uppercase tracking-widest block mb-1">Time Sensitivity</span>
               <h3 className="text-2xl font-bold font-heading text-slate-800">
-                Why Timing Matters in Childhood Growth
+                The Growth Plate Window
               </h3>
             </div>
-            <div className="md:col-span-2 text-slate-700 text-sm sm:text-base leading-relaxed space-y-2">
+            <div className="md:col-span-2 text-slate-700 text-xs sm:text-sm md:text-base leading-relaxed space-y-2">
               <p>
                 Once puberty completes and growth plates (epiphyses) fuse, physical height cannot be increased. Identifying poor growth velocity, hormone deficiencies, or early puberty early gives your child the best possible opportunity to achieve their true genetic potential.
               </p>
@@ -165,103 +229,160 @@ export default function PaediatricEndocrinologyPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-6xl">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+      {/* Services - Grouped Accordion */}
+      <section className="py-12 sm:py-16 lg:py-20 relative">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-5xl">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
             <ScrollReveal>
-              <h2 className="text-3xl font-bold font-heading text-slate-800 mb-4">
-                Paediatric Endocrine Conditions We Manage
+              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800 mb-3">
+                Paediatric Endocrine Groups
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
-                Evidence-based care for infants, children, and adolescents delivered in a welcoming, family-friendly setting.
+              <p className="text-slate-600 text-xs sm:text-sm md:text-base">
+                Organized into 3 clinical groups covering linear height velocity, pubertal timing, and juvenile glands. Tap any group to view conditions managed.
               </p>
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {services.map((item, index) => {
-              const paedTestIcons: LucideIcon[] = [LineChart, Sparkles, Clock, CalendarHeart, Activity, ActivitySquare, ShieldCheck, Scale];
-              const paedTestVariants: IconBadgeVariant[] = ["teal", "indigo", "amber", "rose", "teal", "sky", "emerald", "amber"];
-              const PaedIcon = paedTestIcons[index % paedTestIcons.length];
-              const paedVariant = paedTestVariants[index % paedTestVariants.length];
+          {/* Grouped Accordions */}
+          <div className="space-y-4 mb-16">
+            {serviceGroups.map((grp, idx) => {
+              const isExpanded = openServiceGroupId === grp.id;
 
               return (
-                <ScrollReveal key={index} delay={(index % 4) * 0.06} direction="up">
-                  <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E3EBF0] shadow-[0_2px_12px_rgba(23,59,87,0.05)] hover:shadow-[0_16px_36px_rgba(23,59,87,0.11)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col items-center text-center group">
-                    <div className="mb-3.5">
-                      <CenterIconBadge icon={PaedIcon} variant={paedVariant} size="sm" />
+                <ScrollReveal key={grp.id} delay={idx * 0.05} direction="up">
+                  <ExpandableGroup
+                    id={grp.id}
+                    title={grp.title}
+                    subtitle={grp.subtitle}
+                    badge={grp.badge}
+                    icon={grp.icon}
+                    iconVariant={grp.iconVariant}
+                    itemCount={`${grp.services.length} Conditions`}
+                    isExpanded={isExpanded}
+                    onToggle={() => setOpenServiceGroupId((prev) => (prev === grp.id ? null : grp.id))}
+                    variant="card"
+                    toggleStyle="pill"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                      {grp.services.map((item, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs flex flex-col justify-between"
+                        >
+                          <div>
+                            <h4 className="text-sm sm:text-base font-bold font-heading text-navy mb-2 flex items-center gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                              <span>{item.title}</span>
+                            </h4>
+                            <p className="text-xs text-text-secondary leading-relaxed mb-3">
+                              {item.description}
+                            </p>
+                          </div>
+                          <div className="p-2.5 bg-teal-50/70 rounded-xl border border-teal-200 text-xs">
+                            <strong className="text-navy font-bold block mb-0.5">Clinical Focus:</strong>
+                            <span className="text-primary font-medium">{item.highlight}</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <h3 className="text-base font-bold font-heading text-slate-800 mb-2 leading-snug group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-600 text-xs leading-relaxed mb-4 flex-grow">
-                      {item.description}
-                    </p>
-                    <div className="pt-3 border-t border-[#E3EBF0] text-[11px] font-medium text-teal-700 w-full text-left">
-                      <strong className="text-slate-700">Focus: </strong>{item.highlight}
-                    </div>
-                  </div>
+                  </ExpandableGroup>
                 </ScrollReveal>
               );
             })}
           </div>
 
-          {/* Warning Signs Checklist */}
-          <div className="bg-white rounded-3xl p-8 lg:p-12 border border-slate-200 shadow-md mb-20">
-            <div className="max-w-3xl mb-8">
+          {/* Warning Signs Checklist — Grouped Accordion */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-md mb-16">
+            <div className="max-w-3xl mb-6 sm:mb-8">
               <span className="text-xs font-bold text-teal-700 uppercase tracking-widest block mb-2">When to Check with Dr. Navya</span>
               <h3 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800 mb-3">
                 Signs That Warrant a Paediatric Endocrine Evaluation
               </h3>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Parents often wonder whether a child will simply "catch up later." If you notice any of these signs, a clinical evaluation brings peace of mind and timely guidance:
+              <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed">
+                Parents often wonder whether a child will simply "catch up later." Grouped warning signs below:
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {warningSigns.map((sign, i) => (
-                <div key={i} className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                  <CheckCircle2 className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
-                  <span className="text-sm font-semibold text-slate-800">{sign}</span>
-                </div>
-              ))}
+            <div className="space-y-3.5">
+              {warningSignsGroups.map((grp) => {
+                const isExpanded = openSignsGroupId === grp.id;
+
+                return (
+                  <ExpandableGroup
+                    key={grp.id}
+                    id={grp.id}
+                    title={grp.title}
+                    subtitle={grp.subtitle}
+                    badge={grp.badge}
+                    icon={grp.icon}
+                    iconVariant={grp.iconVariant}
+                    itemCount={`${grp.signs.length} Signs`}
+                    isExpanded={isExpanded}
+                    onToggle={() => setOpenSignsGroupId((prev) => (prev === grp.id ? null : grp.id))}
+                    variant="subtle"
+                    toggleStyle="pill"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                      {grp.signs.map((sign, sIdx) => (
+                        <div key={sIdx} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs">
+                          <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                          <span className="text-xs font-semibold text-slate-800 leading-snug">{sign}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </ExpandableGroup>
+                );
+              })}
             </div>
           </div>
 
           {/* Educational FAQs */}
           <div className="max-w-3xl mx-auto mb-16">
-            <div className="text-center mb-10">
-              <span className="text-xs font-bold text-teal-700 uppercase tracking-widest block mb-2">Parent Education</span>
+            <div className="text-center mb-8">
+              <span className="text-xs font-bold text-teal-700 uppercase tracking-widest block mb-2">Parent Guidance</span>
               <h3 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800">
-                Child Growth & Puberty Questions
+                Frequently Asked Child Growth Questions
               </h3>
               <p className="text-slate-500 text-xs sm:text-sm mt-1">
                 ఆరోగ్యం గురించి తెలుసుకోవడం చికిత్సలో మొదటి అడుగు.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3.5">
               {faqs.map((faq, index) => {
                 const isOpen = openFaq === index;
                 return (
                   <div 
                     key={index}
-                    className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs transition-all"
+                    className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-2xs transition-all"
                   >
                     <button
                       onClick={() => toggleFaq(index)}
-                      className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-heading font-bold text-slate-800 text-sm sm:text-base hover:text-primary transition-colors"
+                      className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-heading font-bold text-slate-800 text-xs sm:text-sm hover:text-primary transition-colors cursor-pointer"
                       aria-expanded={isOpen}
                     >
                       <span>{faq.q}</span>
-                      <ChevronDown className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-primary" : ""}`} />
-                    </button>
-                    {isOpen && (
-                      <div className="px-5 sm:px-6 pb-6 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 bg-slate-50/50">
-                        {faq.a}
+                      <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                        isOpen ? "bg-primary text-white rotate-180" : "bg-teal-50 text-primary"
+                      }`}>
+                        <ChevronDown className="w-3.5 h-3.5" />
                       </div>
-                    )}
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-4 sm:px-5 pb-5 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 bg-teal-50/20">
+                            {faq.a}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 );
               })}
@@ -269,44 +390,32 @@ export default function PaediatricEndocrinologyPage() {
           </div>
 
           {/* Action Card */}
-          <div className="bg-gradient-to-r from-primary to-teal-600 rounded-3xl p-8 sm:p-12 text-white shadow-xl text-center max-w-4xl mx-auto">
-            <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-4">
-              Protect Your Child’s Growth and Well-Being
-            </h3>
-            <p className="text-white/90 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
-              Bring your child's previous health records, immunization card, and school growth measurements for an unhurried, reassuring consultation with Dr. Navya Sruthi Mandapati.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <button
-                onClick={openModal}
-                className="px-8 py-3.5 bg-white text-primary hover:bg-slate-50 font-bold rounded-full shadow-md transition-all text-sm sm:text-base"
-              >
-                Schedule Appointment
-              </button>
-              <a
-                href="tel:8464070196"
-                className="px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/30 transition-all text-sm sm:text-base flex items-center gap-2"
-              >
-                <Phone className="w-4 h-4 text-teal-300" />
-                Call 8464070196
-              </a>
-              <a
-                href="https://wa.me/918464070196"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full shadow-md transition-all text-sm sm:text-base flex items-center gap-2"
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp: 8464070196
-              </a>
-              <Link
-                href="/contact"
-                className="px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/30 transition-all text-sm sm:text-base"
-              >
-                Clinic Address
-              </Link>
+          <ScrollReveal direction="up">
+            <div className="bg-gradient-to-r from-teal-900 via-slate-900 to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl text-center max-w-4xl mx-auto relative overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-3">
+                  Have Concerns About Your Child’s Height or Puberty?
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm md:text-base max-w-2xl mx-auto mb-6 leading-relaxed">
+                  Bring previous growth measurements, school height records, and health records for an unhurried, reassuring consultation with Dr. Navya Sruthi Mandapati.
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    onClick={openModal}
+                    className="px-7 py-3 bg-white text-slate-900 hover:bg-teal-50 font-bold rounded-full shadow-card transition-all text-xs sm:text-sm active:scale-95 cursor-pointer"
+                  >
+                    Book Paediatric Evaluation
+                  </button>
+                  <Link
+                    href="/contact"
+                    className="px-7 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/20 transition-all text-xs sm:text-sm"
+                  >
+                    Clinic Details & Directions
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
       </section>
