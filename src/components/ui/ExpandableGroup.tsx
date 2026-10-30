@@ -138,7 +138,7 @@ export function ExpandableGroup({
 
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2 mb-0.5">
-              <h3 className="text-base sm:text-lg lg:text-xl font-bold font-heading text-navy group-hover:text-primary transition-colors duration-200 truncate">
+              <h3 className="text-base sm:text-lg lg:text-xl font-bold font-heading text-navy group-hover:text-primary transition-colors duration-200">
                 {title}
               </h3>
 
@@ -173,7 +173,7 @@ export function ExpandableGroup({
             )}
 
             {subtitle && (
-              <p className="text-xs sm:text-sm text-text-secondary line-clamp-1 group-hover:text-text-primary transition-colors">
+              <p className="text-xs sm:text-sm text-text-secondary group-hover:text-text-primary transition-colors">
                 {subtitle}
               </p>
             )}
