@@ -7,6 +7,7 @@ import { ClinicFacilitiesSection } from "@/components/home/ClinicFacilitiesSecti
 import { ObesityClinicBanner } from "@/components/home/ObesityClinicBanner";
 import { PatientEducationHomeSection } from "@/components/home/PatientEducationHomeSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
+import { ClinicMapSection } from "@/components/home/ClinicMapSection";
 
 export default function Home() {
   return (
@@ -35,8 +36,11 @@ export default function Home() {
       {/* Section 8: Patient Education & FAQs (Expandable/Compact) */}
       <PatientEducationHomeSection />
 
-      {/* Section 9: Contact & Appointment (8464070196, Address, Map, WhatsApp, Booking) */}
+      {/* Section 9: Contact & Appointment (8464070196, Address, WhatsApp, Booking) */}
       <FinalCtaSection />
+
+      {/* Section 10: Clinic Location & Interactive Google Map */}
+      <ClinicMapSection />
     </div>
   );
 }
