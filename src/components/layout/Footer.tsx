@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle, Navigation, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { doctorData } from "@/data/doctorData";
 
@@ -17,6 +17,9 @@ const YoutubeIcon = () => (
 );
 
 export function Footer() {
+  const directionsUrl =
+    "https://www.google.com/maps/dir/?api=1&destination=Dr.+Navya%E2%80%99s+Endo+Care,+Phool+Bagh+Rd,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002";
+
   return (
     <footer className="bg-navy text-white pt-16 pb-24 sm:pb-8 relative overflow-hidden">
       {/* Decorative Element */}
@@ -24,10 +27,10 @@ export function Footer() {
       <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-64 h-64 bg-accent-warm/5 rounded-full blur-3xl pointer-events-none" />
       
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-12">
           
           {/* Brand Info */}
-          <div className="space-y-5 lg:col-span-5 xl:col-span-4">
+          <div className="space-y-5 lg:col-span-4 xl:col-span-3">
             <Link href="/" className="flex items-center gap-2 group">
               <Image 
                 src="/logo.png" 
@@ -70,7 +73,7 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 xl:col-span-2">
             <h3 className="text-base font-bold text-white mb-4 font-heading">Quick Links</h3>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
@@ -158,32 +161,29 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact Details */}
-          <div className="lg:col-span-3">
-            <h3 className="text-base font-bold text-white mb-4 font-heading">Clinic Contact</h3>
-            <ul className="space-y-3.5 text-xs sm:text-sm">
+          {/* Contact Details & Map */}
+          <div className="lg:col-span-4 xl:col-span-4 space-y-4">
+            <h3 className="text-base font-bold text-white mb-4 font-heading">Clinic Contact & Location</h3>
+            <ul className="space-y-3 text-xs sm:text-sm">
               <li className="flex items-start">
                 <MapPin className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-0.5" />
-                <span className="text-white/55 leading-relaxed">
-                  Dr. Navya&apos;s Endo Care, Ajay Children&apos;s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002
+                <span className="text-white/60 leading-relaxed">
+                  Ajay Children&apos;s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, AP 535002
                 </span>
               </li>
               <li className="flex items-start">
                 <Phone className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-1" />
                 <div className="space-y-1.5">
-                  <div>
-                    <span className="text-[10px] uppercase font-bold text-primary tracking-wider block">Clinic Direct Line</span>
-                    <a href="tel:8464070196" className="text-white hover:text-soft-teal font-bold text-base transition-colors duration-200">
-                      8464070196
-                    </a>
-                  </div>
+                  <a href="tel:8464070196" className="text-white hover:text-soft-teal font-bold text-base transition-colors duration-200">
+                    8464070196
+                  </a>
                   <div className="flex flex-wrap items-center gap-2 pt-0.5">
                     <a
                       href="tel:8464070196"
                       className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary hover:bg-primary-dark text-white rounded-lg text-xs font-semibold shadow-xs transition-colors duration-200"
                     >
                       <Phone className="w-3 h-3" />
-                      Call: 8464070196
+                      Call Clinic
                     </a>
                     <a
                       href="https://wa.me/918464070196"
@@ -192,26 +192,48 @@ export function Footer() {
                       className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors duration-200"
                     >
                       <MessageCircle className="w-3 h-3" />
-                      WhatsApp: 8464070196
+                      WhatsApp
                     </a>
                   </div>
                 </div>
               </li>
               <li className="flex items-center">
                 <Mail className="w-4 h-4 text-primary mr-2.5 flex-shrink-0" />
-                <a href="mailto:info@drnavyaendocare.com" className="text-white/55 hover:text-soft-teal transition-colors duration-200">
+                <a href="mailto:info@drnavyaendocare.com" className="text-white/60 hover:text-soft-teal transition-colors duration-200">
                   info@drnavyaendocare.com
                 </a>
               </li>
               <li className="flex items-start">
                 <Clock className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-0.5" />
-                <span className="text-white/55 leading-relaxed text-xs">
-                  Mon, Wed – Sat: 10:00 AM – 6:00 PM<br/>
-                  Tue: 2:00 PM – 6:00 PM • Sun: 11:00 AM – 2:00 PM<br/>
-                  <strong className="text-accent-warm">Obesity Clinic:</strong> Wed 4:00 PM – 6:00 PM
+                <span className="text-white/60 leading-relaxed text-xs">
+                  Mon – Sat: 10:00 AM – 6:00 PM (Tue: 2–6 PM) • Sun: 11 AM – 2 PM
                 </span>
               </li>
             </ul>
+
+            {/* Embedded Google Map inside Footer */}
+            <div className="pt-1">
+              <div className="w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-white/15 shadow-elevated relative group bg-navy-dark">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.003117565863!2d83.41162707517173!3d18.115508882885994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3be5ebd3b85a6b%3A0xb51e760ddf6688b2!2sDr.%20Navya%E2%80%99s%20Endo%20Care!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  className="w-full h-full border-0"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Dr. Navya's EndoCare Google Map - Vizianagaram"
+                />
+                <a
+                  href={directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-2.5 right-2.5 bg-navy/90 hover:bg-navy text-white text-[11px] font-bold px-3 py-1.5 rounded-xl border border-white/20 flex items-center gap-1.5 shadow-lg backdrop-blur-xs hover:scale-105 transition-all"
+                >
+                  <Navigation className="w-3.5 h-3.5 text-soft-teal" />
+                  <span>Get Directions</span>
+                  <ExternalLink className="w-3 h-3 text-white/60" />
+                </a>
+              </div>
+            </div>
           </div>
 
         </div>
