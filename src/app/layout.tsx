@@ -103,14 +103,16 @@ export default function RootLayout({
                 <GlobalBackground />
                 <ScrollGlowEffects />
                 <LogoPageTransitionProvider>
-                  <Navbar />
-                  <main className="flex-grow pt-[70px] sm:pt-[76px] relative z-10 flex flex-col">
-                    {children}
-                  </main>
-                  <Footer />
-                  <FloatingWhatsApp />
-                  <MobileActionDock />
-                  <EventPopup />
+                  <div className="flex flex-col min-h-screen w-full relative">
+                    <Navbar />
+                    <main className="flex-grow pt-[70px] sm:pt-[76px] relative z-10 flex flex-col">
+                      {children}
+                    </main>
+                    <Footer />
+                    <FloatingWhatsApp />
+                    <MobileActionDock />
+                    <EventPopup />
+                  </div>
                 </LogoPageTransitionProvider>
               </AppointmentProvider>
             </SmoothScrollProvider>

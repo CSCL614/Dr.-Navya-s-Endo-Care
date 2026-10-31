@@ -209,9 +209,10 @@ export function LogoPageTransitionProvider({ children }: { children: React.React
               {/* Outer Pulsing Rings (respects reduced motion) */}
               <div className="relative flex items-center justify-center mb-5">
                 {!shouldReduceMotion && (
-                  <>
+                  <div key="animated-pulse-rings" className="contents">
                     {/* Expanding Pulse Ring 1 */}
                     <motion.div
+                      key="pulse-ring-1"
                       initial={{ scale: 0.85, opacity: 0.7 }}
                       animate={{ scale: [0.85, 1.35, 1.75], opacity: [0.7, 0.3, 0] }}
                       transition={{ duration: 0.9, repeat: Infinity, ease: "easeOut" }}
@@ -220,12 +221,13 @@ export function LogoPageTransitionProvider({ children }: { children: React.React
 
                     {/* Expanding Pulse Ring 2 (Offset) */}
                     <motion.div
+                      key="pulse-ring-2"
                       initial={{ scale: 0.7, opacity: 0.5 }}
                       animate={{ scale: [0.7, 1.2, 1.5], opacity: [0.5, 0.2, 0] }}
                       transition={{ duration: 0.9, delay: 0.25, repeat: Infinity, ease: "easeOut" }}
                       className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-teal-400/35 pointer-events-none"
                     />
-                  </>
+                  </div>
                 )}
 
                 {/* Logo Halo Frame */}

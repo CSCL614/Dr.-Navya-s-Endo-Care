@@ -27,10 +27,14 @@ export default function Template({ children }: { children: React.ReactNode }) {
     <div className="relative w-full min-h-screen">
       <AnimatePresence mode="wait">
         {shouldAnimate && (
-          <>
+          <motion.div
+            key={`route-anim-${pathname}`}
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="pointer-events-none"
+          >
             {/* 1. Brand-Colored Top Progress Beam */}
             <motion.div
-              key={`progress-beam-${pathname}`}
               initial={{ scaleX: 0, opacity: 1 }}
               animate={{ scaleX: 1, opacity: [1, 1, 0] }}
               exit={{ opacity: 0 }}
@@ -40,7 +44,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
                 opacity: { duration: 0.5, times: [0, 0.7, 1] },
               }}
               style={{ transformOrigin: "0%" }}
-              className="fixed top-0 left-0 right-0 h-[2.5px] z-[9999] pointer-events-none"
+              className="fixed top-0 left-0 right-0 h-[2.5px] z-[9999]"
             >
               <div className="w-full h-full bg-gradient-to-r from-primary via-primary-light to-accent-warm" />
               <div className="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-primary-light/80 to-transparent blur-sm" />
@@ -48,7 +52,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
             {/* 2. Subtle overlay fade for smooth content transition */}
             <motion.div
-              key={`overlay-${pathname}`}
               initial={{ opacity: 0.3 }}
               animate={{ opacity: 0 }}
               exit={{ opacity: 0 }}
@@ -56,9 +59,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
                 duration: 0.25,
                 ease: "easeOut",
               }}
-              className="fixed inset-0 z-[9990] bg-background/40 pointer-events-none"
+              className="fixed inset-0 z-[9990] bg-background/40"
             />
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
 
