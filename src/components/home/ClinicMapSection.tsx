@@ -116,29 +116,17 @@ export function ClinicMapSection() {
           </div>
 
           {/* Interactive Google Map Embed */}
-          <div className="lg:col-span-7">
-            <ScrollReveal direction="up">
-              <div className="h-[360px] sm:h-[420px] lg:h-full min-h-[360px] sm:min-h-[420px] w-full rounded-3xl overflow-hidden border border-border shadow-elevated relative group bg-white">
+          <div className="lg:col-span-7 flex flex-col h-full">
+            <ScrollReveal direction="up" className="h-full">
+              <div className="relative w-full h-[400px] sm:h-[460px] lg:h-full min-h-[400px] sm:min-h-[460px] lg:min-h-[480px] rounded-3xl overflow-hidden border border-border shadow-elevated bg-slate-100">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.003117565863!2d83.41162707517173!3d18.115508882885994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3be5ebd3b85a6b%3A0xb51e760ddf6688b2!2sDr.%20Navya%E2%80%99s%20Endo%20Care!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                  className="w-full h-full border-0"
+                  className="absolute inset-0 w-full h-full border-0 block"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Dr. Navya's EndoCare Location Map — Vizianagaram"
                 />
-
-                {/* Floating Map Action Badge */}
-                <a
-                  href={directionsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute bottom-4 right-4 bg-white/95 hover:bg-white text-navy font-bold text-xs py-2 px-3.5 rounded-xl shadow-lg border border-border/80 flex items-center gap-1.5 transition-all hover:scale-105"
-                >
-                  <MapPin className="w-3.5 h-3.5 text-primary" />
-                  <span>Open in Google Maps</span>
-                  <ExternalLink className="w-3 h-3 text-text-muted" />
-                </a>
               </div>
             </ScrollReveal>
           </div>
