@@ -1,11 +1,11 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CalendarHeart, Loader2, Phone, MessageCircle } from "lucide-react";
 
 interface AppointmentContextType {
-  openModal: () => void;
+  openModal: (service?: string | React.MouseEvent) => void;
   closeModal: () => void;
 }
 
@@ -15,11 +15,33 @@ export function AppointmentProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [selectedService, setSelectedService] = useState<string>("");
 
-  const openModal = () => setIsOpen(true);
+  // Lock background scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  const openModal = (service?: string | React.MouseEvent) => {
+    if (typeof service === "string") {
+      setSelectedService(service);
+    }
+    setIsOpen(true);
+  };
+
   const closeModal = () => {
     setIsOpen(false);
-    setTimeout(() => setIsSuccess(false), 300); // Reset after animation
+    setTimeout(() => {
+      setIsSuccess(false);
+      setSelectedService("");
+    }, 300); // Reset after animation
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -200,6 +222,8 @@ export function AppointmentProvider({ children }: { children: ReactNode }) {
                         id="department"
                         name="department"
                         required
+                        value={selectedService}
+                        onChange={(e) => setSelectedService(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-slate-600 bg-white"
                       >
                         <option value="">Select a service</option>

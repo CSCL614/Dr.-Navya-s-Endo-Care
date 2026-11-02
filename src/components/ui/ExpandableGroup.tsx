@@ -119,97 +119,172 @@ export function ExpandableGroup({
         aria-expanded={isExpanded}
         aria-controls={contentId}
         className={cn(
-          "w-full text-left p-4 sm:p-5 lg:p-6 flex items-center justify-between gap-3 sm:gap-4 select-none cursor-pointer group transition-colors duration-200 touch-target",
+          "w-full text-left p-3.5 sm:p-5 lg:p-6 select-none cursor-pointer group transition-colors duration-200 touch-target",
           isExpanded ? "bg-soft-teal/30" : "hover:bg-slate-50/80"
         )}
       >
-        {/* Left Section: Icon + Titles */}
-        <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-          {icon && (
-            <div className="shrink-0 transition-transform duration-200 group-hover:scale-105">
-              <CenterIconBadge
-                icon={icon}
-                variant={iconVariant}
-                size="md"
-                className="shadow-2xs"
-              />
-            </div>
-          )}
+        {/* ── Mobile Layout (sm:hidden): Heading guaranteed on a single line ── */}
+        <div className="sm:hidden w-full space-y-2">
+          {/* Top Title Bar with Single-Line Heading and Toggle Pill */}
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="text-[12px] min-[350px]:text-[13px] min-[390px]:text-[14.5px] font-bold font-heading text-navy group-hover:text-primary transition-colors duration-200 whitespace-nowrap leading-snug">
+              {title}
+            </h3>
 
-          <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-2 mb-0.5">
-              <h3 className="text-base sm:text-lg lg:text-xl font-bold font-heading text-navy group-hover:text-primary transition-colors duration-200">
-                {title}
-              </h3>
+            {toggleStyle === "pill" ? (
+              <div
+                className={cn(
+                  "inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold transition-all duration-200 border shrink-0",
+                  isExpanded
+                    ? "bg-primary text-white border-primary shadow-2xs"
+                    : "bg-white text-navy border-slate-200 group-hover:border-primary/40 group-hover:bg-soft-teal group-hover:text-primary"
+                )}
+              >
+                <span>{isExpanded ? "Collapse" : "Explore"}</span>
+                {isExpanded ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
+              </div>
+            ) : (
+              <div
+                className={cn(
+                  "w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 border shrink-0",
+                  isExpanded ? "bg-primary text-white border-primary rotate-180" : "bg-white text-navy border-slate-200"
+                )}
+              >
+                <ChevronDown className="w-3.5 h-3.5" />
+              </div>
+            )}
+          </div>
 
-              {teluguTitle && (
-                <span className="hidden sm:inline-block px-2 py-0.5 text-[11px] font-medium text-primary bg-white/80 rounded-md border border-primary/20">
-                  {teluguTitle}
-                </span>
-              )}
-
-              {badge && (
-                <span
-                  className={cn(
-                    "text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full border shrink-0",
-                    badgeColor
-                  )}
-                >
-                  {badge}
-                </span>
-              )}
-
-              {itemCount !== undefined && (
-                <span className="text-[10px] sm:text-xs font-medium text-text-secondary bg-slate-100 px-2 py-0.5 rounded-full shrink-0">
-                  {itemCount}
-                </span>
-              )}
-            </div>
-
-            {teluguTitle && (
-              <p className="sm:hidden text-xs font-medium text-primary mb-0.5">
-                {teluguTitle}
-              </p>
+          {/* Sub row with Icon Badge, Badges, Telugu & Subtitle */}
+          <div className="flex items-start gap-2.5 pt-0.5">
+            {icon && (
+              <div className="shrink-0 mt-0.5">
+                <CenterIconBadge
+                  icon={icon}
+                  variant={iconVariant}
+                  size="sm"
+                  className="shadow-2xs"
+                />
+              </div>
             )}
 
-            {subtitle && (
-              <p className="text-xs sm:text-sm text-text-secondary group-hover:text-text-primary transition-colors">
-                {subtitle}
-              </p>
-            )}
+            <div className="min-w-0 flex-1 space-y-1">
+              <div className="flex flex-wrap items-center gap-1.5">
+                {badge && (
+                  <span
+                    className={cn(
+                      "text-[10px] font-semibold px-2 py-0.5 rounded-full border shrink-0",
+                      badgeColor
+                    )}
+                  >
+                    {badge}
+                  </span>
+                )}
+                {itemCount !== undefined && (
+                  <span className="text-[10px] font-medium text-text-secondary bg-slate-100 px-2 py-0.5 rounded-full shrink-0">
+                    {itemCount}
+                  </span>
+                )}
+                {teluguTitle && (
+                  <span className="text-[11px] font-medium text-primary">
+                    {teluguTitle}
+                  </span>
+                )}
+              </div>
+
+              {subtitle && (
+                <p className="text-[11.5px] text-text-secondary line-clamp-2 leading-relaxed">
+                  {subtitle}
+                </p>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Right Section: Expansion Trigger Indicator */}
-        <div className="shrink-0 flex items-center gap-2">
-          {toggleStyle === "pill" ? (
-            <div
-              className={cn(
-                "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-200 border",
-                isExpanded
-                  ? "bg-primary text-white border-primary shadow-2xs"
-                  : "bg-white text-navy border-slate-200 group-hover:border-primary/40 group-hover:bg-soft-teal group-hover:text-primary"
-              )}
-            >
-              <span>{isExpanded ? "Collapse" : "Explore"}</span>
-              {isExpanded ? (
-                <Minus className="w-3.5 h-3.5" />
-              ) : (
-                <Plus className="w-3.5 h-3.5" />
+        {/* ── Desktop Layout (hidden sm:flex): Side-by-side wide layout ── */}
+        <div className="hidden sm:flex items-center justify-between gap-4 w-full">
+          {/* Left Section: Icon + Titles */}
+          <div className="flex items-center gap-4 min-w-0 flex-1">
+            {icon && (
+              <div className="shrink-0 transition-transform duration-200 group-hover:scale-105">
+                <CenterIconBadge
+                  icon={icon}
+                  variant={iconVariant}
+                  size="md"
+                  className="shadow-2xs"
+                />
+              </div>
+            )}
+
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                <h3 className="text-lg lg:text-xl font-bold font-heading text-navy group-hover:text-primary transition-colors duration-200">
+                  {title}
+                </h3>
+
+                {teluguTitle && (
+                  <span className="px-2 py-0.5 text-[11px] font-medium text-primary bg-white/80 rounded-md border border-primary/20">
+                    {teluguTitle}
+                  </span>
+                )}
+
+                {badge && (
+                  <span
+                    className={cn(
+                      "text-xs font-semibold px-2 py-0.5 rounded-full border shrink-0",
+                      badgeColor
+                    )}
+                  >
+                    {badge}
+                  </span>
+                )}
+
+                {itemCount !== undefined && (
+                  <span className="text-xs font-medium text-text-secondary bg-slate-100 px-2 py-0.5 rounded-full shrink-0">
+                    {itemCount}
+                  </span>
+                )}
+              </div>
+
+              {subtitle && (
+                <p className="text-xs sm:text-sm text-text-secondary group-hover:text-text-primary transition-colors">
+                  {subtitle}
+                </p>
               )}
             </div>
-          ) : (
-            <div
-              className={cn(
-                "w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 border",
-                isExpanded
-                  ? "bg-primary text-white border-primary rotate-180"
-                  : "bg-white text-navy border-slate-200 group-hover:border-primary/40 group-hover:text-primary group-hover:bg-soft-teal"
-              )}
-            >
-              <ChevronDown className="w-4 h-4 transition-transform duration-200" />
-            </div>
-          )}
+          </div>
+
+          {/* Right Section: Expansion Trigger Indicator */}
+          <div className="shrink-0 flex items-center gap-2">
+            {toggleStyle === "pill" ? (
+              <div
+                className={cn(
+                  "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-200 border",
+                  isExpanded
+                    ? "bg-primary text-white border-primary shadow-2xs"
+                    : "bg-white text-navy border-slate-200 group-hover:border-primary/40 group-hover:bg-soft-teal group-hover:text-primary"
+                )}
+              >
+                <span>{isExpanded ? "Collapse" : "Explore"}</span>
+                {isExpanded ? (
+                  <Minus className="w-3.5 h-3.5" />
+                ) : (
+                  <Plus className="w-3.5 h-3.5" />
+                )}
+              </div>
+            ) : (
+              <div
+                className={cn(
+                  "w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 border",
+                  isExpanded
+                    ? "bg-primary text-white border-primary rotate-180"
+                    : "bg-white text-navy border-slate-200 group-hover:border-primary/40 group-hover:text-primary group-hover:bg-soft-teal"
+                )}
+              >
+                <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+              </div>
+            )}
+          </div>
         </div>
       </button>
 

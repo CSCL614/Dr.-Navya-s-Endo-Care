@@ -126,7 +126,7 @@ export function ObesityClinicBanner() {
             {/* Quick Actions */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-5 mt-5 border-t border-slate-100">
               <button
-                onClick={openModal}
+                onClick={() => openModal("obesity-clinic")}
                 className="btn-primary text-xs sm:text-sm py-2.5 px-5 font-bold shadow-soft flex items-center justify-center gap-2 cursor-pointer"
               >
                 <CalendarHeart className="w-4 h-4" />

@@ -22,6 +22,7 @@ interface SpecialtyItem {
   variant: IconBadgeVariant;
   keyPoints: string[];
   badge: string;
+  departmentValue: string;
 }
 
 const mainSpecialties: SpecialtyItem[] = [
@@ -36,6 +37,7 @@ const mainSpecialties: SpecialtyItem[] = [
     icon: Activity,
     variant: "teal",
     badge: "Primary Discipline",
+    departmentValue: "diabetes",
     keyPoints: [
       "Type 1 & Type 2 Diabetes Management",
       "Gestational Diabetes (Pregnancy Care)",
@@ -54,6 +56,7 @@ const mainSpecialties: SpecialtyItem[] = [
     icon: ActivitySquare,
     variant: "sky",
     badge: "Hormone Speedometer",
+    departmentValue: "thyroid",
     keyPoints: [
       "Hypothyroidism (Underactive Thyroid & Weight Issues)",
       "Hyperthyroidism (Overactive Thyroid & Palpitations)",
@@ -72,6 +75,7 @@ const mainSpecialties: SpecialtyItem[] = [
     icon: Droplets,
     variant: "rose",
     badge: "Women's Health",
+    departmentValue: "pcos",
     keyPoints: [
       "Polycystic Ovary Syndrome (PCOS) Phenotypes",
       "Menstrual Irregularity & Hormonal Acne",
@@ -90,6 +94,7 @@ const mainSpecialties: SpecialtyItem[] = [
     icon: Baby,
     variant: "mint",
     badge: "Growth & Development",
+    departmentValue: "paediatric",
     keyPoints: [
       "Short Stature & Childhood Growth Velocity Evaluation",
       "Early (Precocious) or Delayed Pubertal Development",
@@ -108,6 +113,7 @@ const mainSpecialties: SpecialtyItem[] = [
     icon: Scale,
     variant: "amber",
     badge: "Metabolic Health",
+    departmentValue: "obesity-clinic",
     keyPoints: [
       "Insulin Resistance, Fatty Liver & Metabolic Syndrome",
       "Evidence-Based Medical Weight Management",
@@ -219,7 +225,7 @@ export function SpecialitiesHomeSection() {
                       </Link>
 
                       <button
-                        onClick={openModal}
+                        onClick={() => openModal(item.departmentValue)}
                         className="py-2.5 px-5 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-2xs touch-target transition-all cursor-pointer active:scale-95"
                       >
                         <CalendarHeart className="w-3.5 h-3.5" />
