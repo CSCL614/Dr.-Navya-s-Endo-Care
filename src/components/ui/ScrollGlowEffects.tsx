@@ -85,13 +85,13 @@ export function ScrollGlowEffects() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6, y: 20 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed bottom-32 sm:bottom-24 right-4 sm:right-6 z-40 pointer-events-auto"
+          className="fixed bottom-[158px] sm:bottom-24 right-3.5 sm:right-6 z-50 pointer-events-auto"
         >
           <button
             type="button"
             onClick={scrollToTop}
             aria-label="Scroll back to top"
-            className="group relative flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 text-navy hover:text-primary shadow-[0_4px_20px_rgba(23,59,87,0.12)] hover:shadow-[0_0_24px_rgba(22,124,128,0.35)] transition-all duration-300 hover:-translate-y-1 active:scale-95 cursor-pointer touch-target"
+            className="group relative flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 text-navy hover:text-primary shadow-[0_4px_20px_rgba(23,59,87,0.12)] hover:shadow-[0_0_24px_rgba(22,124,128,0.35)] transition-all duration-300 hover:-translate-y-1 active:scale-95 cursor-pointer touch-target touch-manipulation"
           >
             {/* Ambient Pulsing Glow behind button */}
             <div className="absolute inset-0 rounded-full bg-soft-teal opacity-0 group-hover:opacity-60 blur-md transition-opacity duration-300" />

@@ -105,14 +105,14 @@ export function FloatingWhatsApp() {
         {isOpen && (
           <div
             ref={panelRef}
-            className="fixed bottom-[74px] sm:bottom-24 right-2.5 sm:right-6 z-50 pointer-events-auto"
+            className="fixed bottom-[156px] sm:bottom-24 right-2.5 sm:right-6 z-[60] pointer-events-auto"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 14 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 14 }}
               transition={{ type: "spring", stiffness: 360, damping: 28 }}
-              className="w-[300px] xs:w-[325px] sm:w-[370px] max-w-[calc(100vw-1.25rem)] max-h-[calc(100dvh-95px)] sm:max-h-[560px] flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_45px_rgba(15,27,40,0.3)] border border-slate-200/90 bg-[#F4F7F9]"
+              className="w-[300px] xs:w-[325px] sm:w-[370px] max-w-[calc(100vw-1.25rem)] max-h-[calc(100dvh-175px)] sm:max-h-[560px] flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_16px_45px_rgba(15,27,40,0.3)] border border-slate-200/90 bg-[#F4F7F9]"
             >
               {/* ── Header ── */}
               <div className="shrink-0 bg-[#0F202E] px-3.5 sm:px-5 pt-3 sm:pt-4 pb-2.5 sm:pb-3 text-white relative">
@@ -232,7 +232,7 @@ export function FloatingWhatsApp() {
       </AnimatePresence>
 
       {/* ── Floating WhatsApp Trigger Button (Proportional on Mobile) ── */}
-      <div className="fixed bottom-16 sm:bottom-6 right-3.5 sm:right-6 z-40 pointer-events-auto">
+      <div className="fixed bottom-[98px] sm:bottom-6 right-3.5 sm:right-6 z-50 pointer-events-auto">
         <div className="relative">
           {/* Subtle pulse ring when closed */}
           {!isOpen && (
@@ -241,7 +241,7 @@ export function FloatingWhatsApp() {
           <motion.button
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label={isOpen ? "Close WhatsApp chat" : "Open WhatsApp chat assistance"}
-            className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-full shadow-[0_8px_25px_rgba(37,211,102,0.45)] transition-colors cursor-pointer"
+            className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-full shadow-[0_8px_25px_rgba(37,211,102,0.45)] transition-colors cursor-pointer touch-manipulation"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             initial={{ opacity: 0, scale: 0 }}
