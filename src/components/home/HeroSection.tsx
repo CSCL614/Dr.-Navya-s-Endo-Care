@@ -171,12 +171,12 @@ export function HeroSection() {
               <div className="w-12 h-12 rounded-2xl bg-soft-teal border border-primary/20 flex items-center justify-center text-primary shrink-0 shadow-2xs">
                 <ShieldCheck className="w-6 h-6 text-primary" />
               </div>
-              <div>
-                <div className="flex items-center gap-2 mb-0.5">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2.5 mb-0.5">
                   <span className="text-[10px] text-primary font-bold uppercase tracking-wider">
                     Center of Excellence
                   </span>
-                  <ClinicStatusBadge variant="floating" />
+                  <ClinicStatusBadge variant="navbar" />
                 </div>
                 <h4 className="text-xs sm:text-sm font-bold font-heading text-navy leading-tight">
                   Dr. Navya’s EndoCare Center

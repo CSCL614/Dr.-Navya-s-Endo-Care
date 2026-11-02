@@ -34,13 +34,14 @@ export function ClinicStatusBadge({
   const isOpen = mounted ? status.isOpen : true; // Default optimistic on SSR
 
   // Floating variant for Hero Center of Excellence badge
+  // Floating variant for Hero Center of Excellence badge
   if (variant === "floating") {
     return (
-      <div className={`relative inline-block ${className}`}>
+      <div className={`shrink-0 text-right ${className}`}>
         <button
           type="button"
           onClick={() => showSchedulePopup && setShowSchedule(!showSchedule)}
-          className={`inline-flex items-center gap-1.5 text-[9.5px] font-bold px-2 py-0.5 rounded-full border transition-all ${
+          className={`inline-flex items-center gap-1.5 text-[8.5px] sm:text-[9.5px] font-bold px-2 py-0.5 rounded-full border transition-all cursor-pointer whitespace-nowrap ${
             isOpen
               ? "text-emerald-700 bg-emerald-50 border-emerald-200 hover:bg-emerald-100/80"
               : "text-amber-700 bg-amber-50 border-amber-200 hover:bg-amber-100/80"
@@ -61,6 +62,9 @@ export function ClinicStatusBadge({
             />
           )}
         </button>
+        <span className="text-[8.5px] sm:text-[9px] text-text-muted block mt-0.5 font-medium whitespace-nowrap">
+          {status.todayHours}
+        </span>
 
         {showSchedule && (
           <SchedulePopover
@@ -167,45 +171,45 @@ function SchedulePopover({
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      {/* Backdrop */}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4">
+      {/* Darkened Dimmed Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
-      {/* Centered Modal Card */}
-      <div className="relative w-full max-w-xs sm:max-w-sm bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 p-4 sm:p-5 text-left text-xs z-10 animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
-          <div className="font-bold text-navy text-sm sm:text-base flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-soft-teal text-primary flex items-center justify-center">
-              <Clock className="w-4 h-4" />
+      {/* Centered Modal Card: Compact & All 7 Days Fully Visible */}
+      <div className="relative w-full max-w-[320px] sm:max-w-sm bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 p-3.5 sm:p-4 text-left text-xs z-10 animate-in fade-in zoom-in-95 duration-150">
+        <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
+          <div className="font-bold text-navy text-xs sm:text-sm flex items-center gap-1.5">
+            <div className="w-6 h-6 rounded-lg bg-soft-teal text-primary flex items-center justify-center">
+              <Clock className="w-3.5 h-3.5" />
             </div>
             <span>Weekly Clinic Hours</span>
           </div>
           <button
             onClick={onClose}
             aria-label="Close hours popup"
-            className="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
+            className="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center text-xs font-bold transition-colors cursor-pointer"
           >
             ✕
           </button>
         </div>
 
-        <div className="space-y-1.5">
+        <div className="space-y-1">
           {Object.entries(CLINIC_SCHEDULE).map(([dayKey, sched]) => {
             const isToday = Number(dayKey) === currentDayIndex;
             return (
               <div
                 key={dayKey}
-                className={`flex items-center justify-between py-1.5 px-2.5 rounded-xl text-xs ${
+                className={`flex items-center justify-between py-1 px-2 rounded-lg text-[11px] ${
                   isToday
                     ? "bg-primary/10 text-primary font-bold ring-1 ring-primary/20"
                     : "text-slate-600 font-medium hover:bg-slate-50"
                 }`}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   {isToday ? (
-                    <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                    <CheckCircle2 className="w-3 h-3 text-primary shrink-0" />
                   ) : (
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-300 shrink-0" />
                   )}
@@ -219,8 +223,8 @@ function SchedulePopover({
           })}
         </div>
 
-        <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 bg-emerald-50/80 px-2.5 py-1.5 rounded-lg">
-          <span>✦ Joint Obesity Clinic: Wednesdays 4:00 PM – 6:00 PM</span>
+        <div className="mt-2 pt-2 border-t border-slate-100 text-[10.5px] font-semibold text-emerald-700 bg-emerald-50/80 px-2 py-1 rounded-lg">
+          ✦ Joint Obesity Clinic: Wed 4:00 PM – 6:00 PM
         </div>
       </div>
     </div>
