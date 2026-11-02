@@ -18,7 +18,7 @@ const YoutubeIcon = () => (
 
 export function Footer() {
   const directionsUrl =
-    "https://www.google.com/maps/dir/?api=1&destination=Dr.+Navya%E2%80%99s+Endo+Care,+Phool+Bagh+Rd,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002";
+    "https://www.google.com/maps/dir/?api=1&destination=Dr.+Navya%E2%80%99s+Endo+Care,+1st+Floor,+Ajay+Children%27s+Hospital,+Ajay+Children%27s+Hospital+Junction,+Opposite+LensKart,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002";
 
   return (
     <footer className="bg-navy text-white pt-16 pb-24 sm:pb-8 relative overflow-hidden">
@@ -168,7 +168,7 @@ export function Footer() {
               <li className="flex items-start">
                 <MapPin className="w-4 h-4 text-primary mr-2.5 flex-shrink-0 mt-0.5" />
                 <span className="text-white/60 leading-relaxed">
-                  Ajay Children&apos;s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, AP 535002
+                  1st Floor, Ajay Children&apos;s Hospital, Ajay Children&apos;s Hospital Junction, Opposite LensKart, Ambati Satram Area, Vizianagaram, Andhra Pradesh – 535002
                 </span>
               </li>
               <li className="flex items-start">

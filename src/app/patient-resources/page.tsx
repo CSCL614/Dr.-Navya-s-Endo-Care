@@ -66,7 +66,7 @@ export default function PatientResourcesPage() {
       
       {/* Hero Section */}
       <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-white border-b border-slate-200 overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-teal-50 border border-teal-200 text-primary font-semibold rounded-full text-xs sm:text-sm mb-6">
               <Sparkles className="w-4 h-4 text-primary" />
@@ -86,7 +86,7 @@ export default function PatientResourcesPage() {
 
       {/* Preparing for Consultation */}
       <section className="py-20 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-6xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
           
           <div className="text-center max-w-2xl mx-auto mb-16">
             <ScrollReveal>
@@ -176,7 +176,7 @@ export default function PatientResourcesPage() {
       </section>
 
       {/* Appointment CTA */}
-      <section className="container mx-auto px-4 md:px-6 max-w-4xl">
+      <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         <ScrollReveal>
           <div className="bg-gradient-to-r from-primary to-teal-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-xl shadow-teal-500/15">
             <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-4">

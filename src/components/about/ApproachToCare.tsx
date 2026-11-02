@@ -11,7 +11,7 @@ export function ApproachToCare() {
 
   return (
     <section className="py-20 lg:py-24 bg-background relative overflow-hidden" id="approach-to-care">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">

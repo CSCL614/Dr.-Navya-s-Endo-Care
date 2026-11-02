@@ -5,7 +5,7 @@ import { MapPin, Navigation, Clock, Phone, ExternalLink } from "lucide-react";
 
 export function ClinicMapSection() {
   const directionsUrl =
-    "https://www.google.com/maps/dir/?api=1&destination=Dr.+Navya%E2%80%99s+Endo+Care,+Phool+Bagh+Rd,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002";
+    "https://www.google.com/maps/dir/?api=1&destination=Dr.+Navya%E2%80%99s+Endo+Care,+1st+Floor,+Ajay+Children%27s+Hospital,+Ajay+Children%27s+Hospital+Junction,+Opposite+LensKart,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002";
 
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-background-alt/60 relative overflow-hidden" id="clinic-location">
@@ -21,7 +21,7 @@ export function ClinicMapSection() {
             Visit Dr. Navya’s EndoCare in Vizianagaram
           </h2>
           <p className="text-sm sm:text-base text-text-secondary mt-2">
-            Located in the central medical hub near Phool Bagh Junction with convenient ground-floor access and parking.
+            Located at 1st Floor, Ajay Children&apos;s Hospital, Ajay Children&apos;s Hospital Junction, Opposite LensKart, Ambati Satram Area, Vizianagaram, Andhra Pradesh – 535002 with convenient access and parking.
           </p>
         </div>
 
@@ -43,10 +43,10 @@ export function ClinicMapSection() {
                       Dr. Navya’s EndoCare
                     </h3>
                     <p className="text-xs sm:text-sm text-text-secondary mt-1 leading-relaxed">
-                      Ajay Children’s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002
+                      1st Floor, Ajay Children&apos;s Hospital, Ajay Children&apos;s Hospital Junction, Opposite LensKart, Ambati Satram Area, Vizianagaram, Andhra Pradesh – 535002
                     </p>
                     <span className="inline-block mt-2 text-[11px] font-semibold text-primary bg-soft-teal/80 px-2.5 py-0.5 rounded-md">
-                      Landmark: Opp. Ajay Children’s Hospital
+                      Landmark: Opposite LensKart (Ajay Children&apos;s Hospital Junction)
                     </span>
                   </div>
                 </div>

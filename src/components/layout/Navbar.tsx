@@ -21,22 +21,23 @@ function cn(...inputs: (string | undefined | null | false)[]) {
 
 interface NavLinkItem {
   name: string;
+  mobileName?: string;
   href: string;
   icon: typeof Home;
   badge?: string;
   highlight?: boolean;
 }
 
-// Navigation links exactly matching user reference image
+// Navigation links with clean desktop labels and full mobile titles
 const navLinks: NavLinkItem[] = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "About Dr. Navya", href: "/about", icon: UserCheck, badge: "GOLD MEDALIST" },
-  { name: "Specialities", href: "/services", icon: Stethoscope },
-  { name: "Diabetes Care", href: "/diabetes-care", icon: Activity, badge: "SPECIALITY" },
-  { name: "Obesity Clinic", href: "/obesity-clinic", icon: Scale, badge: "WED 4–6 PM", highlight: true },
-  { name: "Thyroid Care", href: "/thyroid-care", icon: Sparkles },
-  { name: "Patient Resources", href: "/patient-resources", icon: BookOpen },
-  { name: "Contact", href: "/contact", icon: MapPin },
+  { name: "Home", mobileName: "Home", href: "/", icon: Home },
+  { name: "About", mobileName: "About Dr. Navya", href: "/about", icon: UserCheck, badge: "GOLD MEDALIST" },
+  { name: "Specialities", mobileName: "Specialities", href: "/services", icon: Stethoscope },
+  { name: "Diabetes Care", mobileName: "Diabetes Care", href: "/diabetes-care", icon: Activity, badge: "SPECIALITY" },
+  { name: "Obesity Clinic", mobileName: "Obesity Clinic", href: "/obesity-clinic", icon: Scale, badge: "WED 4–6 PM", highlight: true },
+  { name: "Thyroid Care", mobileName: "Thyroid Care", href: "/thyroid-care", icon: Sparkles },
+  { name: "Resources", mobileName: "Patient Resources", href: "/patient-resources", icon: BookOpen },
+  { name: "Contact", mobileName: "Contact", href: "/contact", icon: MapPin },
 ];
 
 export function Navbar() {
@@ -81,7 +82,7 @@ export function Navbar() {
             : "py-4 sm:py-4.5 bg-white/85 backdrop-blur-md border-b border-border/20"
       )}
     >
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 flex items-center justify-between gap-3 lg:gap-6">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 flex items-center justify-between gap-2 xl:gap-3">
         {/* Brand / Logo */}
         <Link href="/" className="flex items-center gap-2.5 sm:gap-3 z-50 shrink-0 group py-0.5">
           <Image 
@@ -108,7 +109,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden xl:flex items-center space-x-0.5 2xl:space-x-1 shrink">
+        <nav className="hidden xl:flex items-center space-x-0.5 2xl:space-x-1 shrink-0">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -116,9 +117,9 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "relative text-xs 2xl:text-sm font-medium transition-all duration-200 hover:text-primary whitespace-nowrap px-2 xl:px-2.5 2xl:px-3 py-2 rounded-lg flex items-center gap-1.5",
+                  "relative text-xs xl:text-[13px] font-medium transition-all duration-200 hover:text-primary whitespace-nowrap px-2 xl:px-2.5 py-1.5 rounded-lg flex items-center gap-1",
                   isActive 
-                    ? "text-primary font-semibold bg-soft-teal/40" 
+                    ? "text-primary font-bold bg-soft-teal/50" 
                     : "text-navy/75 hover:bg-soft-teal/20"
                 )}
               >
@@ -136,23 +137,23 @@ export function Navbar() {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden xl:flex items-center space-x-2.5 2xl:space-x-3 shrink-0">
+        <div className="hidden xl:flex items-center gap-2 xl:gap-2.5 shrink-0">
           <a
             href="tel:8464070196"
-            className="flex items-center space-x-2 text-xs xl:text-sm font-semibold text-navy/90 hover:text-primary transition-all duration-200 group px-3.5 py-2 rounded-full bg-soft-teal/50 border border-primary/15 hover:bg-soft-teal hover:border-primary/25 shadow-xs shrink-0"
+            className="flex items-center gap-1.5 text-xs xl:text-[13px] font-bold text-navy hover:text-primary transition-all duration-200 group px-2.5 xl:px-3 py-1.5 rounded-full bg-soft-teal/50 border border-primary/20 hover:bg-soft-teal shadow-2xs shrink-0"
             title="Direct Clinic Line: 8464070196"
           >
-            <div className="p-1.5 bg-primary rounded-full text-white shadow-2xs group-hover:scale-110 transition-transform">
-              <Phone className="w-3.5 h-3.5" />
+            <div className="p-1 bg-primary rounded-full text-white shadow-2xs group-hover:scale-105 transition-transform">
+              <Phone className="w-3 h-3" />
             </div>
-            <span className="font-bold text-navy">8464070196</span>
+            <span>8464070196</span>
           </a>
 
           <button 
             onClick={openModal}
-            className="bg-primary hover:bg-primary-dark text-white px-4 xl:px-5 py-2.5 rounded-full font-semibold shadow-soft hover:shadow-glow whitespace-nowrap text-xs xl:text-sm transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 shrink-0"
+            className="bg-primary hover:bg-primary-dark text-white px-3.5 xl:px-4 py-2 rounded-full font-bold shadow-soft hover:shadow-glow whitespace-nowrap text-xs xl:text-[13px] transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 shrink-0 flex items-center gap-1.5 cursor-pointer"
           >
-            <CalendarHeart className="w-4 h-4 mr-1.5 inline" />
+            <CalendarHeart className="w-3.5 h-3.5 inline" />
             <span>Book Appointment</span>
           </button>
         </div>
@@ -310,7 +311,7 @@ export function Navbar() {
                             )}>
                               <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                             </div>
-                            <span className="truncate">{link.name}</span>
+                            <span className="truncate">{link.mobileName || link.name}</span>
                           </div>
 
                           <div className="flex items-center gap-1.5 shrink-0 ml-1.5">
@@ -372,8 +373,8 @@ export function Navbar() {
               </div>
 
               {/* Location Snippet */}
-              <div className="text-[9.5px] sm:text-[10px] text-text-muted text-center pt-0.5 border-t border-border/60 truncate">
-                📍 Raja Bazaar / Phool Bagh Rd, Ambati Satram Area, Vizianagaram
+              <div className="text-[9.5px] sm:text-[10px] text-text-muted text-center pt-0.5 border-t border-border/60 leading-relaxed px-2">
+                1st Floor, Ajay Children&apos;s Hospital, Ajay Children&apos;s Hospital Junction, Opposite LensKart, Ambati Satram Area, Vizianagaram, Andhra Pradesh – 535002
               </div>
             </div>
           </motion.div>

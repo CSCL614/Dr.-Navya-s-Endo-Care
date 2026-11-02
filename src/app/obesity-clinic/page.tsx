@@ -75,7 +75,7 @@ export default function ObesityClinicPage() {
       <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-gradient-hero border-b border-border overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-soft-teal/40 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-white border border-border text-primary font-semibold rounded-full text-xs sm:text-sm mb-6 shadow-2xs">
               <Sparkles className="w-4 h-4 text-primary" />
@@ -113,7 +113,7 @@ export default function ObesityClinicPage() {
 
       {/* Main Content & Approach */}
       <section className="py-12 sm:py-16 lg:py-20 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-6xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
           
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
@@ -335,7 +335,7 @@ export default function ObesityClinicPage() {
       </section>
 
       {/* Booking CTA Banner */}
-      <section className="container mx-auto px-4 md:px-6 max-w-5xl mt-6">
+      <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mt-6 relative z-10">
         <ScrollReveal>
           <div className="bg-gradient-navy rounded-[2.5rem] p-6 sm:p-10 md:p-12 text-center text-white relative overflow-hidden shadow-xl border border-white/10">
             <div className="absolute top-0 right-0 w-80 h-80 bg-primary/20 rounded-full blur-3xl pointer-events-none" />

@@ -561,3 +561,53 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ── Desktop Viewport Layout & Alignment Adjustments (Desktop Only) ── */
+@media (min-width: 1024px) {
+  /* Harmonize container width with the 1600px desktop grid to eliminate empty side gaps */
+  .container,
+  div.container,
+  section.container,
+  main.container {
+    max-width: 1600px !important;
+    width: 100% !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  /* Automatically expand constricted containers on desktop */
+  .container.max-w-3xl,
+  .container.max-w-4xl,
+  .container.max-w-5xl,
+  .container.max-w-6xl,
+  .container.max-w-7xl,
+  div.max-w-7xl:not(p):not(h1):not(h2):not(span),
+  section.max-w-7xl:not(p):not(h1):not(h2):not(span),
+  div.max-w-6xl:not(p):not(h1):not(h2):not(span),
+  section.max-w-6xl:not(p):not(h1):not(h2):not(span),
+  div.max-w-5xl:not(p):not(h1):not(h2):not(span),
+  section.max-w-5xl:not(p):not(h1):not(h2):not(span) {
+    max-width: 1600px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container,
+  div.container,
+  section.container,
+  main.container {
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container,
+  div.container,
+  section.container,
+  main.container {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+

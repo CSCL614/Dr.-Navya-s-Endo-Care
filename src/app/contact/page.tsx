@@ -55,7 +55,7 @@ export default function ContactPage() {
     }
   };
 
-  const directionsUrl = "https://www.google.com/maps/dir/?api=1&destination=Dr.+Navya%E2%80%99s+Endo+Care,+Phool+Bagh+Rd,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002";
+  const directionsUrl = "https://www.google.com/maps/dir/?api=1&destination=Dr.+Navya%E2%80%99s+Endo+Care,+1st+Floor,+Ajay+Children%27s+Hospital,+Ajay+Children%27s+Hospital+Junction,+Opposite+LensKart,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002";
 
   return (
     <div className="overflow-hidden bg-background min-h-screen pb-24">
@@ -64,7 +64,7 @@ export default function ContactPage() {
       <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-gradient-hero overflow-hidden border-b border-border">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-soft-teal/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-3xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-white border border-border text-primary font-semibold rounded-full text-xs sm:text-sm mb-6 shadow-2xs">
               <Phone className="w-4 h-4 text-primary" />
@@ -81,9 +81,9 @@ export default function ContactPage() {
       </section>
 
       <section className="py-12 sm:py-20 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 mx-auto">
             
             {/* Contact Info Side — Crystal Clear High Contrast */}
             <div className="lg:col-span-5 space-y-6">
@@ -110,8 +110,8 @@ export default function ContactPage() {
                           </span>
                         </h4>
                         <p className="!text-white/95 leading-relaxed text-xs sm:text-sm font-medium">
-                          Dr. Navya’s Endo Care, Ajay Children’s Hospital Junction, Phool Bagh Rd,<br />
-                          Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002
+                          1st Floor, Ajay Children&apos;s Hospital, Ajay Children&apos;s Hospital Junction,<br />
+                          Opposite LensKart, Ambati Satram Area, Vizianagaram, Andhra Pradesh – 535002
                         </p>
                         <a 
                           href={directionsUrl}
@@ -325,7 +325,7 @@ export default function ContactPage() {
 
       {/* Interactive Map & Directions Section with Telugu / English Conversion */}
       <section className="py-10 bg-white border-t border-border">
-        <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
           
           <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-border shadow-sm mb-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
@@ -339,7 +339,7 @@ export default function ContactPage() {
                   </h3>
                 </div>
                 <p className="text-xs sm:text-sm text-text-secondary">
-                  Phool Bagh Road, Ambati Satram Area, Vizianagaram (Near Ajay Children&apos;s Hospital)
+                  1st Floor, Ajay Children&apos;s Hospital, Ajay Children&apos;s Hospital Junction, Opposite LensKart, Ambati Satram Area, Vizianagaram, Andhra Pradesh – 535002
                 </p>
               </div>
 
@@ -357,9 +357,9 @@ export default function ContactPage() {
                     Official Clinic Address
                   </span>
                   <p className="text-xs sm:text-sm font-semibold text-navy leading-relaxed">
-                    Dr. Navya’s Endo Care, Ajay Children’s Hospital Junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, Andhra Pradesh 535002.<br />
+                    1st Floor, Ajay Children&apos;s Hospital, Ajay Children&apos;s Hospital Junction, Opposite LensKart, Ambati Satram Area, Vizianagaram, Andhra Pradesh – 535002.<br />
                     <span className="text-text-secondary font-normal text-xs mt-1 block">
-                      <strong>Landmark:</strong> Opposite Town Bus Stop Junction, right next to Ajay Children&apos;s Hospital. Parking facility available on premises.
+                      <strong>Landmark:</strong> Opposite LensKart, Ajay Children&apos;s Hospital Junction. Parking facility available on premises.
                     </span>
                   </p>
                 </div>

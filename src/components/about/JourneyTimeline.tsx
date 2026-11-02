@@ -10,7 +10,7 @@ export function JourneyTimeline() {
 
   return (
     <section className="py-20 lg:py-28 bg-background relative overflow-hidden" id="academic-journey">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-16 lg:mb-20">

@@ -151,7 +151,7 @@ export default function ServicesPage() {
       <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-gradient-hero border-b border-border overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-soft-teal/40 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-white border border-border text-primary font-semibold rounded-full text-xs sm:text-sm mb-6 shadow-2xs">
               <Sparkles className="w-4 h-4 text-primary" />
@@ -171,7 +171,7 @@ export default function ServicesPage() {
 
       {/* Category Filter Tabs */}
       <section className="pt-8 sm:pt-10 pb-4">
-        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
             {filterTabs.map((cat) => (
               <button
@@ -192,7 +192,7 @@ export default function ServicesPage() {
 
       {/* Grouped Accordion Sections */}
       <section className="py-6 sm:py-10 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-5xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
           <div className="space-y-4 sm:space-y-5">
             {displayedGroups.map((group, idx) => {
               const groupServices = doctorData.specialities.filter(
@@ -299,7 +299,7 @@ export default function ServicesPage() {
 
       {/* Final Appointment CTA with Guaranteed High-Contrast Styling */}
       <section className="py-16 sm:py-20 bg-pale-blue/30 border-t border-border">
-        <div className="container mx-auto px-4 md:px-6 text-center max-w-4xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center">
           <ScrollReveal>
             <div className="bg-gradient-to-br from-[#173B57] via-[#1E4D6E] to-[#0F2B40] text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-white/10 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-72 h-72 bg-primary/20 rounded-full blur-3xl pointer-events-none" />

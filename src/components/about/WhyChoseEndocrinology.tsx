@@ -30,7 +30,7 @@ export function WhyChoseEndocrinology() {
         <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-sky-100/20 rounded-full blur-[100px]" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

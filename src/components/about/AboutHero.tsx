@@ -18,7 +18,7 @@ export function AboutHero() {
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-sky-100/30 rounded-full blur-3xl transform-gpu" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Text Content */}
@@ -140,6 +140,10 @@ export function AboutHero() {
                   <span className="text-xs font-semibold text-accent-warm uppercase tracking-wider block mb-1">Founder & Chief Consultant</span>
                   <h3 className="text-xl font-bold font-heading mb-0.5">{doctorData.name}</h3>
                   <p className="text-xs text-white/80 font-medium">MBBS, MD, DM (Endocrinology)</p>
+                  <div className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-navy-dark/80 backdrop-blur-sm text-soft-teal border border-soft-teal/30">
+                    <Award className="w-3 h-3 text-soft-teal shrink-0" />
+                    <span>University Topper | Multi Gold Medalist</span>
+                  </div>
                 </div>
               </motion.div>
 

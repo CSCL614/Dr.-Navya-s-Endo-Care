@@ -120,7 +120,7 @@ export default function DiabetesCarePage() {
       <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-white border-b border-slate-200 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-50/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-teal-50 border border-teal-200 text-primary font-semibold rounded-full text-xs sm:text-sm mb-6">
               <Sparkles className="w-4 h-4 text-primary" />
@@ -155,7 +155,7 @@ export default function DiabetesCarePage() {
 
       {/* Core Support Services - Grouped Accordion */}
       <section className="py-12 sm:py-16 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-5xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
           
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
             <ScrollReveal>
@@ -378,7 +378,7 @@ export default function DiabetesCarePage() {
       <ClinicFacilitiesSection isCompact={false} />
 
       {/* Appointment CTA */}
-      <section className="container mx-auto px-4 md:px-6 max-w-5xl mt-8 sm:mt-12">
+      <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mt-8 sm:mt-12">
         <ScrollReveal>
           <div className="bg-teal-50 border border-teal-200 rounded-3xl p-8 md:p-12 text-center">
             <h3 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800 mb-3">

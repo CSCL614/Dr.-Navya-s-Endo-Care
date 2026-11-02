@@ -43,7 +43,7 @@ export function HeroSection() {
         <div className="absolute bottom-[-10%] left-[-5%] w-[350px] sm:w-[450px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-soft-teal/20 via-pale-blue/20 to-transparent rounded-full blur-3xl" />
       </div>
 
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
 
           {/* Left Column: Clear Text & Visible Action Buttons */}

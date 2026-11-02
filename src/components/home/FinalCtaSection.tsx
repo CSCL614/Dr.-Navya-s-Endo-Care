@@ -8,7 +8,7 @@ import { doctorData } from "@/data/doctorData";
 export function FinalCtaSection() {
   const { openModal } = useAppointment();
 
-  const googleMapsUrl = "https://maps.google.com/?q=Dr.+Navya's+Endo+Care,+Ajay+Children's+Hospital+junction,+Phool+Bagh+Rd,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+535002";
+  const googleMapsUrl = "https://maps.google.com/?q=Dr.+Navya's+Endo+Care,+1st+Floor,+Ajay+Children's+Hospital,+Ajay+Children's+Hospital+Junction,+Opposite+LensKart,+Ambati+Satram+Area,+Vizianagaram,+Andhra+Pradesh+–+535002";
 
   return (
     <section className="py-14 sm:py-20 lg:py-24 bg-white relative overflow-hidden scroll-mt-16 sm:scroll-mt-20" id="final-cta">
@@ -105,7 +105,7 @@ export function FinalCtaSection() {
 
               {/* Clinic Address */}
               <p className="text-[11px] sm:text-xs text-white/60 pt-2">
-                Ajay Children&rsquo;s Hospital junction, Phool Bagh Rd, Ambati Satram Area, Vizianagaram, AP 535002
+                1st Floor, Ajay Children&rsquo;s Hospital, Ajay Children&rsquo;s Hospital Junction, Opposite LensKart, Ambati Satram Area, Vizianagaram, Andhra Pradesh – 535002
               </p>
 
             </div>

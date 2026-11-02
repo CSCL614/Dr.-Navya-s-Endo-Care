@@ -51,7 +51,7 @@ export function WhyChooseUs() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-pale-blue/40 rounded-full blur-[100px] transform-gpu pointer-events-none" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">

@@ -151,7 +151,7 @@ export default function PcosWomensHealthPage() {
       <section className="relative pt-6 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 bg-white border-b border-slate-200 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-50/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
         
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center">
           <ScrollReveal>
             <div className="inline-flex items-center gap-2 py-1.5 px-4 bg-teal-50 border border-teal-200 text-primary font-semibold rounded-full text-xs sm:text-sm mb-6">
               <Sparkles className="w-4 h-4 text-primary" />
@@ -192,7 +192,7 @@ export default function PcosWomensHealthPage() {
 
       {/* Root-Cause Banner */}
       <section className="py-10 bg-teal-50/60 border-b border-teal-100">
-        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             <div className="md:col-span-1">
               <span className="text-xs font-bold text-teal-700 uppercase tracking-widest block mb-1">Endocrine Approach</span>
@@ -211,7 +211,7 @@ export default function PcosWomensHealthPage() {
 
       {/* Focus Areas - Grouped Accordion */}
       <section className="py-12 sm:py-16 lg:py-20 relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-5xl">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
             <ScrollReveal>
               <h2 className="text-2xl sm:text-3xl font-bold font-heading text-slate-800 mb-3">
@@ -371,7 +371,7 @@ export default function PcosWomensHealthPage() {
 
           {/* Action Card */}
           <ScrollReveal direction="up">
-            <div className="bg-gradient-to-r from-teal-900 via-slate-900 to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl text-center max-w-4xl mx-auto relative overflow-hidden">
+            <div className="bg-gradient-to-r from-teal-900 via-slate-900 to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl text-center mx-auto relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-3">
                   Take Control of Your Hormonal Health

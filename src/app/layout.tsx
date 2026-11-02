@@ -36,7 +36,7 @@ const clinicJsonLd = {
   "telephone": "+918464070196",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Ajay Children’s Hospital junction, Phool Bagh Rd, Ambati Satram Area",
+    "streetAddress": "1st Floor, Ajay Children's Hospital, Ajay Children's Hospital Junction, Opposite LensKart, Ambati Satram Area",
     "addressLocality": "Vizianagaram",
     "addressRegion": "Andhra Pradesh",
     "postalCode": "535002",

@@ -51,7 +51,7 @@ export function TestimonialCarousel() {
     <section className="py-16 lg:py-20 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-primary/5 rounded-t-[4rem] md:rounded-t-[6rem] -mt-10 pointer-events-none" />
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-16">

@@ -55,7 +55,7 @@ export function EndocrinologyEdu() {
       {/* Ambient background accents */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-pale-blue/60 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">

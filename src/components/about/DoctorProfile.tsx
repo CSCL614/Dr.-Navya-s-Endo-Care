@@ -19,7 +19,7 @@ export function DoctorProfile() {
         <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-teal-50/50 rounded-full blur-[100px] transform-gpu" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16">
@@ -59,6 +59,10 @@ export function DoctorProfile() {
                     <span className="text-[10px] font-bold uppercase tracking-wider text-soft-teal block mb-1">Consultant Endocrinologist</span>
                     <h3 className="text-xl sm:text-2xl font-bold font-heading text-white">{doctorData.name}</h3>
                     <p className="text-xs text-white/90">{doctorData.degrees}</p>
+                    <div className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-full text-[10.5px] font-semibold bg-navy-dark/85 backdrop-blur-sm text-soft-teal border border-soft-teal/30">
+                      <Award className="w-3 h-3 text-soft-teal shrink-0" />
+                      <span>University Topper | Multi Gold Medalist</span>
+                    </div>
                   </div>
                 </div>
                 
@@ -191,14 +195,25 @@ export function DoctorProfile() {
               <div className="bg-white rounded-3xl p-8 lg:p-10 border border-border shadow-card relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary via-primary-light to-accent-warm" />
                 
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 className="text-3xl lg:text-4xl font-bold font-heading text-navy">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-navy">
                     {doctorData.name}
                   </h3>
                 </div>
 
-                <div className="inline-block bg-soft-teal text-primary-dark px-3.5 py-1 rounded-full text-sm font-semibold mb-6">
-                  {doctorData.role}
+                <p className="text-xs sm:text-sm font-semibold text-primary mb-2.5">
+                  {doctorData.degrees}
+                </p>
+
+                {/* Academic Distinctions Highlight */}
+                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-6">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-soft-teal text-primary-dark border border-primary/20 shadow-2xs">
+                    <Award className="w-3.5 h-3.5 text-primary shrink-0" />
+                    <span>University Topper | Multi Gold Medalist</span>
+                  </span>
+                  <span className="inline-block bg-slate-100 text-navy px-3 py-1 rounded-full text-xs font-semibold border border-slate-200">
+                    {doctorData.role}
+                  </span>
                 </div>
                 
                 <div className="prose prose-lg text-text-secondary max-w-none leading-relaxed space-y-4">

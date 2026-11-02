@@ -76,9 +76,9 @@ export function DoctorIntroSection() {
                   <p className="text-xs text-primary font-semibold mt-0.5">
                     MBBS, MD (Gen Med), DM (Endocrinology)
                   </p>
-                  <span className="inline-flex items-center gap-1 mt-1.5 px-3 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-200 shadow-2xs badge-glow-amber">
-                    <Award className="w-3.5 h-3.5 text-amber-600" />
-                    University Topper • Gold Medalist
+                  <span className="inline-flex items-center gap-1.5 mt-2 px-3 py-0.5 rounded-full text-[11px] font-semibold bg-soft-teal/70 text-navy border border-primary/25 shadow-2xs">
+                    <Award className="w-3.5 h-3.5 text-primary shrink-0" />
+                    <span>University Topper | Multi Gold Medalist</span>
                   </span>
                 </div>
               </div>
